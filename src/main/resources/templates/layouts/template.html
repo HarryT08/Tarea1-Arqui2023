@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es" th:fragment="userTemplate(title, links, concent, scripts)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">School Management</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <th:block th:replace="${links}" />
+</head>
+<body>
+    <th:blick th:replace="${concent}" />
+    <th:block th:replace="${scripts}" />
+</body>
+</html>
