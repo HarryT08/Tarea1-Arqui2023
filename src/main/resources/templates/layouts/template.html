@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${title}">School Management</title>
     <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <link rel="stylesheet" th:href="@{/icons/css/all.min.css}" />
     <th:block th:replace="${links}" />
 </head>
 <body>
+    <div th:replace="fragments/header :: userHeader"></div>
+    <nav th:replace="fragments/menus :: userNavbar"></nav>
     <th:blick th:replace="${concent}" />
+    <script th:src="@{/icons/js/all.min.js}"></script>
     <th:block th:replace="${scripts}" />
 </body>
 </html>
