@@ -51,7 +51,6 @@ public class User implements Serializable {
     @NotNull
     private String password;
 
-    @NotBlank
     @Size(max = 255)
     private String email;
 
