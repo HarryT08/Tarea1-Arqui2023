@@ -261,7 +261,7 @@ th {
     text-align: inherit; }
 
 html {
-  background-color: white;
+  background-color: #eeeeee;
   font-size: 16px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -3052,7 +3052,7 @@ a.tag:hover {
   padding-top: 4px;
   position: absolute;
   top: 100%;
-  z-index: 20; }
+  z-index: 50; }
 
 .dropdown-content {
   background-color: white;
@@ -7469,7 +7469,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   padding: 3rem 1.5rem; }
 
 .section {
-  padding: 3rem 1.5rem; }
+  padding: 1.8rem 1.5rem; }
   @media screen and (min-width: 1024px) {
     .section.is-medium {
       padding: 9rem 1.5rem; }

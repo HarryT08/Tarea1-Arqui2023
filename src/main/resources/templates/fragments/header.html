@@ -1,19 +1,46 @@
 <!DOCTYPE html>
-<body>
+<body xmlns:th="http://www.thymeleaf.org">
 
-    <section th:fragment="userHeader" class="section">
-        <div class="container">
+    <section class="section" th:fragment="userHeader">
+        <div class="container is-fluid">
             <div class="level">
                 <div class="level-left">
                     <div class="level-item">
-                        <span class="icon is-large has-text-info"><i class="fas fa-3x fa-graduation-cap"></i></span>
-                        <hr><br>
-                        <span>Nombre del Colegio</span>
+                        <span class="icon is-large has-text-info">
+                            <i class="fas fa-graduation-cap fas fa-3x "></i>
+                        </span>
+                    </div>
+                    <div class="level-item">
+                       <div>
+                            <h1 class="title" th:text="${@globalConfig.getAppName()}">Nombre escuela</h1> 
+                            <h2 class="subtitle mt-2" th:text="${@globalConfig.getAppSlogan()}">Un slogan a mostrar</h2>
+                       </div>
+                    </div>
+                </div>
+                <div class="level-rigth">
+                    <div class="level-item">
+                        <div class="dropdown is-hoverable is-right">
+                            <div class="dropdown-trigger">
+                                <button class="button">
+                                    <span class="icon"><i class="fas fa-user-circle"></i></span>
+                                    <span th:text="${#authentication.principal.username}" class="has-text-link"></span>
+                                    <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                                </button>
+                            </div>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-content">
+                                    <a class="dropdown-item" th:href="@{/logout}">
+                                        <span class="icon" is-large><i class="fas fa-sign-out-alt"></i></span>
+                                        <span th:text="#{ui.actions.logout}"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
 </body>
 </html>

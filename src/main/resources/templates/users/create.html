@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.users.create.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+
+<body>
+
+    <ul id="crumbs">
+        <li>
+            <a href="#" th:text="#{ui.breadcrumb.users}"></a>
+        </li>
+        <li class="is-active">
+            <a href="#" th:text="#{ui.breadcrumb.users.create}"></a>
+        </li>
+    </ul>
+
+    <section class="section">
+        <div class="container">
+            <nav class="panel is-light">
+                <h1 class="panel-heading" th:text="#{ui.users.create.panel.heading}"></h1>
+                <div class="panel-block">
+                    <div class="container">
+                        content
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+</body>
+
+</html>

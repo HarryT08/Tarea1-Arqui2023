@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="layouts/template :: userTemplate(#{ui.home.window.title}, _, ~{::section}, _)">
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.home.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+
 <body>
+    <ul id="crumbs">
+        <li class="is-active">Inicio</li>
+    </ul>
     <section class="section">
         this will bee home
     </section>
 </body>
+
 </html>

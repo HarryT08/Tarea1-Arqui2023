@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es" th:fragment="userTemplate(title, links, concent, scripts)">
+<html xmlns:th="http://www.thymeleaf.org" lang="es" th:fragment="userTemplate(title, links, crumbs, concent, scripts)">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +11,7 @@
 <body>
     <div th:replace="fragments/header :: userHeader"></div>
     <nav th:replace="fragments/menus :: userNavbar"></nav>
+    <nav th:replace="fragments/breadcrumb :: breadcrumb(${crumbs})"></nav>
     <th:blick th:replace="${concent}" />
     <script th:src="@{/icons/js/all.min.js}"></script>
     <th:block th:replace="${scripts}" />

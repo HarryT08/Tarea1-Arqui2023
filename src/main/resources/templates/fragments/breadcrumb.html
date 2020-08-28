@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<body xmlns:th="http://www.thymeleaf.org">
+
+    <div class="section pt-3 pb-1" th:fragment="breadcrumb(crumbs)">
+        <div class="container">
+            <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
+                <ul th:replace="${crumbs}"></ul>
+            </nav>
+        </div>
+    </div>
+
+</body>
+
+</html>
