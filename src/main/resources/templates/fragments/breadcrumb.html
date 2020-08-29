@@ -2,9 +2,9 @@
 
 <body xmlns:th="http://www.thymeleaf.org">
 
-    <div class="section pt-3 pb-1" th:fragment="breadcrumb(crumbs)">
+    <div class="section pt-3 pb-1 has-background-light" th:fragment="breadcrumb(crumbs)">
         <div class="container">
-            <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
+            <nav class="breadcrumb is-rigth" aria-label="breadcrumbs">
                 <ul th:replace="${crumbs}"></ul>
             </nav>
         </div>

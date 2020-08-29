@@ -2,6 +2,7 @@
 <body xmlns:th="http://www.thymeleaf.org">
 
     <nav th:fragment="userNavbar" class="navbar is-light" role="navigation">
+        <viv class="container">
        <div class="navbar-brand">
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarToggle">
             <span aria-hidden="true"></span>
@@ -17,7 +18,7 @@
                    <a class="navbar-item" th:text="#{ui.menu.navbar.users.create}" th:href="@{/users/create}"></a>
                </div>
            </div>
-       </div>
+       </div></viv>
     </nav>
     
 </body>

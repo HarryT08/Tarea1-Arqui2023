@@ -17,9 +17,118 @@
         <div class="container">
             <nav class="panel is-light">
                 <h1 class="panel-heading" th:text="#{ui.users.create.panel.heading}"></h1>
-                <div class="panel-block">
+                <div class="panel-block has-background-white">
                     <div class="container">
-                        content
+                        <form method="post" th:action="@{/users/store}" autocomplete="off" th:object="${user}">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" for="name" th:text="#{ui.users.create.form.name}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="input" type="text" th:field="*{name}"
+                                                th:placeholder="#{ui.users.create.form.name.placeholder}"
+                                                th:errorclass="is-danger" autofocus />
+                                            <span class="help is-danger" th:errors="*{name}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" for="lastName"
+                                        th:text="#{ui.users.create.form.lastName}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" th:field="*{lastName}"
+                                                th:errorclass="is-danger"
+                                                th:placeholder="#{ui.users.create.form.lastName.placeholder}" />
+                                            <span class="help is-danger" th:errors="*{lastName}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" for="birthday"
+                                        th:text="#{ui.users.create.form.birthday}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control has-icons-left">
+                                            <input type="date" class="input" th:field="*{birthday}"
+                                                th:errorclass="is-danger" />
+                                            <span class="icon is-left"><i class="fas fa-calendar"></i></span>
+                                            <span class="help is-danger" th:errors="*{birthday}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" for="username"
+                                        th:text="#{ui.users.create.form.username}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control has-icons-left">
+                                            <input type="text" class="input" th:field="*{username}"
+                                                th:errorclass="is-danger"
+                                                th:placeholder="#{ui.users.create.form.username}" />
+                                            <span class="icon is-left"><i class="fas fa-user"></i></span>
+                                            <span class="help is-danger" th:errors="*{username}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" for="password"
+                                        th:text="#{ui.users.create.form.password}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control has-icons-left">
+                                            <input type="password" class="input" th:field="*{password}"
+                                                th:errorclass="is-danger"
+                                                th:placeholder="#{ui.users.create.form.password.placeholder}" />
+                                            <span class="icon is-left"><i class="fas fa-unlock"></i></span>
+                                            <span class="help is-danger" th:errors="*{password}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" for="email" th:text="#{ui.users.create.form.email}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control has-icons-left">
+                                            <input type="email" class="input" th:field="*{email}"
+                                                th:errorclass="is-danger"
+                                                th:placeholder="#{ui.users.create.form.email.placeholder}" />
+                                            <span class="icon is-left"><i class="fas fa-envelope"></i></span>
+                                            <span class="help is-danger" th:errors="*{email}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label"></div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button class="button is-info" type="submit"
+                                                th:text="#{ui.common.button.save}"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </nav>

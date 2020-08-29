@@ -23,6 +23,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "users")
@@ -42,13 +43,14 @@ public class User implements Serializable {
     private String lastName;
 
     @NotNull
+    @DateTimeFormat(pattern = "YYYY-MM-dd")
     private Date birthday;
 
     @NotBlank
     @Size(max = 20)
     private String username;
 
-    @NotNull
+    @NotBlank
     private String password;
 
     @Size(max = 255)
