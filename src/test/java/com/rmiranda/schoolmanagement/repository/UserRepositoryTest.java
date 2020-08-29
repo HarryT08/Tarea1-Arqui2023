@@ -2,12 +2,15 @@ package com.rmiranda.schoolmanagement.repository;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.FlushModeType;
 import javax.transaction.Transactional;
 
+import com.rmiranda.schoolmanagement.model.entity.Role;
 import com.rmiranda.schoolmanagement.model.entity.User;
 import com.rmiranda.schoolmanagement.model.repository.UserRepository;
 
@@ -39,6 +42,12 @@ public class UserRepositoryTest {
         newUser.setUsername("rmiranda");
         newUser.setPassword("password");
         newUser.setBirthday(new Date());
+
+        Role role = em.createQuery("from Role r where id = 1", Role.class).getSingleResult();
+        List<Role> roles = new ArrayList<Role>();
+        roles.add(role);
+
+        newUser.setRoles(roles);
 
         userRepository.save(newUser);
 
