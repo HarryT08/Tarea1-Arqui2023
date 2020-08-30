@@ -11,12 +11,13 @@ import com.rmiranda.schoolmanagement.service.RoleService;
 import com.rmiranda.schoolmanagement.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -45,19 +46,22 @@ public class UserController {
     }
 
     @PostMapping("/store")
-    public ModelAndView store(@RequestParam(name = "userRoles") String[] roles, @Valid User user, BindingResult result, ModelAndView mv,
-            @ModelAttribute(name = "roles") List<Role> allRoles) {
-            
+    public ModelAndView store(@RequestParam(name = "userRoles", defaultValue = "") String[] roles, @Valid User user,
+            BindingResult result, ModelAndView mv, @ModelAttribute(name = "roles") List<Role> allRoles) {
+
         List<Role> userRoles = new ArrayList<>();
 
         for (String r : roles) {
             userRoles.add(roleService.getRoleById(Long.valueOf(r)));
         }
 
-        user.setRoles(userRoles);
+        if (userRoles.size() > 0) {
+            user.setRoles(userRoles);
+        } else {
+            result.addError(new ObjectError("userRoles", "Debe seleccioanar un rol"));
+        }
 
         if (result.hasErrors()) {
-            System.out.println(result.getAllErrors());
             mv.addObject("allRoles", allRoles);
             mv.setViewName("users/create");
             return mv;
