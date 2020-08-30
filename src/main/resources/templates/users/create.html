@@ -124,7 +124,12 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            roles
+                                            <div class="lselect is-multiple">
+                                                <select multiple th:size="${allRoles.size()}" name="userRoles">
+                                                    <option th:each="role : ${allRoles}" th:value="${role.id}"
+                                                        th:text="${role.role}"></option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

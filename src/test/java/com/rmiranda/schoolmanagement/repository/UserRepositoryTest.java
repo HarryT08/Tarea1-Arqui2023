@@ -44,8 +44,9 @@ public class UserRepositoryTest {
         newUser.setBirthday(new Date());
 
         Role role = em.createQuery("from Role r where id = 1", Role.class).getSingleResult();
-        List<Role> roles = new ArrayList<Role>();
-        roles.add(role);
+        Role[] roles = null;
+
+        roles[0] = role;
 
         newUser.setRoles(roles);
 

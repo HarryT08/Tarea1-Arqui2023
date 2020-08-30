@@ -56,7 +56,7 @@ public class User implements Serializable {
     @Size(max = 255)
     private String email;
 
-    private boolean active;
+    private boolean active = true;
 
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
