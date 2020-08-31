@@ -12,6 +12,9 @@ import com.rmiranda.schoolmanagement.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -35,6 +38,15 @@ public class UserController {
     @ModelAttribute("roles")
     public List<Role> getRoles() {
         return roleService.getAllRoles();
+    }
+
+    @GetMapping("")
+    public ModelAndView index(ModelAndView mv) {
+        Pageable page = PageRequest.of(0, 10);
+        Page<User> users = userService.getAllUSers(page);
+        mv.addObject("users", users);
+        mv.setViewName("users/index");
+        return mv;
     }
 
     @GetMapping("/create")
