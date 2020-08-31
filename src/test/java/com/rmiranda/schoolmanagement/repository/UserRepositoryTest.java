@@ -17,6 +17,9 @@ import com.rmiranda.schoolmanagement.model.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 @SpringBootTest
 public class UserRepositoryTest {
@@ -44,9 +47,10 @@ public class UserRepositoryTest {
         newUser.setBirthday(new Date());
 
         Role role = em.createQuery("from Role r where id = 1", Role.class).getSingleResult();
-        Role[] roles = null;
+        List<Role> roles = new ArrayList<Role>();
 
-        roles[0] = role;
+        roles.add(role);
+
 
         newUser.setRoles(roles);
 
@@ -65,4 +69,16 @@ public class UserRepositoryTest {
 
         assertTrue(user.getUsername().equals("system"));
     }
+
+    @Test
+    public void testGetPaginatedUserList() {
+
+        Pageable page = PageRequest.of(0, 10);
+
+        Page<User> users = userRepository.findAll(page);
+
+        assertTrue(users.getSize() > 0);
+
+    }
+
 }

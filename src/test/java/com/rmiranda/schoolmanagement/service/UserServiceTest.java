@@ -9,14 +9,12 @@ import javax.transaction.Transactional;
 
 import com.rmiranda.schoolmanagement.model.entity.User;
 
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
-import org.springframework.test.context.event.annotation.BeforeTestMethod;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 @SpringBootTest
 public class UserServiceTest {
@@ -43,6 +41,14 @@ public class UserServiceTest {
                 .getSingleResult();
 
         assertTrue(user.getUsername().equals(dbUSer.getUsername()));
+    }
+
+    @Test
+    public void testGetPaginatedUSers() {
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<User> users = userService.getAllUSers(pageable);
+
+        assertTrue(users.getSize() > 0);
     }
 
 }
