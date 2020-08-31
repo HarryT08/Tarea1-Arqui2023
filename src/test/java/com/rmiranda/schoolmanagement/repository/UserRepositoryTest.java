@@ -81,4 +81,17 @@ public class UserRepositoryTest {
 
     }
 
+    @Test
+    public void  testUpdateUser() {
+        User user = em.find(User.class, Long.valueOf(1));
+
+        user.setName("Updated name");
+
+        userRepository.save(user);
+
+        User updatedUSer = em.find(User.class, Long.valueOf(1));
+
+        assertTrue(user.getName().equals(updatedUSer.getName()));
+    }
+
 }

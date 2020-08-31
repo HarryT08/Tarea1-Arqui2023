@@ -51,4 +51,26 @@ public class UserServiceTest {
         assertTrue(users.getSize() > 0);
     }
 
+    @Test
+    public void testUpdateUser() {
+        User user = em.find(User.class, Long.valueOf(1));
+
+        user.setName("Updated service name");
+
+        userService.updateUser(user);
+
+        User updatedUser = em.find(User.class, Long.valueOf(1));
+
+        assertTrue(user.getName().equals(updatedUser.getName()));
+    }
+
+    @Test
+    public void testGetUserById(){
+        User user = em.find(User.class, Long.valueOf(1));
+
+        User fUser = userService.getUserById(Long.valueOf(1)).orElse(null);
+
+        assertTrue(user.getUsername().equals(fUser.getUsername()));
+    }
+
 }
