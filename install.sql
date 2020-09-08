@@ -36,7 +36,7 @@ CREATE TABLE users (
 COMMENT="Usuarios del sistema";
 
 CREATE TABLE roles (
-	id INT UNSIGNED AUTO_INCREMENT,
+	id BIGINT UNSIGNED AUTO_INCREMENT,
 	`role` VARCHAR(40) NOT NULL,
 	PRIMARY KEY (id),
 	CONSTRAINT uq_roles_rol UNIQUE (`role`)
@@ -46,7 +46,7 @@ COMMENT="Catalogo de roles";
 CREATE TABLE user_roles (
 	id BIGINT UNSIGNED AUTO_INCREMENT,
 	user_id BIGINT UNSIGNED NOT NULL,
-	role_id INT UNSIGNED NOT NULL,
+	role_id BIGINT UNSIGNED NOT NULL,
 	PRIMARY KEY (id),
 	CONSTRAINT fk_user_roles_user_id FOREIGN KEY (user_id) REFERENCES users(id),
 	CONSTRAINT fk_user_roels_role_id FOREIGN KEY (role_id) REFERENCES roles(id)
