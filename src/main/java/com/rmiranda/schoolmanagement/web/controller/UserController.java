@@ -51,29 +51,24 @@ public class UserController {
     @GetMapping("/create")
     public ModelAndView create(ModelAndView mv, User user, @ModelAttribute("roles") List<Role> roles) {
         mv.addObject("user", user);
-        mv.addObject("allRoles", roles);
         mv.setViewName("users/create");
         return mv;
     }
 
     @PostMapping("/store")
-    public ModelAndView store(@RequestParam(name = "userRoles", defaultValue = "") String[] roles, @Valid User user,
-            BindingResult result, ModelAndView mv, @ModelAttribute(name = "roles") List<Role> allRoles) {
+    public ModelAndView store(@Valid User user,
+            BindingResult result, ModelAndView mv, @ModelAttribute(name = "roles") List<Role> roles) {
 
-        List<Role> userRoles = new ArrayList<>();
+        List<Role> userRoles = new ArrayList<Role>();
 
-        for (String r : roles) {
-            userRoles.add(roleService.getRoleById(Long.valueOf(r)));
+        for (long roleId : user.getRoleIds()) {
+            Role role = roleService.getRoleById(roleId);
+            userRoles.add(role);
         }
 
-        if (userRoles.size() > 0) {
-            user.setRoles(userRoles);
-        } else {
-            result.addError(new ObjectError("userRoles", "Debe seleccioanar un rol"));
-        }
+        user.setRoles(userRoles);
 
         if (result.hasErrors()) {
-            mv.addObject("allRoles", allRoles);
             mv.setViewName("users/create");
             return mv;
         }

@@ -19,6 +19,7 @@
                                     <th th:text="#{ui.users.index.table.lastName}"></th>
                                     <th th:text="#{ui.users.index.table.username}"></th>
                                     <th th:text="#{ui.users.index.table.role}"></th>
+                                    <th th:text="#{ui.common.table.edit}"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -28,6 +29,13 @@
                                     <td th:text="${user.username}"></td>
                                     <td>
                                         <span class="tag" th:each="role : ${user.roles}" th:text="${role.role}"></span>
+                                    </td>
+                                    <td>
+                                        <a class="button is-primary is-light" th:href="@{/users/{userId}/edit(userId=${user.id})}">
+                                            <span class="icon">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                        </a>
                                     </td>
                                 </tr>
                             </tbody>

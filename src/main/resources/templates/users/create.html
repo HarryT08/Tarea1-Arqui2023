@@ -13,7 +13,7 @@
         </li>
     </ul>
 
-    <section class="section">
+    <section class="section" id="content">
         <div class="container">
             <nav class="panel is-light">
                 <h1 class="panel-heading" th:text="#{ui.users.create.panel.heading}"></h1>
@@ -119,15 +119,14 @@
                             </div>
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
-                                    <label class="label" for="roles" th:text="#{ui.users.create.form.roles}"></label>
+                                    <label class="label" th:text="#{ui.users.create.form.roles}"></label>
                                 </div>
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <div class="lselect is-multiple">
-                                                <select multiple th:size="${allRoles.size()}" name="userRoles">
-                                                    <option th:each="role : ${allRoles}" th:value="${role.id}"
-                                                        th:text="${role.role}"></option>
+                                            <div class="select is-multiple">
+                                                <select multiple th:field="*{roleIds}">
+                                                    <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.role}"></option>
                                                 </select>
                                             </div>
                                         </div>
@@ -153,5 +152,6 @@
     </section>
 
 </body>
+
 
 </html>
