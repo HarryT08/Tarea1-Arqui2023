@@ -2,6 +2,7 @@ package com.rmiranda.schoolmanagement.service;
 
 import java.util.Optional;
 
+
 import com.rmiranda.schoolmanagement.model.entity.User;
 import com.rmiranda.schoolmanagement.model.repository.UserRepository;
 
@@ -30,14 +31,22 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll(pageable);
     }
 
-	@Override
-	public void updateUser(User user) {
-        userRepository.save(user);
-	}
+    @Override
+    public void updateUser(User user) {
+        User dbUser = userRepository.getOne(user.getId());
+
+        dbUser.setName(user.getName());
+        dbUser.setLastName(user.getLastName());
+        dbUser.setBirthday(user.getBirthday());
+        dbUser.setEmail(user.getEmail());
+        dbUser.setRoles(user.getRoles());
+
+        userRepository.save(dbUser);
+    }
 
     @Override
     public Optional<User> getUserById(long id) {
         return userRepository.findById(id);
     }
-    
+
 }

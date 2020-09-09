@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    th:replace="layouts/template :: userTemplate(#{ui.users.create.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+    th:replace="layouts/template :: userTemplate(#{ui.users.edit.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
 
 <body>
-
     <ul id="crumbs">
-        <li>
-            <a href="#" th:text="#{ui.breadcrumb.users}"></a>
-        </li>
-        <li class="is-active">
-            <a href="#" th:text="#{ui.breadcrumb.users.create}"></a>
-        </li>
+        <li><a th:href="@{/users}" th:text="#{ui.breadcrumb.users}"></a></li>
+        <li><a th:text="${user.username}"></a></li>
+        <li class="is-active"><a href="#" th:text="#{ui.common.table.edit}"></a></li>
     </ul>
 
-    <section class="section" id="content">
+    <section class="section">
         <div class="container">
-            <nav class="panel is-light">
-                <h1 class="panel-heading" th:text="#{ui.users.create.panel.heading}"></h1>
+            <div class="panel is-light">
+                <h1 class="panel-heading" th:text="#{ui.users.edit.panel.heading}"></h1>
                 <div class="panel-block has-background-white">
                     <div class="container">
-                        <form method="post" th:action="@{/users/create}" autocomplete="off" th:object="${user}">
+                        <form method="post" th:action="@{/users/{userId}/edit(userId=${user.id})}" autocomplete="off"
+                            th:object="${user}">
+                            <input type="hidden" readonly th:field="*{id}" />
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
-                                    <label class="label" for="name" th:text="#{ui.users.create.form.name}"></label>
+                                    <label class="label" th:text="#{ui.users.create.form.name}" for="name"></label>
                                 </div>
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="text" th:field="*{name}"
-                                                th:placeholder="#{ui.users.create.form.name.placeholder}"
-                                                th:errorclass="is-danger" autofocus />
+                                            <input type="text" class="input" th:field="*{name}" th:value="*{name}"
+                                                th:errorclass="is-danger"
+                                                th:placeholder="#{ui.users.create.form.name.placeholder}" autofocus />
                                             <span class="help is-danger" th:errors="*{name}"></span>
                                         </div>
                                     </div>
@@ -37,14 +35,14 @@
                             </div>
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
-                                    <label class="label" for="lastName"
-                                        th:text="#{ui.users.create.form.lastName}"></label>
+                                    <label class="label" th:text="#{ui.users.create.form.lastName}"
+                                        for="lastName"></label>
                                 </div>
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input type="text" class="input" th:field="*{lastName}"
-                                                th:errorclass="is-danger"
+                                            <input class="input" type="text" th:field="*{lastName}"
+                                                th:value="*{lastName}" th:errorclass="is-danger"
                                                 th:placeholder="#{ui.users.create.form.lastName.placeholder}" />
                                             <span class="help is-danger" th:errors="*{lastName}"></span>
                                         </div>
@@ -59,8 +57,8 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control has-icons-left">
-                                            <input type="date" class="input" th:field="*{birthday}"
-                                                th:errorclass="is-danger" />
+                                            <input class="input" type="date" th:field="*{birthday}"
+                                                th:value="*{birthday}" th:errorclass="is-danger">
                                             <span class="icon is-left"><i class="fas fa-calendar"></i></span>
                                             <span class="help is-danger" th:errors="*{birthday}"></span>
                                         </div>
@@ -75,42 +73,25 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control has-icons-left">
-                                            <input type="text" class="input" th:field="*{username}"
-                                                th:errorclass="is-danger"
-                                                th:placeholder="#{ui.users.create.form.username}" />
+                                            <input type="text" class="input is-static" readonly
+                                                th:field="*{username}"
+                                                th:placeholder="#{ui.users.create.form.username.placeholder}" />
                                             <span class="icon is-left"><i class="fas fa-user"></i></span>
-                                            <span class="help is-danger" th:errors="*{username}"></span>
+                                            <input type="hidden" th:field="*{password}" th:value="*{password}" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
-                                    <label class="label" for="password"
-                                        th:text="#{ui.users.create.form.password}"></label>
+                                    <label class="label" for="password" th:text="#{ui.users.create.form.email}"></label>
                                 </div>
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control has-icons-left">
-                                            <input type="password" class="input" th:field="*{password}"
-                                                th:errorclass="is-danger"
-                                                th:placeholder="#{ui.users.create.form.password.placeholder}" />
-                                            <span class="icon is-left"><i class="fas fa-unlock"></i></span>
-                                            <span class="help is-danger" th:errors="*{password}"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label" for="email" th:text="#{ui.users.create.form.email}"></label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control has-icons-left">
-                                            <input type="email" class="input" th:field="*{email}"
-                                                th:errorclass="is-danger"
-                                                th:placeholder="#{ui.users.create.form.email.placeholder}" />
+                                            <input type="email" class="input" th:field="*{email}" th:value="*{email}"
+                                                th:placeholder="#{ui.users.create.email.placeholder}"
+                                                th:errorclass="is-danger" />
                                             <span class="icon is-left"><i class="fas fa-envelope"></i></span>
                                             <span class="help is-danger" th:errors="*{email}"></span>
                                         </div>
@@ -119,14 +100,15 @@
                             </div>
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
-                                    <label class="label" th:text="#{ui.users.create.form.roles}"></label>
+                                    <label class="label" for="roles" th:text="#{ui.users.create.form.roles}"></label>
                                 </div>
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
                                             <div class="select is-multiple">
                                                 <select multiple th:field="*{roleIds}">
-                                                    <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.role}"></option>
+                                                    <option th:each="role : ${roles}" th:value="${role.id}"
+                                                        th:text="${role.role}"></option>
                                                 </select>
                                             </div>
                                         </div>
@@ -134,12 +116,13 @@
                                 </div>
                             </div>
                             <div class="field is-horizontal">
-                                <div class="field-label"></div>
+                                <div class="field-label is-normal">
+                                </div>
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <button class="button is-info" type="submit"
-                                                th:text="#{ui.common.button.save}"></button>
+                                            <button class="button is-info" th:text="#{ui.common.button.save}"
+                                                type="submit"></button>
                                         </div>
                                     </div>
                                 </div>
@@ -147,11 +130,10 @@
                         </form>
                     </div>
                 </div>
-            </nav>
+            </div>
         </div>
     </section>
 
 </body>
-
 
 </html>

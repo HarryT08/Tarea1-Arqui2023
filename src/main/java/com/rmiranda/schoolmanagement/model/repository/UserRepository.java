@@ -1,5 +1,6 @@
 package com.rmiranda.schoolmanagement.model.repository;
 
+
 import com.rmiranda.schoolmanagement.model.entity.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;

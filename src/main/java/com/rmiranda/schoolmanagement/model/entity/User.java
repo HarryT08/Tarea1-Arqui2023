@@ -23,11 +23,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "users")
+@DynamicUpdate
 public class User implements Serializable {
 
     @Id
@@ -49,9 +51,9 @@ public class User implements Serializable {
 
     @NotBlank
     @Size(max = 20)
+    @Column(name = "username", unique = true, updatable = false)
     private String username;
 
-    @NotBlank
     private String password;
 
     @Size(max = 255)
