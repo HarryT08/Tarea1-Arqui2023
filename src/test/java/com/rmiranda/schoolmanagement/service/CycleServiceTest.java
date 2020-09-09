@@ -1,6 +1,7 @@
 package com.rmiranda.schoolmanagement.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 
@@ -9,6 +10,9 @@ import com.rmiranda.schoolmanagement.model.entity.Cycle;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 @SpringBootTest
 public class CycleServiceTest {
@@ -29,6 +33,14 @@ public class CycleServiceTest {
         Cycle dbCycle = em.find(Cycle.class, cycle.getId());
 
         assertEquals(dbCycle.getName(), cycle.getName());
+    }
+
+    @Test
+    public void testGetAllCycles() {
+        Pageable page = PageRequest.of(0, 10);
+        Page<Cycle> cyclesPage = cycleService.getAllCycles(page);
+
+        assertTrue(cyclesPage.getNumberOfElements() > 0);
     }
     
 }

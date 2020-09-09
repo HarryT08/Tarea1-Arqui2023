@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.cycles.index.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+</head>
+
+<body>
+    <ul id="crumbs">
+        <li class="is-active"><a href="#" th:text="#{ui.breadcrumb.cycles}"></a></li>
+    </ul>
+
+    <section class="section">
+        <div class="container">
+            <div class="panel is-light">
+                <h1 class="panel-heading" th:text="#{ui.cycles.index.panel.heading}"></h1>
+                <div class="panel-block has-background-white">
+                    <div class="container">
+                        <table class="table is-fullwidth is-bordered is-hoverable">
+                            <thead class="has-background-grey-lighter">
+                                <tr>
+                                    <th th:text="#{ui.cycles.index.table.cycle}"></th>
+                                    <th th:text="#{ui.cycles.index.table.createdAt}"></th>
+                                    <th th:text="#{ui.common.table.edit}"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="cycle : ${cycles}">
+                                    <td th:text="${cycle.name}"></td>
+                                    <td th:text="${cycle.createdAt}"></td>
+                                    <td>
+                                        <a href="@{/cycles/{cycleId}/edit(cycleId=${cycle.id})}"
+                                            class="button is-primary is-light">
+                                            <span class="icon">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
