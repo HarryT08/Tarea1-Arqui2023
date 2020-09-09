@@ -19,6 +19,12 @@
                    <a class="navbar-item" th:text="#{ui.menu.navbar.users.index}" th:href="@{/users}"></a>
                </div>
            </div>
+           <div class="navbar-item has-dropdown is-hoverable">
+               <a class="navbar-link" th:text="#{ui.menu.navbar.cycles}"></a>
+               <div class="navbar-dropdown">
+                   <a class="navbar-item" th:text="#{ui.menu.navbar.cycles.create}" th:href="@{/cycles/create}"></a>
+               </div>
+           </div>
        </div></viv>
     </nav>
     

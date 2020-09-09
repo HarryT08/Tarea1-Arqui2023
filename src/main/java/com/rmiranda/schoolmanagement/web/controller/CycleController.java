@@ -1,0 +1,45 @@
+package com.rmiranda.schoolmanagement.web.controller;
+
+import javax.validation.Valid;
+
+import com.rmiranda.schoolmanagement.model.entity.Cycle;
+import com.rmiranda.schoolmanagement.service.CycleService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+@RequestMapping("/cycles")
+public class CycleController {
+
+    @Autowired
+    private CycleService cycleService;
+
+    @GetMapping("/create")
+    public ModelAndView create(Cycle cycle, ModelAndView mv) {
+        mv.addObject("cycle", cycle);
+        mv.setViewName("cycles/create");
+        return mv;
+    }
+
+    @PostMapping("/create")
+    public ModelAndView store(@Valid Cycle cycle, BindingResult result, ModelAndView mv) {
+
+        if (result.hasErrors()) {
+            mv.setViewName("cycles/create");
+            return mv;
+        }
+
+        cycleService.addCycle(cycle);
+
+        mv.setViewName("redirect:/cycles");
+
+        return mv;
+    }
+    
+}
