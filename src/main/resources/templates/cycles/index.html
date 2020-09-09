@@ -27,7 +27,7 @@
                                     <td th:text="${cycle.name}"></td>
                                     <td th:text="${cycle.createdAt}"></td>
                                     <td>
-                                        <a href="@{/cycles/{cycleId}/edit(cycleId=${cycle.id})}"
+                                        <a th:href="@{/cycles/{cycleId}/edit(cycleId=${cycle.id})}"
                                             class="button is-primary is-light">
                                             <span class="icon">
                                                 <i class="fas fa-edit"></i>
