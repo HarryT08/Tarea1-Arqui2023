@@ -10,5 +10,9 @@ public interface CycleService {
     public void addCycle(Cycle cycle);
 
     public Page<Cycle> getAllCycles(Pageable page);
+
+    public void updateCycle(Cycle cycle);
+
+    public Cycle getcycleById(long cycleId);
     
 }

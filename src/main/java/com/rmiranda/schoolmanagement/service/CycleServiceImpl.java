@@ -23,5 +23,15 @@ public class CycleServiceImpl implements CycleService {
     public Page<Cycle> getAllCycles(Pageable page) {
         return cycleRepository.findAll(page);
     }
+
+    @Override
+    public void updateCycle(Cycle cycle) {
+        cycleRepository.save(cycle);
+    }
+
+    @Override
+    public Cycle getcycleById(long cycleId) {
+        return cycleRepository.findById(cycleId).orElse(null);
+    }
     
 }

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import javax.persistence.EntityManager;
 
 import com.rmiranda.schoolmanagement.model.entity.Cycle;
+import com.rmiranda.schoolmanagement.model.repository.CycleRepository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,19 @@ public class CycleServiceTest {
         Page<Cycle> cyclesPage = cycleService.getAllCycles(page);
 
         assertTrue(cyclesPage.getNumberOfElements() > 0);
+    }
+
+    @Test
+    public void testUpdateCycle() {
+        Cycle cycle = em.find(Cycle.class, Long.valueOf(1));
+
+        cycle.setName("updated cycle");
+
+        cycleService.updateCycle(cycle);
+
+        Cycle updatedCycle = em.find(Cycle.class, Long.valueOf(1));
+
+        assertTrue(cycle.getName().equals(updatedCycle.getName()));
     }
     
 }

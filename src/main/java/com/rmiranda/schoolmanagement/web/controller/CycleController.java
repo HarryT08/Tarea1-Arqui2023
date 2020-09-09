@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -55,5 +56,32 @@ public class CycleController {
         mv.setViewName("cycles/index");
         return mv;
     }
+
+    @GetMapping("/{cycleId}/edit")
+    public ModelAndView edit(@PathVariable(name = "cycleId") long cycleId, Cycle cycle, ModelAndView mv) {
+        cycle = cycleService.getcycleById(cycleId);
+
+        mv.addObject("cycle", cycle);
+
+        mv.setViewName("cycles/edit");
+
+        return mv;
+    }
+
+    @PostMapping("/{cycleId}/edit")
+    public ModelAndView update(@Valid Cycle cycle, BindingResult result, ModelAndView mv) {
+
+        if (result.hasErrors()) {
+            mv.setViewName("cycles/edit");
+            return mv;
+        }
+
+        cycleService.updateCycle(cycle);
+
+        mv.setViewName("redirect:/cycles");
+
+        return mv;
+    }
+
     
 }
