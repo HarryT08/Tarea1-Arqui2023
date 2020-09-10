@@ -58,12 +58,13 @@ CREATE TABLE courses(
 	name VARCHAR(50) NOT NULL,
 	created_at DATETIME NOT NULL,
 	updated_at DATETIME NOT NULL,
-	in_charge_user_id BIGINT UNSIGNED,
+	manager_user_id BIGINT UNSIGNED,
 	cycle_id BIGINT UNSIGNED NOT NULL,
 	classroom_id BIGINT UNSIGNED,
 	primary key (id),
 	CONSTRAINT fk_courses_cycle_id FOREIGN KEY (cycle_id) REFERENCES cycles(id),
-	CONSTRAINT fk_courses_classroom_id FOREIGN KEY (classroom_id) REFERENCES classrooms(id)
+	CONSTRAINT fk_courses_classroom_id FOREIGN KEY (classroom_id) REFERENCES classrooms(id),
+	CONSTRAINT fk_courses_manager_user_id FOREIGN KEY (manager_user_id) REFERENCES users(id)
 ) ENGINE=InnoDB
 COMMENT="Cursos de cada ciclo escolar";
 
