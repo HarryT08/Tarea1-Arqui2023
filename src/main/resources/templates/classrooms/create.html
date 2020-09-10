@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.classrooms.create.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+
+<body>
+    <ul id="crumbs">
+        <li><a th:href="@{/classrooms}" th:text="#{ui.breadcrumb.classrooms}"></a></li>
+        <li class="is-active"><a href="#" th:text="#{ui.breadcrumb.classrooms.edit}"></a></li>
+    </ul>
+
+    <section class="section">
+        <div class="container">
+            <div class="panel is-light">
+                <h1 class="panel-heading" th:text="#{ui.classrooms.create.panel.heading}"></h1>
+                <div class="panel-block has-background-white">
+                    <div class="container">
+                        <form th:method="post" th:action="@{/classrooms/create}" th:object="${classroom}"
+                            autocomplete="off">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" th:for="*{name}"
+                                        th:text="#{ui.classrooms.create.form.name}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" th:field="*{name}"
+                                                th:placeholder="#{ui.classrooms.create.form.name.placeholder}"
+                                                th:errroclass="is-danger" autofocus />
+                                            <span class="help is-danger" th:errors="*{name}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" th:for="*{description}"
+                                        th:text="#{ui.classrooms.create.form.description}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <textarea th:field="*{description}" class="textarea"
+                                                th:errorclass="is-danger"
+                                                th:placeholder="#{ui.classrooms.create.form.description.placeholder}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"></div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button type="submit" class="button is-info"
+                                                th:text="#{ui.common.button.save}"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
