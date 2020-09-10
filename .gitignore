@@ -35,3 +35,5 @@ build/
 
 ### node ###
 src/main/resources/node_modules
+
+src/main/resources/static/css/app.css
