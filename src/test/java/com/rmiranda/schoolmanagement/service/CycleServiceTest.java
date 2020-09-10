@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import javax.persistence.EntityManager;
 
 import com.rmiranda.schoolmanagement.model.entity.Cycle;
-import com.rmiranda.schoolmanagement.model.repository.CycleRepository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
