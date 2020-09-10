@@ -29,7 +29,7 @@
                                     <td th:text="${user.lastName}"></td>
                                     <td th:text="${user.username}"></td>
                                     <td>
-                                        <span class="tag" th:each="role : ${user.roles}" th:text="${role.role}"></span>
+                                        <span class="tag" th:each="role : ${user.roles}" th:text="${role.name}"></span>
                                     </td>
                                     <td>
                                         <a class="button is-primary is-light"

@@ -37,9 +37,9 @@ COMMENT="Usuarios del sistema";
 
 CREATE TABLE roles (
 	id BIGINT UNSIGNED AUTO_INCREMENT,
-	`role` VARCHAR(40) NOT NULL,
+	name VARCHAR(40) NOT NULL,
 	PRIMARY KEY (id),
-	CONSTRAINT uq_roles_rol UNIQUE (`role`)
+	CONSTRAINT uq_roles_rol UNIQUE (name)
 ) ENGINE=InnoDB
 COMMENT="Catalogo de roles";
 
@@ -108,10 +108,10 @@ CREATE TABLE grades (
 ) ENGINE=InnoDB
 COMMENT="Notas de cada materia";
 
-insert into roles (role) values ("ROLE_ADMIN");
-insert into roles (role) values ("ROLE_STUDENT");
-insert into roles (role) values ("ROLE_TEACHER");
-insert into roles (role) values ("ROLE_STUDENT_DATA_EDITOR");
+insert into roles (name) values ("ROLE_ADMIN");
+insert into roles (name) values ("ROLE_STUDENT");
+insert into roles (name) values ("ROLE_TEACHER");
+insert into roles (name) values ("ROLE_STUDENT_DATA_EDITOR");
 
 insert into users 
 (name, last_name, birthday, username, `password`, email, active, created_at, updated_at) 

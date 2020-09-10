@@ -126,7 +126,7 @@
                                         <div class="control">
                                             <div class="select is-multiple">
                                                 <select multiple th:field="*{roleIds}">
-                                                    <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.role}"></option>
+                                                    <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
                                                 </select>
                                             </div>
                                         </div>
