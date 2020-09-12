@@ -24,5 +24,11 @@ public class RoleRepositoryImpl implements RoleRepository {
     public Role get(long id) {
         return em.find(Role.class, id);
     }
-    
+
+    @Override
+    public Role findRoleByName(String name) {
+        return em.createQuery("from Role r where r.name = :name", Role.class).setParameter("name", name)
+                .getSingleResult();
+    }
+
 }

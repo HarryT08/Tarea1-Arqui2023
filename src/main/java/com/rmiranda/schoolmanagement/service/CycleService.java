@@ -1,5 +1,7 @@
 package com.rmiranda.schoolmanagement.service;
 
+import java.util.List;
+
 import com.rmiranda.schoolmanagement.model.entity.Cycle;
 
 import org.springframework.data.domain.Page;
@@ -14,5 +16,7 @@ public interface CycleService {
     public void updateCycle(Cycle cycle);
 
     public Cycle getcycleById(long cycleId);
+
+    public List<Cycle> getActiveCycles();
     
 }

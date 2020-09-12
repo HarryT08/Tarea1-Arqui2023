@@ -10,4 +10,6 @@ public interface RoleRepository {
 
     public Role get(long id);
 
+    public Role findRoleByName(String name);
+
 }

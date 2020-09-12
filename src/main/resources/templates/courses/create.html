@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://wwww.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.courses.index.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+
+<body>
+
+    <ul id="crumbs">
+        <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
+        <li><a th:href="@{/courses(id=${course.cycle.id})}" th:text="${course.cycle.name}"></a></li>
+        <li class="is-active"><a th:text="#{ui.breadcrumb.courses.create}"></a></li>
+    </ul>
+
+    <section class="section">
+        <div class="container">
+            <div class="panel is-light">
+                <h1 class="panel-heading" th:text="#{ui.courses.create.panel.heading}"></h1>
+                <div class="panel-block has-background-white">
+                    <div class="container">
+                        <form th:method="POST" th:action="@{/courses/create(cid=${course.cycle.id})}"
+                            th:object="${course}" autocomplete="off">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" th:for="*{cycle.name}"
+                                        th:text="#{ui.courses.create.form.cycle}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control" Z>
+                                            <input type="text" th:value="*{cycle.name}" class="input is-static"
+                                                readonly />
+                                            <input type="hidden" th:field="*{cycle.id}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"><label for="*{name}" class="label"
+                                        th:text="#{ui.courses.create.form.name}"></label></div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" th:field="*{name}"
+                                                th:errorclass="is-danger"
+                                                th:placeholder="#{ui.courses.create.form.name.placeholder}" autofocus />
+                                            <span class="help is-danger" th:errors="*{name}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" th:for="*{manager}"
+                                        th:text="#{ui.courses.create.form.manager}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <div class="select">
+                                                <select th:field="*{manager.id}">
+                                                    <option th:each="manager : ${managers}" th:value="${manager.id}"
+                                                        th:text="${manager.name}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" th:for="*{classroom}"
+                                        th:text="#{ui.courses.create.form.classroom}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <div class="select">
+                                                <select th:field="*{classroom.id}">
+                                                    <option th:each="classroom : ${classrooms}"
+                                                        th:value="${classroom.id}" th:text="${classroom.name}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"></div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button type="submit" class="button is-info" th:text="#{ui.common.button.save}"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

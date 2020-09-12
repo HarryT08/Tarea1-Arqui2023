@@ -1,5 +1,7 @@
 package com.rmiranda.schoolmanagement.service;
 
+import java.util.List;
+
 import com.rmiranda.schoolmanagement.model.entity.Cycle;
 import com.rmiranda.schoolmanagement.model.repository.CycleRepository;
 
@@ -32,6 +34,11 @@ public class CycleServiceImpl implements CycleService {
     @Override
     public Cycle getcycleById(long cycleId) {
         return cycleRepository.findById(cycleId).orElse(null);
+    }
+
+    @Override
+    public List<Cycle> getActiveCycles() {
+        return cycleRepository.findByClosedAtIsNull();
     }
     
 }

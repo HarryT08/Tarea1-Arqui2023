@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.courses.index.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+
+<body>
+
+    <ul id="crumbs">
+        <li class="is-active"><a th:text="#{ui.breadcrumb.courses}"></a></li>
+    </ul>
+
+    <section class="section">
+        <div class="container">
+            <div class="panel is-light">
+                <h1 class="panel-heading" th:text="#{ui.courses.index.panel.heading}"></h1>
+                <div class="panel-block has-background-white">
+                    <div class="container">
+                        <form th:method="GET" th:action="@{/courses}" th:object="${cycle}">
+                            <div class="field is-grouped is-grouped-centered">
+                                <div class="control">
+                                    <div class="select">
+                                        <select th:field="*{id}">
+                                            <option value="0" th:text="#{ui.common.form.select}"></option>
+                                            <option th:each="cycle : ${cycles}" th:value="${cycle.id}"
+                                                th:text="${cycle.name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <button type="submit" class="button is-info"
+                                        th:text=#{ui.common.button.search}></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="section" th:if="${courses}">
+                            <div class="container">
+                                <div class="level">
+                                    <div class="lavel-left">
+                                        <div class="level-item">
+                                            <a class="button is-info is-outlined" th:href="@{/courses/create(cid=${param.id})}"
+                                                th:text="#{ui.courses.index.button.createCourse}"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table is-bordered is-hoverable is-fullwidth">
+                                    <thead class="has-background-grey-lighter">
+                                        <tr>
+                                            <th th:text="#{ui.courses.index.table.name}"></th>
+                                            <th th:text="#{ui.courses.index.table.manager}"></th>
+                                            <th th:text="#{ui.courses.index.table.cycle}"></th>
+                                            <th th:text="#{ui.courses.index.table.classroom}"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="course : ${courses}">
+                                            <td th:text="${course.name}"></td>
+                                            <td th:text="${course.manager.username}"></td>
+                                            <td th:text="${course.cycle.name}"></td>
+                                            <td>
+                                                <span class="tag" th:if="${course.classroom}"
+                                                    th:text="${course.classroom.name}"></span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

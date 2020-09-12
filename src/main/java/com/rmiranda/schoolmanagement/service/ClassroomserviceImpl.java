@@ -1,5 +1,7 @@
 package com.rmiranda.schoolmanagement.service;
 
+import java.util.List;
+
 import com.rmiranda.schoolmanagement.model.entity.Classroom;
 import com.rmiranda.schoolmanagement.model.repository.ClassroomRepository;
 
@@ -32,6 +34,11 @@ public class ClassroomserviceImpl implements ClassroomService {
     @Override
     public Classroom getClassroomById(long id) {
         return classroomRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Classroom> getAllClassrooms() {
+        return classroomRepository.findAll();
     }
     
 }

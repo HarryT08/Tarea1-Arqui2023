@@ -33,6 +33,12 @@
                         <a class="navbar-item" th:text="#{ui.menu.navbar.classrooms.create}" th:href="@{/classrooms/create}"></a>
                     </div>
                 </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a th:text="#{ui.menu.navbar.courses}" class="navbar-link"></a>
+                    <div class="navbar-dropdown">
+                        <a th:href="@{/courses}" th:text="#{ui.menu.navbar.courses.index}" class="navbar-item"></a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
