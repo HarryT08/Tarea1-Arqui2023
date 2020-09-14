@@ -121,7 +121,6 @@ public class UserController {
         user.setRoles(userRoles);
 
         if (result.hasErrors()) {
-            System.out.println(result.getAllErrors());
             mv.setViewName("users/edit");
             return mv;
         }

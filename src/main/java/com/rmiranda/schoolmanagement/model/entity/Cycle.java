@@ -2,12 +2,14 @@ package com.rmiranda.schoolmanagement.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -42,6 +44,9 @@ public class Cycle implements Serializable {
     @Column(name = "closed_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date closedAt;
+
+    @OneToMany(mappedBy = "cycle")
+    public List<Course> courses;
 
     public long getId() {
         return id;

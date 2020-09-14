@@ -26,7 +26,7 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public void updateCourse(Course course) {
-        courseRepository.save(course);
+		courseRepository.save(course);
 	}
 
 	@Override
@@ -39,6 +39,11 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<Course> getAllCoursesByCycle(Cycle cycle) {
         return courseRepository.findByCycle(cycle);
+	}
+
+	@Override
+	public Course getCourseById(long id) {
+		return courseRepository.findById(id).orElse(null);
 	}
     
 }

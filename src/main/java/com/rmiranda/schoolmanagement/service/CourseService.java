@@ -14,5 +14,7 @@ public interface CourseService {
     public List<Course> getAllCoursesByCycleId(long idCycle);
 
     public List<Course> getAllCoursesByCycle(Cycle cycle);
+
+    public Course getCourseById(long id);
     
 }

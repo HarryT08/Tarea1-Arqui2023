@@ -32,7 +32,7 @@ public class Classroom implements Serializable {
     @Size(max = 50)
     private String description;
 
-    @Column(name = "created_at", updatable = false)
+    @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createdAt;

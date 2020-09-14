@@ -17,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,11 +40,23 @@ public class CourseController {
     @Autowired
     private RoleService roleService;
 
-    @GetMapping("")
-    public ModelAndView index(Cycle cycle, ModelAndView mv) {
+    @ModelAttribute("cycles")
+    public List<Cycle> getActiveCycles() {
+        return cycleService.getActiveCycles();
+    }
 
-        List<Cycle> cycles = cycleService.getActiveCycles();
-        mv.addObject("cycles", cycles);
+    @ModelAttribute("classrooms")
+    public List<Classroom> getAllClassrooms() {
+        return classroomService.getAllClassrooms();
+    }
+
+    @ModelAttribute("managers")
+    public List<User> getManagers() {
+        return roleService.getRoleByName("ROLE_TEACHER").getUsers();
+    }
+
+    @GetMapping("")
+    public ModelAndView index(Cycle cycle, ModelAndView mv, @ModelAttribute(name = "cycles") List<Cycle> cycles) {
 
         if (cycle.getId() > 0) {
             List<Course> courses = courseService.getAllCoursesByCycle(cycle);
@@ -55,16 +69,13 @@ public class CourseController {
     }
 
     @GetMapping("/create")
-    public ModelAndView add(@RequestParam(name = "cid") long cycleId, Course course, ModelAndView mv) {
+    public ModelAndView add(@RequestParam(name = "cid") long cycleId, Course course,
+            @ModelAttribute(name = "classrooms") List<Classroom> classrooms,
+            @ModelAttribute(name = "managers") List<User> managers, ModelAndView mv) {
 
         Cycle cycle = cycleService.getcycleById(cycleId);
         course.setCycle(cycle);
 
-        List<Classroom> classrooms = classroomService.getAllClassrooms();
-        List<User> managers = roleService.getRoleByName("ROLE_TEACHER").getUsers();
-
-        mv.addObject("classrooms", classrooms);
-        mv.addObject("managers", managers);
         mv.addObject("course", course);
         mv.setViewName("courses/create");
         return mv;
@@ -83,6 +94,36 @@ public class CourseController {
         courseService.addCourse(course);
 
         mv.setViewName("redirect:/courses?id=".concat(cycleId));
+
+        return mv;
+    }
+
+    @GetMapping("/{courseId}/edit")
+    public ModelAndView edit(@PathVariable(name = "courseId") long courseId, Course course,
+            @ModelAttribute(name = "classrooms") List<Classroom> classrooms,
+            @ModelAttribute(name = "managers") List<User> managers, ModelAndView mv) {
+
+        course = courseService.getCourseById(courseId);
+
+        mv.addObject("course", course);
+        mv.setViewName("courses/edit");
+
+        return mv;
+    }
+
+    @PostMapping("/{courseId}/edit")
+    public ModelAndView update(@PathVariable(name = "courseId") long courseId, @Valid Course course,
+            BindingResult result, @ModelAttribute(name = "managers") List<User> managers,
+            @ModelAttribute(name = "classrooms") List<Classroom> classrooms, ModelAndView mv) {
+        
+        if (result.hasErrors()) {
+            mv.setViewName("courses/edit");
+            return mv;
+        }
+
+        courseService.updateCourse(course);
+
+        mv.setViewName("redirect:/courses?id=".concat(String.valueOf(course.getCycle().getId())));
 
         return mv;
     }

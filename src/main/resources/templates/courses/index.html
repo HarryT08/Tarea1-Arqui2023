@@ -36,7 +36,8 @@
                                 <div class="level">
                                     <div class="lavel-left">
                                         <div class="level-item">
-                                            <a class="button is-info is-outlined" th:href="@{/courses/create(cid=${param.id})}"
+                                            <a class="button is-info is-outlined"
+                                                th:href="@{/courses/create(cid=${param.id})}"
                                                 th:text="#{ui.courses.index.button.createCourse}"></a>
                                         </div>
                                     </div>
@@ -48,6 +49,7 @@
                                             <th th:text="#{ui.courses.index.table.manager}"></th>
                                             <th th:text="#{ui.courses.index.table.cycle}"></th>
                                             <th th:text="#{ui.courses.index.table.classroom}"></th>
+                                            <th th:text="#{ui.common.table.edit}"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -56,8 +58,16 @@
                                             <td th:text="${course.manager.username}"></td>
                                             <td th:text="${course.cycle.name}"></td>
                                             <td>
-                                                <span class="tag" th:if="${course.classroom}"
+                                                <span th:remove="tag" th:if="${course.classroom}"
                                                     th:text="${course.classroom.name}"></span>
+                                            </td>
+                                            <td>
+                                                <a class="button is-primary is-light"
+                                                    th:href="@{/courses/{courseId}/edit(courseId=${course.id})}">
+                                                    <span class="icon">
+                                                        <i class="fas fa-edit"></i>
+                                                    </span>
+                                                </a>
                                             </td>
                                         </tr>
                                     </tbody>

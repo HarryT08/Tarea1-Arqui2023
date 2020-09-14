@@ -33,7 +33,7 @@ public class Course implements Serializable {
     @NotBlank
     private String name;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createdAt;
@@ -48,6 +48,7 @@ public class Course implements Serializable {
     private User manager;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cycle_id")
     @NotNull
     private Cycle cycle;
 
