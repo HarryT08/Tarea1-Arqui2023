@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -39,8 +41,8 @@ public class UserController {
     }
 
     @GetMapping("")
-    public ModelAndView index(ModelAndView mv) {
-        Pageable page = PageRequest.of(0, 10);
+    public ModelAndView index(@RequestParam(name = "page", defaultValue = "0") int pageNumber, ModelAndView mv) {
+        Pageable page = PageRequest.of(pageNumber, 10);
         Page<User> users = userService.getAllUSers(page);
         mv.addObject("users", users);
         mv.setViewName("users/index");
