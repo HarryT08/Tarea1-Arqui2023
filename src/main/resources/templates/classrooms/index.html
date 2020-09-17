@@ -13,6 +13,7 @@
                 <h1 class="panel-heading" th:text="#{ui.classrooms.index.panel.heading}"></h1>
                 <div class="panel-block has-background-white">
                     <div class="container">
+                        <nav th:replace="fragments/pagination :: pagination(${classrooms}, '/classrooms')"></nav>
                         <table class="table is-bordered is-hoverable is-fullwidth">
                             <thead class="has-background-grey-lighter">
                                 <tr>

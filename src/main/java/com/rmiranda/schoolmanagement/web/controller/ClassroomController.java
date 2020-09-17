@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -25,8 +26,8 @@ public class ClassroomController {
     private ClassroomService classroomService;
 
     @GetMapping("")
-    public ModelAndView index(ModelAndView mv) {
-        Pageable pageable = PageRequest.of(0, 10);
+    public ModelAndView index(@RequestParam(name = "page", defaultValue = "0") int page, ModelAndView mv) {
+        Pageable pageable = PageRequest.of(page, 10);
         Page<Classroom> classrooms = classroomService.getAllClassrooms(pageable);
 
         mv.addObject("classrooms", classrooms);

@@ -14,6 +14,7 @@
                 <h1 class="panel-heading" th:text="#{ui.cycles.index.panel.heading}"></h1>
                 <div class="panel-block has-background-white">
                     <div class="container">
+                        <nav th:replace="fragments/pagination :: pagination(${cycles}, '/cycles')"></nav>
                         <table class="table is-fullwidth is-bordered is-hoverable">
                             <thead class="has-background-grey-lighter">
                                 <tr>
