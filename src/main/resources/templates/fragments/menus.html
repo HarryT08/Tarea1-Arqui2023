@@ -1,17 +1,19 @@
 <!DOCTYPE html>
+
 <body xmlns:th="http://www.thymeleaf.org">
 
     <nav th:fragment="userNavbar" class="navbar is-light" role="navigation">
         <div class="container">
             <div class="navbar-brand">
-                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarToggle">
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbarToggle">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
-            </div> 
+            </div>
             <div id="navbarToggle" class="navbar-menu">
-                <a class="navbar-item" th:text="#{ui.menu.navbar.home}"></a>
+                <a th:href="@{/}" class="navbar-item" th:text="#{ui.menu.navbar.home}"></a>
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link" th:text="#{ui.menu.navbar.users}"></a>
                     <div class="navbar-dropdown">
@@ -23,25 +25,24 @@
                     <a class="navbar-link" th:text="#{ui.menu.navbar.cycles}"></a>
                     <div class="navbar-dropdown">
                         <a class="navbar-item" th:text="#{ui.menu.navbar.cycles.index}" th:href="@{/cycles}"></a>
-                        <a class="navbar-item" th:text="#{ui.menu.navbar.cycles.create}" th:href="@{/cycles/create}"></a>
+                        <a class="navbar-item" th:text="#{ui.menu.navbar.cycles.create}"
+                            th:href="@{/cycles/create}"></a>
                     </div>
                 </div>
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link" th:text="#{ui.menu.navbar.classrooms}"></a>
                     <div class="navbar-dropdown">
-                        <a class="navbar-item" th:text="#{ui.menu.navbar.classrooms.index}" th:href="@{/classrooms}"></a>
-                        <a class="navbar-item" th:text="#{ui.menu.navbar.classrooms.create}" th:href="@{/classrooms/create}"></a>
+                        <a class="navbar-item" th:text="#{ui.menu.navbar.classrooms.index}"
+                            th:href="@{/classrooms}"></a>
+                        <a class="navbar-item" th:text="#{ui.menu.navbar.classrooms.create}"
+                            th:href="@{/classrooms/create}"></a>
                     </div>
                 </div>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a th:text="#{ui.menu.navbar.courses}" class="navbar-link"></a>
-                    <div class="navbar-dropdown">
-                        <a th:href="@{/courses}" th:text="#{ui.menu.navbar.courses.index}" class="navbar-item"></a>
-                    </div>
-                </div>
+                <a class="navbar-item" th:href="@{/courses}" th:text="#{ui.menu.navbar.courses}"></a>
             </div>
         </div>
     </nav>
-    
+
 </body>
+
 </html>
