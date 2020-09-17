@@ -22,7 +22,12 @@ public class ClassroomserviceImpl implements ClassroomService {
     }
 
     @Override
-    public void updateClassroom(Classroom classroom) {
+    public void updateClassroom(Classroom classroomForm) {
+        Classroom classroom = classroomRepository.getOne(classroomForm.getId());
+
+        classroom.setName(classroomForm.getName());
+        classroom.setDescription(classroomForm.getDescription());
+
         classroomRepository.save(classroom);
     }
 

@@ -27,7 +27,11 @@ public class CycleServiceImpl implements CycleService {
     }
 
     @Override
-    public void updateCycle(Cycle cycle) {
+    public void updateCycle(Cycle cycleForm) {
+        Cycle cycle = cycleRepository.findById(cycleForm.getId()).orElse(null);
+
+        cycle.setName(cycleForm.getName());
+
         cycleRepository.save(cycle);
     }
 

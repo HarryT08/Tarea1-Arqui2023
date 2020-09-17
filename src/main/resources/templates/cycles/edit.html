@@ -15,8 +15,9 @@
                 <h1 class="panel-heading" th:text="#{ui.cycles.edit.panel.heading}"></h1>
                 <div class="panel-block has-background-white">
                     <div class="container">
-                        <form th:method="post" th:action="@{/cycles/{cycleId}/edit(cycleID=${cycle.id})}" autocomplete="off"
+                        <form th:method="post" th:action="@{/cycles/{cycleId}/edit(cycleId=${cycle.id})}" autocomplete="off"
                             th:object="${cycle}">
+                            <input type="hidden" th:field="*{id}" th:value="*{id}" />
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
                                     <label class="label" th:text="#{ui.cycles.create.form.name}" th:for="*{name}"></label>

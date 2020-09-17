@@ -70,7 +70,8 @@ public class CycleController {
     }
 
     @PostMapping("/{cycleId}/edit")
-    public ModelAndView update(@Valid Cycle cycle, BindingResult result, ModelAndView mv) {
+    public ModelAndView update(@PathVariable(name = "cycleId") long cycleId, @Valid Cycle cycle, BindingResult result,
+            ModelAndView mv) {
 
         if (result.hasErrors()) {
             mv.setViewName("cycles/edit");
@@ -84,5 +85,4 @@ public class CycleController {
         return mv;
     }
 
-    
 }
