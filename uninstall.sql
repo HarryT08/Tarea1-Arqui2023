@@ -1,5 +1,6 @@
 DROP TABLE grades;
 DROP TABLE subjects;
+DROP TABLE subject_schedule;
 DROP TABLE course_students;
 DROP TABLE courses;
 DROP TABLE user_roles;

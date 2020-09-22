@@ -78,18 +78,34 @@ CREATE TABLE course_students(
 ) ENGINE=InnoDB
 COMMENT="Estudiantes suscritos a cursos";
 
+CREATE TABLE subject_schedule (
+	id BIGINT UNSIGNED AUTO_INCREMENT,
+	monday BOOLEAN NOT NULL,
+	tuesday BOOLEAN NOT NuLL,
+	wednesday BOOLEAN NOT NULL,
+	thursday BOOLEAN NOT NULL,
+	friday BOOLEAN NOT NULL,
+	saturday BOOLEAN NOT NULL,
+	sunday BOOLEAN NOT NULL,
+	start_time TIME NOT NULL,
+	end_time TIME NOT NULL,
+	PRIMARY KEY(id)
+) ENGINE=InnoDB
+COMMENT="Horarios de clases";
+
 CREATE TABLE subjects (
 	id BIGINT UNSIGNED AUTO_INCREMENT,
 	name VARCHAR(50) NOT NULL,
 	course_id BIGINT UNSIGNED NOT NULL,
 	classroom_id BIGINT UNSIGNED NOT NULL,
-	starting_at DATETIME NOT NULL,
-	ending_at DATETIME NOT NULL,
 	teacher_id BIGINT UNSIGNED NOT NULL,
+	subject_schedule_id BIGINT UNSIGNED NOT NULL,
 	PRIMARY KEY (id),
 	CONSTRAINT fk_subjects_course_id FOREIGN KEY (course_id) REFERENCES courses(id),
 	CONSTRAINT fk_subjects_classroom_id FOREIGN KEY (classroom_id) REFERENCES classrooms(id),
-	CONSTRAINT fk_subjects_teacher_id FOREIGN KEY (teacher_id) REFERENCES users(id)
+	CONSTRAINT fk_subjects_teacher_id FOREIGN KEY (teacher_id) REFERENCES users(id),
+	CONSTRAINT fk_subjects_subject_schedule_id FOREIGN KEY (subject_schedule_id) REFERENCES subject_schedule(id),
+	CONSTRAINT uq_subjects_subject_schedule_id UNIQUE (subject_schedule_id)
 ) ENGINE=InnoDB
 COMMENT="Materias registradas a cursos";
 

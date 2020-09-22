@@ -50,6 +50,7 @@
                                             <th th:text="#{ui.courses.index.table.cycle}"></th>
                                             <th th:text="#{ui.courses.index.table.classroom}"></th>
                                             <th th:text="#{ui.common.table.edit}"></th>
+                                            <th th:text="#{ui.courses.index.table.subjects}"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -66,6 +67,14 @@
                                                     th:href="@{/courses/{courseId}/edit(courseId=${course.id})}">
                                                     <span class="icon">
                                                         <i class="fas fa-edit"></i>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a class="button is-primary is-light"
+                                                    th:href="@{/subjects/create(cid=${course.id})}">
+                                                    <span class="icon">
+                                                        <i class="fa fa-book"></i>
                                                     </span>
                                                 </a>
                                             </td>
