@@ -69,7 +69,7 @@ public class SubjectController {
 
         subjectService.addSubject(subject);
 
-        mv.setViewName("redirect:/courses?id=".concat(String.valueOf(subject.getCourse().getCycle().getId())));
+        mv.setViewName("redirect:/courses/".concat(String.valueOf(courseId)));
 
         return mv;
     }

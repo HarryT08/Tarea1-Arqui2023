@@ -60,11 +60,21 @@ public class CourseController {
 
         if (cycle.getId() > 0) {
             List<Course> courses = courseService.getAllCoursesByCycle(cycle);
+            Cycle selectedCycle = cycleService.getcycleById(cycle.getId());
+            mv.addObject("selectedCycle", selectedCycle);
             mv.addObject("courses", courses);
         }
 
         mv.setViewName("courses/index");
 
+        return mv;
+    }
+
+    @GetMapping("/{courseId}")
+    public ModelAndView show(@PathVariable(name = "courseId") long courseId, Course course, ModelAndView mv) {
+        course = courseService.getCourseById(courseId);
+        mv.addObject("course", course);
+        mv.setViewName("courses/show");
         return mv;
     }
 

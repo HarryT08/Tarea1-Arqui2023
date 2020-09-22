@@ -2,6 +2,7 @@ package com.rmiranda.schoolmanagement.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -55,6 +57,10 @@ public class Course implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "classroom_id")
     private Classroom classroom;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id")
+    private List<Subject> subjects;
 
     public long getId() {
         return id;
@@ -111,7 +117,15 @@ public class Course implements Serializable {
     public void setClassroom(Classroom classroom) {
         this.classroom = classroom;
     }
-    
+
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
+    }
+
     private static final long serialVersionUID = 1L;
 
 }

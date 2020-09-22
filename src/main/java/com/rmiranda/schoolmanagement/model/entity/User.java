@@ -176,6 +176,10 @@ public class User implements Serializable {
         this.roleIds = roleIds;
     }
 
+    public String getFullname() {
+        return this.name.concat(" ").concat(this.lastName);
+    }
+
     private static final long serialVersionUID = 1L;
 
 }

@@ -7,7 +7,7 @@
     <ul id="crumbs">
         <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
         <li><a th:href="@{/courses(id=${subject.course.cycle.id})}" th:text="${subject.course.cycle.name}"></a></li>
-        <li><a href="#" th:text="${subject.course.name}"></a></li>
+        <li><a th:href="@{/courses/{courseId}(courseId=${subject.course.id})}" th:text="${subject.course.name}"></a></li>
         <li class="is-active"><a th:text="#{ui.breadcrumb.subjects.create}"></a></li>
     </ul>
 
@@ -66,7 +66,7 @@
                                             <div class="select">
                                                 <select th:field="*{teacher.id}">
                                                     <option th:each="teacher : ${teachers}" th:value="${teacher.id}"
-                                                        th:text="${teacher.name}"></option>
+                                                        th:text="${teacher.fullname}"></option>
                                                 </select>
                                             </div>
                                         </div>

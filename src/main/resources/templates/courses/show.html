@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.courses.show.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+
+<body>
+    <ul id="crumbs">
+        <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
+        <li><a th:href="@{/courses(id=${course.cycle.id})}" th:text="${course.cycle.name}"></a></li>
+        <li class="is-active"><a href="#" th:text="${course.name}"></a></li>
+    </ul>
+
+    <section class="section">
+        <div class="container">
+            <div class="panel is-light">
+                <h1 class="panel-heading" th:text="${course.name} + ' [' + ${course.cycle.name} + ']'"></h1>
+                <div class="panel-block has-background-white">
+                    <div class="container">
+                        <div class="columns">
+                            <div class="column">
+                                <span th:text="#{ui.courses.create.form.manager} + ':'"
+                                    class="has-text-weight-bold"></span>
+                                <span th:if="${course.manager}" class="pl-2"
+                                    th:text="${course.manager.fullname}"></span>
+                                <a th:if="${course.manager}"
+                                    th:href="@{/courses/{courseId}/edit(courseId=${course.id})}">
+                                    <span class="icon"><i class="fas fa-edit"></i></span>
+                                </a>
+                                <a th:unless="${course.manager}" class="pl-2"
+                                    th:href="@{/courses/{courseId}/edit(courseId=${course.id})}"
+                                    th:text="#{ui.courses.links.addManager}"></a>
+                            </div>
+                            <div class="column">
+                                <span class="has-text-weight-bold"
+                                    th:text="#{ui.courses.create.form.cycle} + ':'"></span>
+                                <a class="pl-2" th:href="@{/courses(id=${course.cycle.id})}"
+                                    th:text="${course.cycle.name}"></a>
+                            </div>
+                            <div class="column">
+                                <span class="has-text-weight-bold"
+                                    th:text="#{ui.courses.create.form.classroom} + ':'"></span>
+                                <span class="pl-2" th:if="${course.classroom}"
+                                    th:text="${course.classroom.name}"></span>
+                                <a th:if="${course.classroom}"
+                                    th:href="@{/courses/{courseId}/edit(courseId=${course.id})}">
+                                    <span class="icon"><i class="fas fa-edit"></i></span>
+                                </a>
+                                <a th:unless="${course.classroom}" th:class="pl-2"
+                                    th:href="@{/courses/{courseId}/edit(courseId=${course.id})}"
+                                    th:text="#{ui.courses.links.addClassroom}"></a>
+                            </div>
+                        </div>
+                        <h1 class="is-size-4 has-text-centered" th:text="#{ui.courses.show.headers.subjects}"></h1>
+                        <hr class="mt-1">
+                        <a class="button is-outlined is-link mb-2" th:text="#{ui.courses.links.addSubject}"
+                            th:href="@{/subjects/create(cid=${course.id})}"></a>
+                        <table class="table is-bordered is-hoverable is-fullwidth">
+                            <thead class="has-background-grey-lighter">
+                                <tr>
+                                    <th th:text="#{ui.courses.show.table.subject.name}"></th>
+                                    <th th:text="#{ui.courses.show.table.subject.classroom}"></th>
+                                    <th th:text="#{ui.courses.show.table.subject.teacher}"></th>
+                                    <th th:text="#{ui.courses.show.table.subject.days}"></th>
+                                    <th th:text="#{ui.courses.show.table.subject.start}"></th>
+                                    <th th:text="#{ui.courses.show.table.subject.end}"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="subject : ${course.subjects}">
+                                    <td th:text="${subject.name}"></td>
+                                    <td th:text="${subject.classroom.name}"></td>
+                                    <td th:text="${subject.teacher.fullname}"></td>
+                                    <td>
+                                        <span class="tag" th:if="${subject.schedule.monday}"
+                                            th:text="#{ui.common.days.monday}"></span>
+                                        <span class="tag" th:if="${subject.schedule.tuesday}"
+                                            th:text="#{ui.common.days.tuesday}"></span>
+                                        <span class="tag" th:if="${subject.schedule.wednesday}"
+                                            th:text="#{ui.common.days.wednesday}"></span>
+                                        <span class="tag" th:if="${subject.schedule.thursday}"
+                                            th:text="#{ui.common.days.thursday}"></span>
+                                        <span class="tag" th:if="${subject.schedule.friday}"
+                                            th:text="#{ui.common.days.friday}"></span>
+                                        <span class="tag" th:if="${subject.schedule.saturday}"
+                                            th:text="#{ui.common.days.saturday}"></span>
+                                        <span class="tag" th:if="${subject.schedule.sunday}"
+                                            th:text="#{ui.common.days.sunday}"></span>
+                                    </td>
+                                    <td th:text="${subject.schedule.startTime}"></td>
+                                    <td th:text="${subject.schedule.endTime}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
