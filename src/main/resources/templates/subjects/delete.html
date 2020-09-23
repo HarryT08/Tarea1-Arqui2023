@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html th:xmlns="http://www.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.subjects.delete.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+
+<body>
+
+    <ul id="crumbs">
+        <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
+        <li><a th:href="@{/courses(id=${subject.course.cycle.id})}" th:text="${subject.course.cycle.name}"></a></li>
+        <li><a th:href="@{/courses/{courseId}(courseId=${subject.course.id})}" th:text="${subject.course.name}"></a>
+        </li>
+        <li class="is-active"><a th:text="#{ui.breadcrumb.subjects.delete}"></a></li>
+    </ul>
+
+    <section class="section">
+        <div class="container">
+            <div class="panel is-danger">
+                <h1 class="panel-heading" th:text="#{ui.subjects.delete.panel.heading}"></h1>
+                <div class="panel-block has-background-white">
+                    <div class="container">
+                        <form th:method="POST" th:action="@{/subjects/{subjectId}/delete(subjectId=${subject.id})}"
+                            th:object="${subject}" autocomplete="off">
+                            <input type="hidden" th:field="*{id}" />
+                            <input type="hidden" th:field="*{course.id}" />
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" th:for="*{name}"
+                                        th:text="#{ui.subjects.create.form.name}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" readonly disabled class="input" th:field="*{name}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" th:for="*{classroom.name}"
+                                        th:text="#{ui.subjects.create.form.classroom}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" th:field="*{classroom.name}" readonly disabled
+                                                class="input" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" th:for="*{teacher.fullname}"
+                                        th:text="#{ui.subjects.create.form.teacher}" />
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" th:field="*{teacher.fullname}" readonly disabled
+                                                class="input" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" th:text="#{ui.subjects.create.form.days}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <span class="tag" th:if="*{schedule.monday}"
+                                                th:text="#{ui.common.days.monday}"></span>
+                                            <span class="tag" th:if="*{schedule.tuesday}"
+                                                th:text="#{ui.common.days.tuesday}"></span>
+                                            <span class="tag" th:if="*{schedule.wednesday}"
+                                                th:text="#{ui.common.days.wednesday}"></span>
+                                            <span class="tag" th:if="*{schedule.thursday}"
+                                                th:text="#{ui.common.days.thursday}"></span>
+                                            <span class="tag" th:if="*{schedule.friday}"
+                                                th:text="#{ui.common.days.friday}"></span>
+                                            <span class="tag" th:if="*{schedule.saturday}"
+                                                th:text="#{ui.common.days.saturday}"></span>
+                                            <span class="tag" th:if="*{schedule.sunday}"
+                                                th:text="#{ui.common.days.sunday}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" th:for="*{schedule.startTime}"
+                                        th:text="#{ui.subjects.create.form.startTime}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <input type="text" th:field="*{schedule.startTime}" readonly disabled
+                                        class="input" />
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" th:for="*{schedule.endTime}"
+                                        th:text="#{ui.subjects.create.form.endTime}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" th:field="*{schedule.endTime}" readonly disabled
+                                                class="input" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"></div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button type="submit" class="button is-danger"
+                                                th:text="#{ui.common.actions.delete}"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

@@ -11,4 +11,8 @@ public interface SubjectService {
     public void updateSubject(Subject subject);
 
     public List<Subject> getAllSubjectsByCourseId(long courseId);
+
+    public Subject getSubjectById(long id);
+
+    public void deleteSubjectById(long id);
 }

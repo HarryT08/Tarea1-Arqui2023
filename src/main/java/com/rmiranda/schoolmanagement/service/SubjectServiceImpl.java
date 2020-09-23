@@ -35,5 +35,19 @@ public class SubjectServiceImpl implements SubjectService {
 
         return subjectRepository.findByCourse(course);
     }
+
+    @Override
+    public Subject getSubjectById(long id) {
+        return subjectRepository.getOne(id);
+    }
+
+    @Override
+    public void deleteSubjectById(long id) {
+        Subject subject = subjectRepository.findById(id).orElse(null);
+
+        if (subject != null) {
+            subjectRepository.delete(subject);;
+        }
+    }
     
 }
