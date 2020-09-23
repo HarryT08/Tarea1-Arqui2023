@@ -8,41 +8,63 @@
     </ul>
 
     <section class="section">
-        <div class="container">
+        <div class="container is-fluid">
             <div class="panel is-light">
                 <h1 class="panel-heading" th:text="#{ui.users.index.panel.heading}"></h1>
                 <div class="panel-block has-background-white">
                     <div class="container">
+                        <a class="button is-info is-light" th:href="@{/users/create}">
+                            <span class="icon"><i class="fas fa-plus"></i></span>
+                            <span th:text="#{ui.common.actions.new}"></span>
+                        </a>
+                        <div class="table-container mb-0">
+                            <table class="table is-fullwidth is-bordered is-hoverable">
+                                <thead class="has-background-grey-lighter">
+                                    <tr>
+                                        <th th:text="#{ui.users.index.table.name}"></th>
+                                        <th th:text="#{ui.users.index.table.lastName}"></th>
+                                        <th th:text="#{ui.users.index.table.birthday}"></th>
+                                        <th th:text="#{ui.users.index.table.email}"></th>
+                                        <th th:text="#{ui.users.index.table.username}"></th>
+                                        <th th:text="#{ui.users.index.table.role}"></th>
+                                        <th th:text="#{ui.common.table.edit}"></th>
+                                        <th th:text="#{ui.common.actions.delete}"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:unless="${users.totalElements} > 0">
+                                        <td colspan="8">
+                                            <span th:text="#{ui.users.index.table.empty}" class="has-text-grey px-2 has-text-centered"></span>
+                                            <a th:href="@{/users/create}" th:text="#{ui.users.actions.createAUser}"></a>
+                                        </td> 
+                                    </tr>
+                                    <tr th:each="user : ${users.content}">
+                                        <td th:text="${user.name}"></td>
+                                        <td th:text="${user.lastName}"></td>
+                                        <td th:text="${#dates.format(user.birthday, 'dd-MM-yyyy')}"></td>
+                                        <td th:text="${user.email}"></td>
+                                        <td th:text="${user.username}"></td>
+                                        <td>
+                                            <span class="tag" th:each="role : ${user.roles}" th:text="${role.name}"></span>
+                                        </td>
+                                        <td>
+                                            <a class="button is-info is-light"
+                                                th:href="@{/users/{userId}/edit(userId=${user.id})}">
+                                                <span class="icon">
+                                                    <i class="fas fa-edit"></i>
+                                                </span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="button is-danger is-light" th:href="@{/users/{userId}/delete(userId=${user.id})}">
+                                                <span class="icon"><i class="fas fa-trash"></i></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <nav th:replace="fragments/pagination :: pagination(${users}, '/users')"></nav>
-                        <table class="table is-fullwidth is-bordered is-hoverable">
-                            <thead class="has-background-grey-lighter">
-                                <tr>
-                                    <th th:text="#{ui.users.index.table.name}"></th>
-                                    <th th:text="#{ui.users.index.table.lastName}"></th>
-                                    <th th:text="#{ui.users.index.table.username}"></th>
-                                    <th th:text="#{ui.users.index.table.role}"></th>
-                                    <th th:text="#{ui.common.table.edit}"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="user : ${users.content}">
-                                    <td th:text="${user.name}"></td>
-                                    <td th:text="${user.lastName}"></td>
-                                    <td th:text="${user.username}"></td>
-                                    <td>
-                                        <span class="tag" th:each="role : ${user.roles}" th:text="${role.name}"></span>
-                                    </td>
-                                    <td>
-                                        <a class="button is-primary is-light"
-                                            th:href="@{/users/{userId}/edit(userId=${user.id})}">
-                                            <span class="icon">
-                                                <i class="fas fa-edit"></i>
-                                            </span>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

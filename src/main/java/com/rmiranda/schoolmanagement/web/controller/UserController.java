@@ -133,4 +133,30 @@ public class UserController {
         return mv;
     }
 
+    @GetMapping("/{userId}/delete")
+    public ModelAndView showDelete(@PathVariable(name = "userId") long userId, User user, ModelAndView mv) {
+        user = userService.getUserById(userId).orElse(null);
+
+        if (user == null) {
+            mv.setViewName("redirect:/users");
+            return mv;
+        }
+
+        mv.addObject("user", user);
+        mv.setViewName("users/delete");
+        return mv;
+    }
+
+    @PostMapping("/{userId}/delete")
+    public ModelAndView delete(@PathVariable(name = "userId") long userId, User user, ModelAndView mv) {
+
+        if (userId > 0) {
+            userService.deleteUserById(userId);
+        }
+
+        mv.setViewName("redirect:/users");
+
+        return mv;
+    }
+
 }

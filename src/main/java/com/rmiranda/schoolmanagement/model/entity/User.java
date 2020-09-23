@@ -46,7 +46,7 @@ public class User implements Serializable {
     private String lastName;
 
     @NotNull
-    @DateTimeFormat(pattern = "YYYY-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
     @NotBlank
@@ -70,6 +70,11 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAt;
+
+    @Column(name = "deleted_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date deletedAt;
 
     @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", 
@@ -178,6 +183,14 @@ public class User implements Serializable {
 
     public String getFullname() {
         return this.name.concat(" ").concat(this.lastName);
+    }
+
+    public Date getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
     }
 
     private static final long serialVersionUID = 1L;

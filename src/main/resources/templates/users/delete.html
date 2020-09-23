@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.users.delete.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+
+<body>
+    <ul id="crumbs">
+        <li><a th:href="@{/users}" th:text="#{ui.breadcrumb.users}"></a></li>
+        <li class="is-active"><a th:text="#{ui.breadcrumb.users.delete}"></a></li>
+    </ul>
+
+    <section class="section">
+        <div class="container">
+            <div class="panel is-danger">
+                <h1 class="panel-heading" th:text="#{ui.users.delete.panel.heading}">gt</h1>
+                <div class="panel-block has-background-white">
+                    <div class="container">
+                        <form th:method="POST" th:action="@{/users/{userId}/delete(userId=${user.id})}"
+                            th:object="${user}">
+                            <input type="hidden" th:field="*{id}" readonly />
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" th:for="*{name}"
+                                        th:text="#{ui.users.create.form.name}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" readonly disabled th:field="*{name}" class="input" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label th:for="*{lastName}" class="label"
+                                        th:text="#{ui.users.create.form.lastName}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" readonly disabled th:field="*{lastName}" class="input" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label for="*{birthday}" class="label"
+                                        th:text="#{ui.users.create.form.birthday}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" readonly disabled th:field="*{birthday}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label th:for="*{username}" class="label"
+                                        th:text="#{ui.users.create.form.username}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" readonly disabled th:field="*{username}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label th:for="*{email}" class="label"
+                                        th:text="#{ui.users.create.form.email}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" disabled readonly class="input" th:field="*{email}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label th:for="*{email}" class="label"
+                                        th:text="#{ui.users.create.form.roles}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <span th:each="role : ${user.roles}" class="tag"
+                                                th:text="${role.name}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"></div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button type="submit" class="button is-danger"
+                                                th:text="#{ui.common.actions.delete}"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

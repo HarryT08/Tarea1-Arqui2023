@@ -3,23 +3,36 @@
 
 <body>
 
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination" th:fragment="pagination(page, url)"
-        th:if="${page.totalPages > 1}">
-        <a class="pagination-previous" th:disabled="${page.hasPrevious()} ? 'false' : 'true'"
-            th:href="${page.first} ? '#' : @{${url}(page=${page.number - 1})}" th:text="#{ui.pagination.previous}">Previos page</a>
-        <a class="pagination-next" th:disabled="${page.hasNext()} ? 'false' : 'true'"
-            th:href="${page.last} ? '#' : @{${url}(page=${page.number + 1})}" th:text="#{ui.pagination.next}">Next page</a>
-        <ul class="pagination-list" th:if="${page.totalPages} > 1">
-            <li><a th:href="@{${url}(page=${0})}" class="pagination-link">
-                <span class="icon"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span></a></li>
-            <li th:if="${page.totalPages > 1}" 
-                th:each="pageNumber : ${#numbers.sequence(page.number - 2 >= 0 ? page.number - 1 : (page.first ? 1 : page.number), page.totalPages - page.number > 5 ? page.number + 5 : page.totalPages)}"> 
-                <a class="pagination-link" th:href="@{${url}(page=${pageNumber} - 1)}"  th:classappend="${pageNumber} -1 == ${page.number} ? 'is-current'" th:text="${pageNumber}"></a>
-            </li>
-            <li><a th:href="@{${url}(page=${page.totalPages - 1})}" class="pagination-link">
-                <span class="icon"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
-        </ul>
-    </nav>
+    <idv class="container" th:fragment="pagination(page, url)" th:if="${page.totalPages > 1}">
+        <div class="columns">
+            <div class="column is-three-quarters">
+                <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                    <a class="pagination-previous" th:disabled="${page.hasPrevious()} ? 'false' : 'true'"
+                        th:href="${page.first} ? '#' : @{${url}(page=${page.number - 1})}" th:text="#{ui.pagination.previous}">Previos page</a>
+                    <a class="pagination-next" th:disabled="${page.hasNext()} ? 'false' : 'true'"
+                        th:href="${page.last} ? '#' : @{${url}(page=${page.number + 1})}" th:text="#{ui.pagination.next}">Next page</a>
+                    <ul class="pagination-list" th:if="${page.totalPages} > 1">
+                        <li><a th:href="@{${url}(page=${0})}" class="pagination-link">
+                            <span class="icon"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span></a></li>
+                        <li th:if="${page.totalPages > 1}" 
+                            th:each="pageNumber : ${#numbers.sequence(page.number - 2 >= 0 ? page.number - 1 : (page.first ? 1 : page.number), page.totalPages - page.number > 5 ? page.number + 5 : page.totalPages)}"> 
+                            <a class="pagination-link" th:href="@{${url}(page=${pageNumber} - 1)}"  th:classappend="${pageNumber} -1 == ${page.number} ? 'is-current'" th:text="${pageNumber}"></a>
+                        </li>
+                        <li><a th:href="@{${url}(page=${page.totalPages - 1})}" class="pagination-link">
+                            <span class="icon"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="column mt-2">
+                <span class="has-text-italic" th:text="#{ui.pagination.pages}"></span>
+                <span class="tag" th:text="${page.number} + 1 + '/' + ${page.totalPages}"></span>
+            </div>
+            <div class="column mt-2">
+                <span class="has-text-italic" th:text="#{ui.pagination.total}"></span>
+                <span class="tag" th:text="${page.totalElements}"></span>
+            </div>
+        </div>
+    </idv>
 
 </body>
 

@@ -29,6 +29,7 @@ CREATE TABLE users (
 	active BOOLEAN NOT NULL DEFAULT TRUE,
 	created_at DATETIME NOT NULL,
 	updated_at DATETIME NOT NULL,
+	deleted_at DATETIME,
 	PRIMARY KEY (id),
 	CONSTRAINT uq_users_username UNIQUE (username),
 	CONSTRAINT uq_users_email UNIQUE (email)

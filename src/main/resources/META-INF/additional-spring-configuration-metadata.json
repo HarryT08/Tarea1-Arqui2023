@@ -1,0 +1,9 @@
+{"properties": [{
+  "name": "schoolmanagement.application.slogan",
+  "type": "java.lang.String",
+  "description": "A description for 'schoolmanagement.application.slogan'"
+},{
+  "name": "schoolmanagement.application.title",
+  "type": "java.lang.String",
+  "description": "A description for 'schoolmanagement.application.title'"
+}]}

@@ -1,5 +1,6 @@
 package com.rmiranda.schoolmanagement.service;
 
+import java.util.Date;
 import java.util.Optional;
 
 
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<User> getAllUSers(Pageable pageable) {
-        return userRepository.findAll(pageable);
+        return userRepository.findByDeletedAtIsNull(pageable);
     }
 
     @Override
@@ -47,6 +48,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> getUserById(long id) {
         return userRepository.findById(id);
+    }
+
+    @Override
+    public void deleteUserById(long id) {
+        User user = userRepository.getOne(id);
+
+        user.setDeletedAt(new Date());
+        user.setActive(false);
+
+        userRepository.save(user);
+
     }
 
 }
