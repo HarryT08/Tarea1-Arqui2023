@@ -13,7 +13,10 @@
                 <h1 class="panel-heading" th:text="#{ui.classrooms.index.panel.heading}"></h1>
                 <div class="panel-block has-background-white">
                     <div class="container">
-                        <nav th:replace="fragments/pagination :: pagination(${classrooms}, '/classrooms')"></nav>
+                        <a class="button is-info is-light" th:href="@{/classrooms/create}">
+                            <span class="icon"><i class="fas fa-plus"></i></span>
+                            <span th:text="#{ui.common.actions.new}"></span>
+                        </a>
                         <table class="table is-bordered is-hoverable is-fullwidth">
                             <thead class="has-background-grey-lighter">
                                 <tr>
@@ -25,6 +28,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr th:unless="${classrooms.totalElements > 0}">
+                                    <td colspan="5">
+                                        <span class="has-text-grey px-2" th:text="#{ui.classrooms.index.table.empty}"></span>
+                                        <a th:href="@{/classrooms/create}" th:text="#{ui.classrooms.actions.addClassroom}"></a>
+                                    </td>
+                                </tr>
                                 <tr th:each="classroom : ${classrooms}">
                                     <td th:text="${classroom.name}"></td>
                                     <td th:text="${classroom.description}"></td>
@@ -41,6 +50,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <nav th:replace="fragments/pagination :: pagination(${classrooms}, '/classrooms')"></nav>
                     </div>
                 </div>
             </div>
