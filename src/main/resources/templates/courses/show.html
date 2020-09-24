@@ -112,6 +112,29 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <h1 class="is-size-4 has-text-centered" th:text="#{ui.courses.show.headers.students}"></h1>
+                        <hr>
+                        <a class="button is-link is-outlined mb-2"
+                            th:href="@{/courses/{courseId}/students/add(courseId=${course.id})}"
+                            th:text="#{ui.courses.links.addStudent}"></a>
+                        <table class="table is-bordered is-fullwidth is-hoverable">
+                            <thead class="has-background-grey-lighter">
+                                <tr>
+                                    <th th:text="#{ui.courses.show.student.table.student}"></th>
+                                    <th th:text="#{ui.common.actions.edit}"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:unless="${course.students.size()} > 0">
+                                    <td colspan="2" class="has-text-centered">
+                                        <span class="has-text-grey px-2"
+                                            th:text="#{ui.courses.show.student.table.empty}"></span>
+                                        <a th:href="@{/courses/{courseId}/students/add(courseId=${course.id})}"
+                                            th:text="#{ui.courses.links.addStudent}"></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

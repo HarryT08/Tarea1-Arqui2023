@@ -82,6 +82,9 @@ public class User implements Serializable {
     inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private List<Role> roles;
 
+    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY)
+    private List<Course> courses;
+
     @Transient
     private long[] roleIds;
 
@@ -191,6 +194,14 @@ public class User implements Serializable {
 
     public void setDeletedAt(Date deletedAt) {
         this.deletedAt = deletedAt;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 
     private static final long serialVersionUID = 1L;
