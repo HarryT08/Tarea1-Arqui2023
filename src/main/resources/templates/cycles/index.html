@@ -14,16 +14,25 @@
                 <h1 class="panel-heading" th:text="#{ui.cycles.index.panel.heading}"></h1>
                 <div class="panel-block has-background-white">
                     <div class="container">
-                        <nav th:replace="fragments/pagination :: pagination(${cycles}, '/cycles')"></nav>
+                        <a class="button is-info is-light" th:href="@{/cycles/create}">
+                            <span class="icon"><i class="fas fa-plus"></i></span>
+                            <span th:text="#{ui.common.actions.new}"></span>
+                        </a>
                         <table class="table is-fullwidth is-bordered is-hoverable">
                             <thead class="has-background-grey-lighter">
                                 <tr>
                                     <th th:text="#{ui.cycles.index.table.cycle}"></th>
-                                    <th th:text="#{ui.cycles.index.table.createdAt}"></th>
+                                    <th th:text="#{ui.common.table.createdAt}"></th>
                                     <th th:text="#{ui.common.table.edit}"></th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr th:unless="${cycles.totalElements > 0}">
+                                    <td colspan="3">
+                                        <span class="has-text-grey px-2" th:text="#{ui.cycles.index.table.empty}"></span>
+                                        <a th:href="@{/cycles/create}" th:text="#{ui.cycles.actions.addCycle}"></a>
+                                    </td>
+                                </tr>
                                 <tr th:each="cycle : ${cycles}">
                                     <td th:text="${cycle.name}"></td>
                                     <td th:text="${cycle.createdAt}"></td>
@@ -38,6 +47,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <nav th:replace="fragments/pagination :: pagination(${cycles}, '/cycles')"></nav>
                     </div>
                 </div>
             </div>
