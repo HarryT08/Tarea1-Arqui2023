@@ -23,6 +23,8 @@
                                 <div class="control">
                                     <div class="select">
                                         <select th:field="*{id}">
+                                            <option th:unless="${cycles.size()} > 0" th:value="0" disabled
+                                                th:text="#{ui.courses.index.noactivecycles}"></option>
                                             <option value="0" th:text="#{ui.common.form.select}"></option>
                                             <option th:each="cycle : ${cycles}" th:value="${cycle.id}"
                                                 th:text="${cycle.name}"></option>
@@ -37,8 +39,7 @@
                         </form>
                         <div class="section" th:if="${courses}">
                             <div class="container">
-                                <a class="button is-link is-outlined mb-2"
-                                    th:href="@{/courses/create(cid=${param.id})}"
+                                <a class="button is-link is-outlined mb-2" th:href="@{/courses/create(cid=${param.id})}"
                                     th:text="#{ui.courses.index.button.createCourse}"></a>
                                 <table class="table is-bordered is-hoverable is-fullwidth">
                                     <thead class="has-background-grey-lighter">
@@ -51,12 +52,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <tr th:unless="${courses.size()} > 0">
+                                            <td colspan="5">
+                                                <span class="has-text-grey has-text-centered px-2"
+                                                    th:text="#{ui.courses.index.table.empty}"></span>
+                                                <a th:href="@{/courses/create(cid=${selectedCycle.id})}"
+                                                    th:text="#{ui.courses.actions.addCourse}"></a>
+                                            </td>
+                                        </tr>
                                         <tr th:each="course : ${courses}">
                                             <td>
-                                                <a class="has-text-weight-bold" th:href="@{/courses/{courseId}(courseId=${course.id})}"
+                                                <a class="has-text-weight-bold"
+                                                    th:href="@{/courses/{courseId}(courseId=${course.id})}"
                                                     th:text="${course.name}"></a>
                                             </td>
-                                            <td th:text="${course.manager.fullname}"></td>
+                                            <td th:text="${course.manager} ? ${course.manager.fullname} : ''"></td>
                                             <td th:text="${course.cycle.name}"></td>
                                             <td>
                                                 <span th:remove="tag" th:if="${course.classroom}"

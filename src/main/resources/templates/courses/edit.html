@@ -60,8 +60,12 @@
                                         <div class="control">
                                             <div class="select">
                                                 <select th:field="*{manager.id}">
+                                                    <option th:unless="${managers.size()} > 0" th:value="0" disabled
+                                                        th:text="#{ui.courses.create.form.manager.empty}"></option>
+                                                    <option th:value="0"
+                                                        th:text="#{ui.courses.create.form.manager.nomanager}"></option>
                                                     <option th:each="manager : ${managers}" th:value="${manager.id}"
-                                                        th:text="${manager.name}"></option>
+                                                        th:text="${manager.fullname}"></option>
                                                 </select>
                                             </div>
                                         </div>
@@ -78,6 +82,11 @@
                                         <div class="control">
                                             <div class="select">
                                                 <select th:field="*{classroom.id}">
+                                                    <option th:value="0" th:unless="${classrooms.size()} > 0" disabled
+                                                        th:text="#{ui.courses.create.form.classroom.empty}"></option>
+                                                    <option th:value="0"
+                                                        th:text="#{ui.courses.create.form.classroom.noclassroom}">
+                                                    </option>
                                                     <option th:each="classroom : ${classrooms}"
                                                         th:value="${classroom.id}" th:text="${classroom.name}"></option>
                                                 </select>

@@ -95,6 +95,14 @@ public class CourseController {
     public ModelAndView store(@RequestParam(name = "cid") String cycleId, @Valid Course course, BindingResult result,
             ModelAndView mv) {
 
+        if (course.getManager().getId() == 0) {
+            course.setManager(null);
+        }
+
+        if (course.getClassroom().getId() == 0) {
+            course.setClassroom(null);
+        }
+
         if (result.hasErrors()) {
             course.setCycle(cycleService.getcycleById(Long.valueOf(cycleId)));
             mv.setViewName("courses/create");
@@ -125,6 +133,14 @@ public class CourseController {
     public ModelAndView update(@PathVariable(name = "courseId") long courseId, @Valid Course course,
             BindingResult result, @ModelAttribute(name = "managers") List<User> managers,
             @ModelAttribute(name = "classrooms") List<Classroom> classrooms, ModelAndView mv) {
+
+        if (course.getManager().getId() == 0) {
+            course.setManager(null);
+        }
+
+        if (course.getClassroom().getId() == 0) {
+            course.setClassroom(null);
+        }
         
         if (result.hasErrors()) {
             mv.setViewName("courses/edit");
