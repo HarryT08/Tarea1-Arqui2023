@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.rmiranda.schoolmanagement.model.entity.Course;
 import com.rmiranda.schoolmanagement.model.entity.Cycle;
+import com.rmiranda.schoolmanagement.model.entity.User;
 import com.rmiranda.schoolmanagement.model.repository.CourseRepository;
 import com.rmiranda.schoolmanagement.model.repository.CycleRepository;
 
@@ -17,8 +18,8 @@ public class CourseServiceImpl implements CourseService {
     private CourseRepository courseRepository;
 
     @Autowired
-    private CycleRepository cycleRepository;
-
+	private CycleRepository cycleRepository;
+	
 	@Override
 	public void addCourse(Course course) {
         courseRepository.save(course);
@@ -44,6 +45,19 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public Course getCourseById(long id) {
 		return courseRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	public void unsubscribeStudent(long courseId, long studentId) {
+		Course course = courseRepository.getOne(courseId);
+
+		for (User s : course.getStudents()) {
+			if (s.getId() == studentId) {
+				s.getCourses().remove(course);
+			}
+		}
+
+		courseRepository.save(course);
 	}
     
 }

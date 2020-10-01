@@ -16,5 +16,7 @@ public interface CourseService {
     public List<Course> getAllCoursesByCycle(Cycle cycle);
 
     public Course getCourseById(long id);
+
+    public void unsubscribeStudent(long courseId, long studentId);
     
 }

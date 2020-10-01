@@ -114,8 +114,7 @@
                         </table>
                         <h1 class="is-size-4 has-text-centered" th:text="#{ui.courses.show.headers.students}"></h1>
                         <hr>
-                        <a class="button is-link is-outlined mb-2"
-                            th:href="@{/students/subscribe(cid=${course.id})}"
+                        <a class="button is-link is-outlined mb-2" th:href="@{/students/subscribe(cid=${course.id})}"
                             th:text="#{ui.courses.links.addStudent}"></a>
                         <table class="table is-bordered is-fullwidth is-hoverable">
                             <thead class="has-background-grey-lighter">
@@ -131,6 +130,15 @@
                                             th:text="#{ui.courses.show.student.table.empty}"></span>
                                         <a th:href="@{/students/subscribe(cid=${course.id})}"
                                             th:text="#{ui.courses.links.addStudent}"></a>
+                                    </td>
+                                </tr>
+                                <tr th:each="student : ${course.students}">
+                                    <td th:text="${student.fullname}"></td>
+                                    <td>
+                                        <a class="button is-danger is-light"
+                                            th:href="@{/students/unsubscribe(cid=${course.id}, sid=${student.id})}">
+                                            <span class="icon"><i class="fas fa-trash"></i></span>
+                                        </a>
                                     </td>
                                 </tr>
                             </tbody>

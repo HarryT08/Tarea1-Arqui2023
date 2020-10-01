@@ -114,7 +114,6 @@ public class UserController {
         List<Role> userRoles = new ArrayList<Role>();
 
         for (long roleId : user.getRoleIds()) {
-            System.out.println(roleId);
             Role userrole = roleService.getRoleById(roleId);
             userRoles.add(userrole);
         }

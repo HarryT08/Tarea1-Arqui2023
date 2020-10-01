@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.students.unsubscribe.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+
+<body>
+    <ul id="crumbs">
+        <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
+        <li><a th:href="@{/courses(id=${course.cycle.name})}" th:text="${course.cycle.name}"></a></li>
+        <li><a th:href="@{/courses/{courseId}(courseId=${course.id})}" th:text="${course.name}"></a></li>
+        <li class="is-active"><a th:text="#{ui.breadcrumb.students.unsubscribe}"></a></li>
+    </ul>
+
+    <section class="section">
+        <div class="container">
+            <div class="panel is-danger">
+                <h1 class="panel-heading" th:text="#{ui.students.unsubscribe.panel.heading}"></h1>
+                <div class="panel-block has-background-white">
+                    <div class="container">
+                        <form th:method="POST" th:action="@{/students/unsubscribe(cid=${course.id},sid=${student.id})}">
+                            <div class="columns">
+                                <div class="column is-full has-text-centered">
+                                    <h1
+                                        class="is-size-4"
+                                        th:text="#{ui.students.unsubscribe.form.unsubscribe(${student.fullname}, ${course.name})}"></h1>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column is-full has-text-centered">
+                                    <button type="submit" th:text="#{ui.common.button.save}" class="button is-danger"></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
