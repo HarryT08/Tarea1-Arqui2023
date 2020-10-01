@@ -75,7 +75,8 @@ CREATE TABLE course_students(
 	student_id BIGINT UNSIGNED NOT NULL,
 	PRIMARY KEY (id),
 	CONSTRAINT fk_course_id FOREIGN KEY (course_id) REFERENCES courses (id),
-	CONSTRAINT fk_student_id FOREIGN KEY (student_id) REFERENCES users (id)
+	CONSTRAINT fk_student_id FOREIGN KEY (student_id) REFERENCES users (id),
+	CONSTRAINT uq_course_student UNIQUE(course_id, student_id)
 ) ENGINE=InnoDB
 COMMENT="Estudiantes suscritos a cursos";
 
