@@ -7,7 +7,8 @@
     <ul id="crumbs">
         <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
         <li><a th:href="@{/courses(id=${subject.course.cycle.id})}" th:text="${subject.course.cycle.name}"></a></li>
-        <li><a th:href="@{/courses/{courseId}(courseId=${subject.course.id})}" th:text="${subject.course.name}"></a></li>
+        <li><a th:href="@{/courses/{courseId}(courseId=${subject.course.id})}" th:text="${subject.course.name}"></a>
+        </li>
         <li class="is-active"><a th:text="#{ui.breadcrumb.subjects.create}"></a></li>
     </ul>
 
@@ -74,80 +75,11 @@
                                 </div>
                             </div>
                             <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label" th:text="#{ui.subjects.create.form.days}"></label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <label class="checkbox">
-                                                <input type="checkbox" th:field="*{schedule.monday}"
-                                                    th:text="#{ui.common.days.monday}" />
-                                            </label>
-                                            <label class="checkbox">
-                                                <input type="checkbox" th:field="*{schedule.tuesday}"
-                                                    th:text="#{ui.common.days.tuesday}" />
-                                            </label>
-                                            <label class="checkbox">
-                                                <input type="checkbox" th:field="*{schedule.wednesday}"
-                                                    th:text="#{ui.common.days.wednesday}" />
-                                            </label>
-                                            <label class="checkbox">
-                                                <input type="checkbox" th:field="*{schedule.thursday}"
-                                                    th:text="#{ui.common.days.thursday}" />
-                                            </label>
-                                            <label class="checkbox">
-                                                <input type="checkbox" th:field="*{schedule.friday}"
-                                                    th:text="#{ui.common.days.friday}" />
-                                            </label>
-                                            <label class="checkbox">
-                                                <input type="checkbox" th:field="*{schedule.saturday}"
-                                                    th:text="#{ui.common.days.saturday}" />
-                                            </label>
-                                            <label class="checkbox">
-                                                <input type="checkbox" th:field="*{schedule.sunday}"
-                                                    th:text="#{ui.common.days.sunday}" />
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label" th:for="*{schedule.startTime}"
-                                        th:text="#{ui.subjects.create.form.startTime}"></label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <input type="time" class="input" th:field="*{schedule.startTime}"
-                                                th:errorclass="is-danger" />
-                                            <span class="help is-danger" th:errors="*{schedule.startTime}"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label">
-                                    <label class="label" th:for="*{schedule.endTime}"
-                                        th:text="#{ui.subjects.create.form.endTime}"></label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <input type="time" class="input" th:field="*{schedule.endTime}"
-                                                th:errorclass="is-danger" />
-                                            <span class="help is-danger" th:errors="*{schedule.endTime}"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field is-horizontal">
                                 <div class="field-label is-normal"></div>
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <button type="submit" class="button is-info"
+                                            <button type="submit" class="button is-info" value="save" name="save"
                                                 th:text="#{ui.common.button.save}"></button>
                                         </div>
                                     </div>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.schedules.delete.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+
+<body>
+    <ul id="crumbs">
+        <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
+        <li><a th:href="@{/courses(id=${schedule.subject.course.cycle.id})}"
+                th:text="${schedule.subject.course.cycle.name}"></a></li>
+        <li><a th:href="@{/courses/{courseId}(courseId=${schedule.subject.course.id})}"
+                th:text="${schedule.subject.course.name}"></a></li>
+        <li><a th:href="@{/subjects/{subjectId}(subjectId=${schedule.subject.id})}"
+                th:text="${schedule.subject.name}"></a></li>
+        <li class="is-active"><a th:text="#{ui.common.actions.delete}"></a></li>
+    </ul>
+
+    <section class="section">
+        <div class="container">
+            <div class="panel is-danger">
+                <h1 class="panel-heading" th:text="#{ui.schedules.delete.panel.heading}"></h1>
+                <div class="panel-block has-background-white">
+                    <div class="container">
+                        <form th:method="POST" th:action="@{/schedules/{scheduleId}/delete(scheduleId=${schedule.id})}">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" th:text="#{ui.schedules.create.form.dayOfWeek}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" th:if="${schedule.dayOfWeek} == 1" class="input" readonly
+                                                disabled th:value="#{ui.common.days.monday}" />
+                                            <input type="text" th:if="${schedule.dayOfWeek} == 2" class="input" readonly
+                                                disabled th:value="#{ui.common.days.tuesday}" />
+                                            <input type="text" th:if="${schedule.dayOfWeek} == 3" class="input" readonly
+                                                disabled th:value="#{ui.common.days.wednesday}" />
+                                            <input type="text" th:if="${schedule.dayOfWeek} == 4" class="input" readonly
+                                                disabled th:value="#{ui.common.days.thursday}" />
+                                            <input type="text" th:if="${schedule.dayOfWeek} == 5" class="input" readonly
+                                                disabled th:value="#{ui.common.days.friday}" />
+                                            <input type="text" th:if="${schedule.dayOfWeek} == 6" class="input" readonly
+                                                disabled th:value="#{ui.common.days.saturday}" />
+                                            <input type="text" th:if="${schedule.dayOfWeek} == 7" class="input" readonly
+                                                disabled th:value="#{ui.common.days.sunday}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" th:text="#{ui.schedules.create.form.startTime}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" disabled readonly
+                                                th:value="${schedule.startTime}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label" th:text="#{ui.schedules.create.form.endTime}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" disabled readonly class="input"
+                                                th:value="${schedule.endTime}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"></div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button type="submit" class="button is-danger"
+                                                th:text="#{ui.common.actions.delete}"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

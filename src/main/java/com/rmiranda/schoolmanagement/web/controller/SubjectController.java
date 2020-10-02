@@ -78,7 +78,7 @@ public class SubjectController {
 
         subjectService.addSubject(subject);
 
-        mv.setViewName("redirect:/courses/".concat(String.valueOf(courseId)));
+        mv.setViewName("redirect:/subjects/".concat(String.valueOf(subject.getId())));
 
         return mv;
     }
@@ -129,6 +129,14 @@ public class SubjectController {
 
         mv.setViewName("redirect:/courses/".concat(courseId));
 
+        return mv;
+    }
+
+    @GetMapping("/{subjectId}")
+    public ModelAndView show(@PathVariable(name = "subjectId") long subjectId, ModelAndView mv) {
+        Subject subject = subjectService.getSubjectById(subjectId);
+        mv.addObject("subject", subject);
+        mv.setViewName("subjects/show");
         return mv;
     }
 

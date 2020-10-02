@@ -1,6 +1,7 @@
 package com.rmiranda.schoolmanagement.model.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -43,9 +44,9 @@ public class Subject implements Serializable {
     @NotNull
     private User teacher;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "subject_schedule_id")
-    private SubjectSchedule schedule;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "subject_id")
+    private List<SubjectSchedule> schedules;
 
     public long getId() {
         return id;
@@ -87,14 +88,13 @@ public class Subject implements Serializable {
         this.teacher = teacher;
     }
 
+    public List<SubjectSchedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(List<SubjectSchedule> schedules) {
+        this.schedules = schedules;
+    }
+
     private static final long serialVersionUID = 1L;
-
-    public SubjectSchedule getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(SubjectSchedule schedule) {
-        this.schedule = schedule;
-    }
-
 }

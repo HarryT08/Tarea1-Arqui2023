@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.subjects.show.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+
+<body>
+    <ul id="crumbs">
+        <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
+        <li><a th:href="@{/courses(id=${subject.course.cycle.id})}" th:text="${subject.course.cycle.name}"></a></li>
+        <li><a th:href="@{/courses/{courseId}(courseId=${subject.course.id})}" th:text="${subject.course.name}"></a>
+        </li>
+        <li class="is-active"><a th:text="${subject.name}"></a></li>
+    </ul>
+
+    <section class="section">
+        <div class="container">
+            <div class="panel is-light">
+                <h1 class="panel-heading" th:text="#{ui.subjects.show.panel.heading(${subject.name})}"></h1>
+                <div class="panel-block has-background-white">
+                    <div class="container">
+                        <div class="columns">
+                            <div class="column is-full has-text-centered">
+                                <h3 class="is-size-3" th:text="${subject.name}"></h3>
+                                <h5 class="is-size-5" th:text="${subject.course.name}"></h5>
+                                <h5 class="is-size-5 has-text-grey" th:text="${subject.course.cycle.name}"></h5>
+                            </div>
+                        </div>
+                        <div class="columns pt-0 mb-0">
+                            <div class="column is-full has-text-centered pt-0">
+                                <span class="has-text-black" th:text="#{ui.subjects.create.form.teacher} + ':'"></span>
+                                <span class="has-text-grey" th:text="${subject.teacher.fullname}"></span>
+                            </div>
+                        </div>
+                        <div class="columns pt-0">
+                            <div class="column is-full has-text-centered pt-0">
+                                <span class="has-text-black"
+                                    th:text="#{ui.subjects.create.form.classroom} + ':'"></span>
+                                <span class="has-text-grey" th:text="${subject.classroom.name}"></span>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column is-full has-text-centered">
+                                <h3 class="is-size-3" th:text="#{ui.subjects.show.schedules}"></h3>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column is-full">
+                                <a class="button is-link is-light" th:href="@{/schedules/create(sid=${subject.id})}">
+                                    <span class="icon"><i class="fas fa-plus"></i></span>
+                                    <span th:text="#{ui.common.actions.new}"></span>
+                                </a>
+                                <table class="table is-fullwidth is-bordered is-hoverable">
+                                    <thead class="has-background-grey-lighter">
+                                        <tr>
+                                            <td th:text="#{ui.subjects.show.schedule.table.day}"></td>
+                                            <td th:text="#{ui.subjects.show.schedule.table.startTime}"></td>
+                                            <td th:text="#{ui.subjects.show.schedule.table.endTime}"></td>
+                                            <td th:text="#{ui.common.actions.delete}"></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:unless="${subject.schedules.size()} > 0">
+                                            <td colspan="4" class="has-text-centered">
+                                                <span class="has-text-grey" th:text="#{ui.subjects.show.schedule.table.empty}"></span>
+                                            </td>
+                                        </tr>
+                                        <tr th:each="schedule : ${subject.schedules}">
+                                            <td>
+                                                <span th:if="${schedule.dayOfWeek} == 1"
+                                                    th:text="#{ui.common.days.monday}"></span>
+                                                <span th:if="${schedule.dayOfWeek} == 2"
+                                                    th:text="#{ui.common.days.tuesday}"></span>
+                                                <span th:if="${schedule.dayOfWeek} == 3"
+                                                    th:text="#{ui.common.days.wednesday}"></span>
+                                                <span th:if="${schedule.dayOfWeek} == 4"
+                                                    th:text="#{ui.common.days.thursday}"></span>
+                                                <span th:if="${schedule.dayOfWeek} == 5"
+                                                    th:text="#{ui.common.days.friday}"></span>
+                                                <span th:if="${schedule.dayOfWeek} == 6"
+                                                    th:text="#{ui.common.days.saturday}"></span>
+                                                <span th:if="${schedule.dayOfWeek} == 7"
+                                                    th:text="#{ui.common.days.sunday}"></span>
+                                            </td>
+                                            <td th:text="${schedule.startTime}"></td>
+                                            <td th:text="${schedule.endTime}"></td>
+                                            <td>
+                                                <a class="button is-danger is-light"
+                                                    th:href="@{/schedules/{scheduleId}/delete(scheduleId=${schedule.id})}">
+                                                    <span class="icon"><i class="fas fa-trash"></i></span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

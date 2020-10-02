@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import com.rmiranda.schoolmanagement.model.entity.Classroom;
 import com.rmiranda.schoolmanagement.model.entity.Course;
 import com.rmiranda.schoolmanagement.model.entity.Subject;
-import com.rmiranda.schoolmanagement.model.entity.SubjectSchedule;
 import com.rmiranda.schoolmanagement.model.entity.User;
 
 import org.junit.jupiter.api.Test;
@@ -35,14 +34,7 @@ public class SubjectServiceTest {
         Classroom classroom = em.find(Classroom.class, Long.valueOf(1));
         User teacher = em.find(User.class, Long.valueOf(1));
 
-        SubjectSchedule schedule = new SubjectSchedule();
-        schedule.setMonday(true);
-        schedule.setTuesday(false);
-        schedule.setWednesday(false);
-        schedule.setThursday(false);
-        schedule.setFriday(false);
-        schedule.setSaturday(false);
-        schedule.setSunday(false);
+        //SubjectSchedule schedule = new SubjectSchedule();
         //jschedule.setStartTime(new Time());
         //jschedule.setEndTime(new Date());
         //schedule.setSubject(subject);

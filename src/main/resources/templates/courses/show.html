@@ -59,9 +59,6 @@
                                     <th th:text="#{ui.courses.show.table.subject.name}"></th>
                                     <th th:text="#{ui.courses.show.table.subject.classroom}"></th>
                                     <th th:text="#{ui.courses.show.table.subject.teacher}"></th>
-                                    <th th:text="#{ui.courses.show.table.subject.days}"></th>
-                                    <th th:text="#{ui.courses.show.table.subject.start}"></th>
-                                    <th th:text="#{ui.courses.show.table.subject.end}"></th>
                                     <td th:text="#{ui.common.actions.edit}"></td>
                                     <td th:text="#{ui.common.actions.delete}"></td>
                                 </tr>
@@ -76,27 +73,11 @@
                                     </td>
                                 </tr>
                                 <tr th:each="subject : ${course.subjects}">
-                                    <td th:text="${subject.name}"></td>
+                                    <td>
+                                        <a th:href="@{/subjects/{subjectId}(subjectId=${subject.id})}" th:text="${subject.name}"></a>
+                                    </td>
                                     <td th:text="${subject.classroom.name}"></td>
                                     <td th:text="${subject.teacher.fullname}"></td>
-                                    <td>
-                                        <span class="tag" th:if="${subject.schedule.monday}"
-                                            th:text="#{ui.common.days.monday}"></span>
-                                        <span class="tag" th:if="${subject.schedule.tuesday}"
-                                            th:text="#{ui.common.days.tuesday}"></span>
-                                        <span class="tag" th:if="${subject.schedule.wednesday}"
-                                            th:text="#{ui.common.days.wednesday}"></span>
-                                        <span class="tag" th:if="${subject.schedule.thursday}"
-                                            th:text="#{ui.common.days.thursday}"></span>
-                                        <span class="tag" th:if="${subject.schedule.friday}"
-                                            th:text="#{ui.common.days.friday}"></span>
-                                        <span class="tag" th:if="${subject.schedule.saturday}"
-                                            th:text="#{ui.common.days.saturday}"></span>
-                                        <span class="tag" th:if="${subject.schedule.sunday}"
-                                            th:text="#{ui.common.days.sunday}"></span>
-                                    </td>
-                                    <td th:text="${subject.schedule.startTime}"></td>
-                                    <td th:text="${subject.schedule.endTime}"></td>
                                     <td>
                                         <a class="button is-info is-light"
                                             th:href="@{/subjects/{subjectId}/edit(subjectId=${subject.id})}">
