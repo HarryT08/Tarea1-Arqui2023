@@ -1,9 +1,14 @@
 package com.rmiranda.schoolmanagement.web.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.validation.Valid;
 
+import com.rmiranda.schoolmanagement.model.entity.Course;
 import com.rmiranda.schoolmanagement.model.entity.Subject;
 import com.rmiranda.schoolmanagement.model.entity.SubjectSchedule;
+import com.rmiranda.schoolmanagement.service.CourseService;
 import com.rmiranda.schoolmanagement.service.ScheduleService;
 import com.rmiranda.schoolmanagement.service.SubjectService;
 
@@ -26,6 +31,21 @@ public class ScheduleController {
 
     @Autowired
     private ScheduleService scheduleService;
+
+    @Autowired
+    private CourseService courseService;
+
+    @GetMapping("")
+    public ModelAndView showCalendar(@RequestParam(name = "cid") long courseId, ModelAndView mv) {
+        HashMap<String, List<SubjectSchedule>> schedule = scheduleService.getScheduleByCourseId(courseId);
+        Course course = courseService.getCourseById(courseId);
+        mv.addObject("course", course);
+        mv.addObject("schedule", schedule);
+
+        mv.setViewName("schedules/show");
+
+        return mv;
+    }
 
     @GetMapping("/create")
     public ModelAndView create(@RequestParam(name = "sid") long subjectId, SubjectSchedule schedule, ModelAndView mv) {

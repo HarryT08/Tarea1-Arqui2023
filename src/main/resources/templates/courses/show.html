@@ -49,6 +49,14 @@
                                     th:text="#{ui.courses.links.addClassroom}"></a>
                             </div>
                         </div>
+                        <div class="columns">
+                            <div class="column is-ffull has-text-centered">
+                                <a th:href="@{/schedules(cid=${course.id})}">
+                                    <span class="icon"><i class="fas fa-calendar"></i></span>
+                                    <span th:text="#{ui.courses.show.showCourseSchedule}"></span>
+                                </a>
+                            </div>
+                        </div>
                         <h1 class="is-size-4 has-text-centered" th:text="#{ui.courses.show.headers.subjects}"></h1>
                         <hr class="mt-1">
                         <a class="button is-outlined is-link mb-2" th:text="#{ui.courses.links.addSubject}"
