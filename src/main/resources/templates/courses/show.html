@@ -67,6 +67,7 @@
                                     <th th:text="#{ui.courses.show.table.subject.name}"></th>
                                     <th th:text="#{ui.courses.show.table.subject.classroom}"></th>
                                     <th th:text="#{ui.courses.show.table.subject.teacher}"></th>
+                                    <th th:text="#{ui.subjects.show.grades}"></th>
                                     <td th:text="#{ui.common.actions.edit}"></td>
                                     <td th:text="#{ui.common.actions.delete}"></td>
                                 </tr>
@@ -86,6 +87,11 @@
                                     </td>
                                     <td th:text="${subject.classroom.name}"></td>
                                     <td th:text="${subject.teacher.fullname}"></td>
+                                    <td>
+                                        <a class="button is-link is-light" th:href="@{/grades(sid=${subject.id})}">
+                                            <span class="icon"><i class="fas fa-search"></i></span>
+                                        </a>
+                                    </td>
                                     <td>
                                         <a class="button is-info is-light"
                                             th:href="@{/subjects/{subjectId}/edit(subjectId=${subject.id})}">

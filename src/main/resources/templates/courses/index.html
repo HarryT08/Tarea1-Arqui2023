@@ -49,6 +49,7 @@
                                             <th th:text="#{ui.courses.index.table.cycle}"></th>
                                             <th th:text="#{ui.courses.index.table.classroom}"></th>
                                             <th th:text="#{ui.common.table.edit}"></th>
+                                            <th th:text="#{ui.common.table.delete}"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -77,6 +78,14 @@
                                                     th:href="@{/courses/{courseId}/edit(courseId=${course.id})}">
                                                     <span class="icon">
                                                         <i class="fas fa-edit"></i>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a class="button is-danger is-light"
+                                                    th:href="@{/courses/{courseId}/delete(courseId=${course.id})}">
+                                                    <span class="icon">
+                                                        <i class="fas fa-trash"></i>
                                                     </span>
                                                 </a>
                                             </td>

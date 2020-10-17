@@ -107,18 +107,28 @@ COMMENT="Horarios de clases";
 CREATE TABLE grades (
 	id BIGINT UNSIGNED AUTO_INCREMENT,
 	subject_id BIGINT UNSIGNED NOT NULL,
+	description VARCHAR(50) NOT NULL,
+	created_at DATETIME NOT NULL,
+	updated_at DATETIME NOT NULL,
+	PRIMARY KEY (id),
+	CONSTRAINT fk_grades_subject_id FOREIGN KEY (subject_id) REFERENCES subjects(id)
+) ENGINE=InnoDB
+COMMENT="Evaluaciones o registro de cuadros de notas por materia";
+
+CREATE TABLE grade_details(
+	id BIGINT UNSIGNED AUTO_INCREMENT,
+	grade_id BIGINT UNSIGNED NOT NULL,
 	student_id BIGINT UNSIGNED NOT NULL,
-	grade DECIMAL(4, 2) NOT NULL,
-	description VARCHAR(50),
+	score DECIMAL(4, 2) NOT NULL,
 	created_at DATETIME NOT NULL,
 	updated_at DATETIME NOT NULL,
 	deleted_at DATETIME,
 	delete_comment VARCHAR(50),
 	PRIMARY KEY (id),
-	CONSTRAINT fk_grades_subject_id FOREIGN KEY (subject_id) REFERENCES subjects(id),
+	CONSTRAINT fk_grade_details_grade_id FOREIGN KEY (grade_id) REFERENCES grades(id),
 	CONSTRAINT fk_grades_student_id FOREIGN KEY (student_id) REFERENCES users(id)
 ) ENGINE=InnoDB
-COMMENT="Notas de cada materia";
+COMMENT="Detaille de notas";
 
 insert into roles (name) values ("ROLE_ADMIN");
 insert into roles (name) values ("ROLE_STUDENT");

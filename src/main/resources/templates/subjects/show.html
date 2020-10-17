@@ -38,6 +38,14 @@
                             </div>
                         </div>
                         <div class="columns">
+                            <div class="column has-text-centered">
+                                <a th:href="@{/grades(sid=${subject.id})}">
+                                    <span class="icon"><i class="fas fa-search"></i></span>
+                                    <span th:text="#{ui.subjects.show.grades}"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="columns">
                             <div class="column is-full has-text-centered">
                                 <h3 class="is-size-3" th:text="#{ui.subjects.show.schedules}"></h3>
                             </div>

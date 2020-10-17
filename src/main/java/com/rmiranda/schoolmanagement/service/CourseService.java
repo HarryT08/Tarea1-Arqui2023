@@ -18,5 +18,9 @@ public interface CourseService {
     public Course getCourseById(long id);
 
     public void unsubscribeStudent(long courseId, long studentId);
+
+    public void deleteCourseById(long courseId);
+
+    public void deleteCourse(Course course);
     
 }

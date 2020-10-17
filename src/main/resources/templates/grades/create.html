@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.grades.create.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+
+<body>
+    <ul id="crumbs">
+        <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
+        <li><a th:href="@{/courses(id=${grade.subject.course.cycle.id})}"
+                th:text="${grade.subject.course.cycle.name}"></a></li>
+        <li><a th:href="@{/courses/{courseId}(courseId=${grade.subject.course.id})}"
+                th:text="${grade.subject.course.name}"></a></li>
+        <li><a th:href="@{/subjects/{subjectId}(subjectId=${grade.subject.id})}" th:text="${grade.subject.name}"></a>
+        </li>
+        <li><a th:href="@{/grades(sid=${grade.subject.id})}" th:text="#{ui.breadcrumb.grades}"></a></li>
+        <li class="is-active"><a th:text="#{ui.breadcrumb.grades.register}"></a></li>
+    </ul>
+
+    <section class="section">
+        <div class="container">
+            <div class="panel is-light">
+                <h1 class="panel-heading"
+                    th:text="#{ui.grades.create.panel.heading(${grade.subject.name}, ${grade.subject.course.name}, ${grade.subject.course.cycle.name})}">
+                </h1>
+                <div class="panel-block has-background-white">
+                    <div class="container">
+                        <form th:method="POST" th:action="@{/grades/{subjectId}/create(subjectId=${grade.subject.id})}"
+                            th:object="${grade}">
+                            <input type="hidden" th:field="*{subject.id}" />
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label th:for="*{description}" class="label"
+                                        th:text="#{ui.grades.create.form.description}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" th:errorclass="is-danger"
+                                                th:field="*{description}"
+                                                th:placeholder="#{ui.grades.create.form.description.placeholder}"
+                                                autofocus />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button type="submit" class="button is-info"
+                                                th:text="#{ui.grades.create.form.button.register}"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

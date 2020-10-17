@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.grades.register.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+
+<body>
+    <ul id="crumbs">
+        <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
+        <li><a th:href="@{/courses(id=${grade.subject.course.cycle.id})}"
+                th:text="${grade.subject.course.cycle.name}"></a></li>
+        <li><a th:href="@{/courses/{courseId}(courseId=${grade.subject.course.id})}"
+                th:text="${grade.subject.course.name}"></a></li>
+        <li><a th:href="@{/subjects/{subjectId}(subjectId=${grade.subject.id})}" th:text="${grade.subject.name}"></a>
+        </li>
+        <li class="is-active"><a th:text="#{ui.breadcrumb.grades.register(${grade.description})}"></a></li>
+    </ul>
+
+    <section class="section">
+        <div class="container">
+            <div class="panel is-light">
+                <h1 class="panel-heading"
+                    th:text="#{ui.grades.register.panel.heading(${grade.description}, ${grade.subject.name}, ${grade.subject.course.name}, ${grade.subject.course.cycle.name})}">
+                </h1>
+                <div class="panel-block has-background-white">
+                    <div class="container">
+                        <table class="table is-fullwidth">
+                            <thead>
+                                <th>#</th>
+                                <th th:text="#{ui.grades.register.table.student}"></th>
+                                <th th:text="#{ui.grades.register.table.grade}"></th>
+                            </thead>
+                            <tbody>
+                                <tr th:each="score, stat : ${scorebook}">
+                                    <td th:text="${stat.index}+1"></td>
+                                    <td th:text="${score.student.fullname}"></td>
+                                    <td>
+                                        <a th:unless="${score.score}" th:href="@{/grades/{gradeId}/register/{studentId}(gradeId=${score.grade.id},studentId=${score.student.id})}"
+                                            th:text="#{ui.grades.register.table.register}"></a>
+                                        <span th:if="${score.score}" class="has-text-weith-bold" th:text="${score.score}"></span>
+                                        <a th:if="${score.score}" class="is-link is-light" th:href="@{/grades/{gradeId}/edit/{scoreId}(gradeId=${score.grade.id},scoreId=${score.id})}">
+                                            <span class="icon">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+</body>
+
+</html>

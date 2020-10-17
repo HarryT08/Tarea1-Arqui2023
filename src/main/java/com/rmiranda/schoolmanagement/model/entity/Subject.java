@@ -48,6 +48,9 @@ public class Subject implements Serializable {
     @JoinColumn(name = "subject_id")
     private List<SubjectSchedule> schedules;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Grade> grades;
+
     public long getId() {
         return id;
     }
@@ -94,6 +97,14 @@ public class Subject implements Serializable {
 
     public void setSchedules(List<SubjectSchedule> schedules) {
         this.schedules = schedules;
+    }
+
+    public List<Grade> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<Grade> grades) {
+        this.grades = grades;
     }
 
     private static final long serialVersionUID = 1L;

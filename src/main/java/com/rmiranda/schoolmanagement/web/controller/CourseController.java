@@ -154,4 +154,24 @@ public class CourseController {
         return mv;
     }
 
+    @GetMapping("/{courseId}/delete")
+    public ModelAndView showDelete(@PathVariable(name = "courseId") long courseId, ModelAndView mv) {
+        Course course = courseService.getCourseById(courseId);
+        mv.addObject("course", course);
+        mv.setViewName("courses/delete");
+        return mv;
+    }
+
+    @PostMapping("/{courseId}/delete")
+    public ModelAndView delete(@PathVariable(name = "courseId") long courseId, ModelAndView mv) {
+        Course course = courseService.getCourseById(courseId);
+        long cycleId = course.getCycle().getId();
+
+        courseService.deleteCourse(course);
+
+        mv.setViewName("redirect:/courses?id=".concat(String.valueOf(cycleId)));
+
+        return mv;
+    }
+
 }
