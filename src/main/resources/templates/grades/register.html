@@ -11,7 +11,7 @@
                 th:text="${grade.subject.course.name}"></a></li>
         <li><a th:href="@{/subjects/{subjectId}(subjectId=${grade.subject.id})}" th:text="${grade.subject.name}"></a>
         </li>
-        <li class="is-active"><a th:text="#{ui.breadcrumb.grades.register(${grade.description})}"></a></li>
+        <li class="is-active"><a th:text="#{ui.breadcrumb.grades.scorebook(${grade.description})}"></a></li>
     </ul>
 
     <section class="section">
@@ -33,10 +33,10 @@
                                     <td th:text="${stat.index}+1"></td>
                                     <td th:text="${score.student.fullname}"></td>
                                     <td>
-                                        <a th:unless="${score.score}" th:href="@{/grades/{gradeId}/register/{studentId}(gradeId=${score.grade.id},studentId=${score.student.id})}"
+                                        <a th:unless="${score.score}" th:href="@{/grades/{gradeId}/register(gradeId=${score.grade.id},sid=${score.student.id})}"
                                             th:text="#{ui.grades.register.table.register}"></a>
                                         <span th:if="${score.score}" class="has-text-weith-bold" th:text="${score.score}"></span>
-                                        <a th:if="${score.score}" class="is-link is-light" th:href="@{/grades/{gradeId}/edit/{scoreId}(gradeId=${score.grade.id},scoreId=${score.id})}">
+                                        <a th:if="${score.score}" class="is-link is-light" th:href="@{/grades/{gradeId}/score/{scoreId}/edit(gradeId=${score.grade.id},scoreId=${score.id})}">
                                             <span class="icon">
                                                 <i class="fas fa-edit"></i>
                                             </span>

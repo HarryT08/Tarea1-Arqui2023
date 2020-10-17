@@ -21,7 +21,7 @@
                 </h1>
                 <div class="panel-block has-background-white">
                     <div class="container">
-                        <a class="button is-link is-light" th:href="@{/grades/{subjectId}/create(subjectId=${subject.id})}">
+                        <a class="button is-link is-light" th:href="@{/grades/create(sid=${subject.id})}">
                             <span class="icon"><i class="fas fa-plus"></i></span>
                             <span th:text="#{ui.common.actions.new}"></span>
                         </a>
@@ -40,7 +40,7 @@
                                 <tr th:if="${grades.size()} > 0" th:each="grade, stat : ${grades}">
                                     <td th:text="${stat.index}+1"></td>
                                     <td>
-                                        <a th:href="@{/grades/{gradeId}/register(gradeId=${grade.id})}" th:text="${grade.description}"></a>
+                                        <a th:href="@{/grades/{gradeId}(gradeId=${grade.id})}" th:text="${grade.description}"></a>
                                     </td>
                                     <td>
                                         <a href="#" class="button is-link is-light">

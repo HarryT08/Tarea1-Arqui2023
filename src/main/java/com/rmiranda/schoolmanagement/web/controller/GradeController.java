@@ -45,8 +45,8 @@ public class GradeController {
         return mv;
     }
 
-    @GetMapping("/{subjectId}/create")
-    public ModelAndView create(@PathVariable(name = "subjectId") long subjectId, ModelAndView mv) {
+    @GetMapping("/create")
+    public ModelAndView create(@RequestParam(name = "sid") long subjectId, ModelAndView mv) {
         Grade grade = new Grade();
         Subject subject = subjectService.getSubjectById(subjectId);
         grade.setSubject(subject);
@@ -55,8 +55,8 @@ public class GradeController {
         return mv;
     }
 
-    @PostMapping("/{subjectId}/create")
-    public ModelAndView store(@PathVariable(name = "subjectId") long subjectId, @Valid Grade grade,
+    @PostMapping("/create")
+    public ModelAndView store(@RequestParam(name = "sid") long subjectId, @Valid Grade grade,
             BindingResult result, ModelAndView mv) {
 
         if (result.hasErrors()) {
@@ -66,12 +66,12 @@ public class GradeController {
 
         gradeService.addGrade(grade);
 
-        mv.setViewName("redirect:/grades/".concat(String.valueOf(grade.getId())).concat("/register"));
+        mv.setViewName("redirect:/grades/".concat(String.valueOf(grade.getId())));
 
         return mv;
     }
 
-    @GetMapping("/{gradeId}/register")
+    @GetMapping("/{gradeId}")
     public ModelAndView showRegister(@PathVariable(name = "gradeId") long gradeId, ModelAndView mv) {
         List<GradeDetail> scorebook = gradeService.getGradeScorebook(gradeId);
         Grade grade = gradeService.getGradeById(gradeId);
@@ -81,9 +81,9 @@ public class GradeController {
         return mv;
     }
 
-    @GetMapping("/{gradeId}/register/{studentId}")
+    @GetMapping("/{gradeId}/register")
     public ModelAndView showRegisterGradeToStudent(@PathVariable(name = "gradeId") long gradeId,
-            @PathVariable(name = "studentId") long studentId, ModelAndView mv) {
+            @RequestParam(name = "sid") long studentId, ModelAndView mv) {
         Grade grade = gradeService.getGradeById(gradeId);
         User student = userService.getUserById(studentId).orElse(null);
         GradeDetail score = new GradeDetail();
@@ -97,9 +97,9 @@ public class GradeController {
         return mv;
     }
 
-    @PostMapping("/{gradeId}/register/{studentId}")
+    @PostMapping("/{gradeId}/register")
     public ModelAndView registerGradeToStudent(@PathVariable(name = "gradeId") long gradeId,
-            @PathVariable(name = "studentId") long studentId, @Valid GradeDetail score, BindingResult result,
+            @RequestParam(name = "sid") long studentId, @Valid GradeDetail score, BindingResult result,
             ModelAndView mv) {
 
         if (result.hasErrors()) {
@@ -113,7 +113,7 @@ public class GradeController {
 
         gradeService.updateGrade(grade);
 
-        mv.setViewName("redirect:/grades/".concat(String.valueOf(gradeId)).concat("/register"));
+        mv.setViewName("redirect:/grades/".concat(String.valueOf(gradeId)));
 
         return mv;
     }
@@ -123,7 +123,7 @@ public class GradeController {
         Grade grade = gradeService.getGradeById(gradeId);
         mv.addObject("grade", grade);
         mv.setViewName("grades/edit");
-        mv.setViewName("redirect:/grades/".concat(String.valueOf(gradeId)).concat("/register"));
+        mv.setViewName("redirect:/grades/".concat(String.valueOf(gradeId)));
         return mv;
     }
 

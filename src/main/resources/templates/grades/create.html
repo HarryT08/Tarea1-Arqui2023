@@ -23,7 +23,7 @@
                 </h1>
                 <div class="panel-block has-background-white">
                     <div class="container">
-                        <form th:method="POST" th:action="@{/grades/{subjectId}/create(subjectId=${grade.subject.id})}"
+                        <form th:method="POST" th:action="@{/grades/create(sid=${grade.subject.id})}"
                             th:object="${grade}">
                             <input type="hidden" th:field="*{subject.id}" />
                             <div class="field is-horizontal">
