@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.grades.edit.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+
+<body>
+    <ul id="crumbs">
+        <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
+        <li><a th:href="@{/courses(id=${grade.subject.course.cycle.id})}"
+                th:text="${grade.subject.course.cycle.name}"></a></li>
+        <li><a th:href="@{/courses/{courseId}(courseId=${grade.subject.course.id})}"
+                th:text="${grade.subject.course.name}"></a></li>
+        <li><a th:href="@{/subjects/{subjectId}(subjectId=${grade.subject.id})}" th:text="${grade.subject.name}"></a>
+        </li>
+        <li class="is-active"><a th:text="#{ui.breadcrumb.grades.edit}"></a></li>
+    </ul>
+
+    <section class="section">
+        <div class="container">
+            <div class="panel is-light">
+                <h1 class="panel-heading" th:text="#{ui.grades.edit.panel.heading}"></h1>
+                <div class="panel-block has-background-white">
+                    <div class="container">
+                        <form th:method="POST" th:action="@{/grades/{gradeId}/edit(gradeId=${grade.id})}"
+                            th:object="${grade}" autocomplete="off">
+                            <input type="hidden" th:field="*{id}">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label th:for="*{description}" class="label"
+                                        th:text="#{ui.grades.edit.form.description}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" th:errorclass="is-danger"
+                                                th:field="*{description}" autofocus
+                                                th:placeholder="#{ui.grades.edit.form.descrption.placeholder}" />
+                                            <span class="help is-danger" th:errors="*{description}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label"></div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="conrol">
+                                            <button type="submit" class="button is-info" th:text="#{ui.common.button.save}"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

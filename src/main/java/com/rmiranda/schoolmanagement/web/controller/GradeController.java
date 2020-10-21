@@ -8,6 +8,7 @@ import com.rmiranda.schoolmanagement.model.entity.Grade;
 import com.rmiranda.schoolmanagement.model.entity.GradeDetail;
 import com.rmiranda.schoolmanagement.model.entity.Subject;
 import com.rmiranda.schoolmanagement.model.entity.User;
+import com.rmiranda.schoolmanagement.service.GradeDetailService;
 import com.rmiranda.schoolmanagement.service.GradeService;
 import com.rmiranda.schoolmanagement.service.SubjectService;
 import com.rmiranda.schoolmanagement.service.UserService;
@@ -35,6 +36,9 @@ public class GradeController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private GradeDetailService scoreService;
+
     @GetMapping(name = "")
     public ModelAndView show(@RequestParam(name = "sid") long subjectId, ModelAndView mv) {
         List<Grade> grades = gradeService.getGradesBySubjectId(subjectId);
@@ -56,8 +60,8 @@ public class GradeController {
     }
 
     @PostMapping("/create")
-    public ModelAndView store(@RequestParam(name = "sid") long subjectId, @Valid Grade grade,
-            BindingResult result, ModelAndView mv) {
+    public ModelAndView store(@RequestParam(name = "sid") long subjectId, @Valid Grade grade, BindingResult result,
+            ModelAndView mv) {
 
         if (result.hasErrors()) {
             mv.setViewName("grades/create");
@@ -87,7 +91,7 @@ public class GradeController {
         Grade grade = gradeService.getGradeById(gradeId);
         User student = userService.getUserById(studentId).orElse(null);
         GradeDetail score = new GradeDetail();
-        
+
         score.setGrade(grade);
         score.setStudent(student);
 
@@ -123,11 +127,10 @@ public class GradeController {
         Grade grade = gradeService.getGradeById(gradeId);
         mv.addObject("grade", grade);
         mv.setViewName("grades/edit");
-        mv.setViewName("redirect:/grades/".concat(String.valueOf(gradeId)));
         return mv;
     }
 
-    @PostMapping("/{radeId}/edit")
+    @PostMapping("/{gradeId}/edit")
     public ModelAndView update(@PathVariable(name = "gradeId") long gradeId, @Valid Grade grade, BindingResult result,
             ModelAndView mv) {
 
@@ -136,9 +139,9 @@ public class GradeController {
             return mv;
         }
 
-        gradeService.updateGrade(grade);
+        Grade modified = gradeService.updateGrade(grade);
 
-        mv.setViewName("redirect:/grades?sid=".concat(String.valueOf(grade.getSubject().getId())));
+        mv.setViewName("redirect:/grades?sid=".concat(String.valueOf(modified.getSubject().getId())));
 
         return mv;
     }
@@ -165,6 +168,35 @@ public class GradeController {
         gradeService.deleteGrade(grade);
 
         mv.setViewName("redirect:/grades?sid=".concat(String.valueOf(grade.getSubject().getId())));
+
+        return mv;
+    }
+
+    @GetMapping("/{gradeId}/score/{scoreId}/edit")
+    public ModelAndView editStudentScore(@PathVariable(name = "gradeId") long gradeId,
+            @PathVariable(name = "scoreId") long scoreId, @Valid GradeDetail grade, ModelAndView mv) {
+
+        GradeDetail score = scoreService.getScoreById(scoreId);
+
+        mv.addObject("score", score);
+        mv.setViewName("grades/editScore");
+
+        return mv;
+    }
+
+    @PostMapping("/{gradeId}/score/{scoreId}/edit")
+    public ModelAndView updateStudentScore(@PathVariable(name = "gradeId") long gradeId,
+            @PathVariable(name = "scoreId") long scoreId, @Valid GradeDetail score, BindingResult result,
+            ModelAndView mv) {
+
+        if (result.hasErrors()) {
+            mv.setViewName("grades/editScore");
+            return mv;
+        }
+
+        GradeDetail updatedScore = scoreService.updateScore(score);
+
+        mv.setViewName("redirect:/grades/".concat(String.valueOf(updatedScore.getGrade().getId())));
 
         return mv;
     }

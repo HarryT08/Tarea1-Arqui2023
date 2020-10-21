@@ -11,6 +11,7 @@
                 th:text="${grade.subject.course.name}"></a></li>
         <li><a th:href="@{/subjects/{subjectId}(subjectId=${grade.subject.id})}" th:text="${grade.subject.name}"></a>
         </li>
+        <li><a th:href="@{/grades(sid=${grade.subject.id})}" th:text="#{ui.breadcrumb.grades}"></a></li>
         <li class="is-active"><a th:text="#{ui.breadcrumb.grades.scorebook(${grade.description})}"></a></li>
     </ul>
 

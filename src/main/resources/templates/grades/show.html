@@ -43,7 +43,7 @@
                                         <a th:href="@{/grades/{gradeId}(gradeId=${grade.id})}" th:text="${grade.description}"></a>
                                     </td>
                                     <td>
-                                        <a href="#" class="button is-link is-light">
+                                        <a th:href="@{/grades/{gradeId}/edit(gradeId=${grade.id})}" class="button is-link is-light">
                                             <span class="icon"><i class="fas fa-edit"></i></span>
                                         </a>
                                     </td>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="layouts/template :: userTemplate(#{ui.grades.editScore.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+
+<body>
+    <ul id="crumbs">
+        <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
+        <li><a th:href="@{/courses(id=${score.grade.subject.course.cycle.id})}"
+                th:text="${score.grade.subject.course.cycle.name}"></a></li>
+        <li><a th:href="@{/courses/{courseId}(courseId=${score.grade.subject.course.id})}"
+                th:text="${score.grade.subject.course.name}"></a></li>
+        <li><a th:href="@{/subjects/{subjectId=${score.grade.subject.id}}}" th:text="${score.grade.subject.name}"></a>
+        </li>
+        <li><a th:href="@{/grades(sid=${score.grade.subject.id})}" th:text="#{ui.breadcrumb.grades}"></a></li>
+        <li><a th:href="@{/grades/{gradeId}(gradeId=${score.grade.id})}" th:text="${score.grade.description}"></a></li>
+        <li class="is-active"><a th:text="#{ui.breadcrumb.editScore(${score.student.fullname})}"></a></li>
+    </ul>
+
+    <section class="section">
+        <div class="container">
+            <div class="panel is-light">
+                <h1 class="panel-heading" th:text="#{ui.grades.editScore.panel.heading}"></h1>
+                <div class="panel-block has-background-white">
+                    <div class="container">
+                        <form th:method="POST"
+                            th:action="@{/grades/{gradeId}/score/{scoreId}/edit(gradeId=${score.grade.id},scoreId=${score.id})}"
+                            th:object="${score}" autocomplete="off">
+                            <input type="hidden" th:field="*{id}">
+                            <input type="hidden" th:field="*{grade.id}">
+                            <input type="hidden" th:field="*{student.id}">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label th:for="*{grade.subject.course.cycle.name}" class="label" th:text="#{ui.grades.registerGradeToStudent.form.cycle}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" readonly disabled th:value="*{grade.subject.course.cycle.name}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label th:for="*{grade.subject.course.name}" class="label" th:text="#{ui.grades.registerGradeToStudent.form.course}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" th:value="*{grade.subject.course.name}" disabled readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label th:for="*{grade.subject.name}" class="label" th:text="#{ui.grades.registerGradeToStudent.form.subject}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" disabled readonly th:value="*{grade.subject.name}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label th:for="*{student.name}" class="label" th:text="#{ui.grades.registerGradeToStudent.form.student}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" disabled readonly th:value="*{student.fullname}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label th:for="*{score}" class="label" th:text="#{ui.grades.registerGradeToStudent.form.score}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="number" class="input" th:field="*{score}" th:errorclass="is-danger" step="0.01" autofocus />
+                                            <span class="help is-danger" th:errors="*{score}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"></div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button class="button is-info" type="submit" th:text="#{ui.common.button.save}"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

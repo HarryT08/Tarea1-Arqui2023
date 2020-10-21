@@ -48,8 +48,11 @@ public class GradeServiceImpl implements GradeService {
     }
 
     @Override
-    public void updateGrade(Grade grade) {
+    public Grade updateGrade(Grade gradeForm) {
+        Grade grade = gradeRepository.getOne(gradeForm.getId());
+        grade.setDescription(gradeForm.getDescription());
         gradeRepository.save(grade);
+        return grade;
     }
 
     @Override
