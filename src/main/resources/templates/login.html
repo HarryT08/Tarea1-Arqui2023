@@ -13,6 +13,7 @@
     <section class="section">
         <div class="container">
             <div class="notification is-danger" th:if="${param.error}" th:text="#{errors.login.error}"></div>
+            <div class="notification is-warning" th:if="${param.disabled}" th:text="#{errors.login.disabled}"></div>
             <div class="notification is-success" th:if="${param.logout}" th:text="#{messages.logout}"></div>
             <div class="panel is-light">
                 <h1 class="panel-heading" th:text="#{ui.login.panel.heading}"></h1>
