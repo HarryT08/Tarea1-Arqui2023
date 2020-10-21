@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<body xmlns:th="http://www.thymeleaf.org">
+<body xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
 
     <section class="section" th:fragment="userHeader">
         <div class="container is-fluid">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="level-rigth">
                     <div class="level-item">
-                        <div class="dropdown is-hoverable is-right">
+                        <div class="dropdown is-hoverable is-right" sec:authorize="isAuthenticated()">
                             <div class="dropdown-trigger">
                                 <button class="button">
                                     <span class="icon"><i class="fas fa-user-circle"></i></span>

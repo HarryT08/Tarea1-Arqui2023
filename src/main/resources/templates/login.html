@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{ui.login.window.title}">Login</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+</head>
+<body>
+
+    <div th:replace="fragments/header :: userHeader"></div>
+
+    <section class="section">
+        <div class="container">
+            <div class="notification is-danger" th:if="${param.error}" th:text="#{errors.login.error}"></div>
+            <div class="notification is-success" th:if="${param.logout}" th:text="#{messages.logout}"></div>
+            <div class="panel is-light">
+                <h1 class="panel-heading" th:text="#{ui.login.panel.heading}"></h1>
+                <div class="panel-block has-background-white">
+                    <div class="container">
+                        <form th:method="POST" th:action="@{/login}" autocomplete="off">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label for="username" class="label" th:text="#{ui.login.form.username}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" name="username" id="username" autofocus />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label for="password" class="label" th:text="#{ui.login.form.password}"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="password" class="input" name="password" id="password">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"></div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button class="button is-info" type="submit" th:text="#{ui.login.form.login}"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</body>
+</html>
