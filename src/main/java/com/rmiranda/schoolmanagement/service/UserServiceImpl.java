@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
         dbUser.setBirthday(user.getBirthday());
         dbUser.setEmail(user.getEmail());
         dbUser.setRoles(user.getRoles());
+        dbUser.setActive(user.isActive());
 
         userRepository.save(dbUser);
     }
