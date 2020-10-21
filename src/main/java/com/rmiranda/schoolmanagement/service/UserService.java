@@ -19,4 +19,6 @@ public interface UserService {
 
     public void deleteUserById(long id);
 
+    public void resetPassword(long id, String password);
+
 }

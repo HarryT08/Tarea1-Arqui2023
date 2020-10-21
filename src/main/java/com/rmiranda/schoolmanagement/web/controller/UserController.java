@@ -158,4 +158,22 @@ public class UserController {
         return mv;
     }
 
+    @GetMapping("/{userId}/password")
+    public ModelAndView showResetPassword(@PathVariable(name = "userId") long userId, ModelAndView mv) {
+        User user = userService.getUserById(userId).orElse(null);
+        mv.addObject("user", user);
+        mv.setViewName("users/password");
+        return mv;
+    }
+
+    @PostMapping("/{userId}/password")
+    public ModelAndView resetPassword(@PathVariable(name = "userId") long userId, @Valid User user, BindingResult result, ModelAndView mv) {
+
+        userService.resetPassword(userId, user.getPassword());
+
+        mv.setViewName("redirect:/users");
+
+        return mv;
+    }
+
 }

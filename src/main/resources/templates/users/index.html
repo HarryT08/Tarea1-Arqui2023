@@ -27,9 +27,10 @@
                                         <th th:text="#{ui.users.index.table.email}"></th>
                                         <th th:text="#{ui.users.index.table.username}"></th>
                                         <th th:text="#{ui.users.index.table.role}"></th>
+                                        <th th:text="#{ui.users.index.table.active}"></th>
+                                        <th th:text="#{ui.users.index.table.password}"></th>
                                         <th th:text="#{ui.common.table.edit}"></th>
                                         <th th:text="#{ui.common.actions.delete}"></th>
-                                        <th th:text="#{ui.users.index.table.active}"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,6 +50,15 @@
                                             <span class="tag" th:each="role : ${user.roles}" th:text="${role.name}"></span>
                                         </td>
                                         <td>
+                                            <span th:if="${user.active}" class="icon"><i class="fas fa-check"></i></span>
+                                            <span th:unless="${user.active}" class="icon"><i class="fa fa-times"></i></span>
+                                        </td>
+                                        <td>
+                                            <a class="button is-link is-light" th:href="@{/users/{userId}/password(userId=${user.id})}">
+                                                <span class="icon"><i class="fas fa-lock"></i></span>
+                                            </a>
+                                        </td>
+                                        <td>
                                             <a class="button is-info is-light"
                                                 th:href="@{/users/{userId}/edit(userId=${user.id})}">
                                                 <span class="icon">
@@ -60,10 +70,6 @@
                                             <a class="button is-danger is-light" th:href="@{/users/{userId}/delete(userId=${user.id})}">
                                                 <span class="icon"><i class="fas fa-trash"></i></span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <span th:if="${user.active}" class="icon"><i class="fas fa-check"></i></span>
-                                            <span th:unless="${user.active}" class="icon"><i class="fa fa-times"></i></span>
                                         </td>
                                     </tr>
                                 </tbody>
