@@ -7,7 +7,28 @@
         <li class="is-active">Inicio</li>
     </ul>
     <section class="section">
-        this will bee home
+        <div class="container">
+            <div class="tile is-ancestor">
+                <div class="tile is-parent">
+                    <div class="tile is-child box notification is-primary">
+                        <p class="title" th:text="#{ui.dashboard.students}"></p>
+                        <p class="subtitle" th:text="#{ui.dashboard.students.total(${students})}"></p>
+                    </div>
+                </div>
+                <div class="tile is-parent">
+                    <div class="tile is-child box notification is-link">
+                        <p class="title" th:text="#{ui.dashboard.teachers}"></p>
+                        <p class="subtitle" th:text="#{ui.dashboard.teachers.total(${teachers})}"></p>
+                    </div>
+                </div>
+                <div class="tile is-parent">
+                    <div class="tile is-child box notification is-success">
+                        <p class="title" th:text="#{ui.dashboard.classrooms}"></p>
+                        <p class="subtitle" th:text="#{ui.dashboard.classrooms.total(${classrooms})}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </body>
 

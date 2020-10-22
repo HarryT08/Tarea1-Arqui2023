@@ -49,11 +49,11 @@
                                         <td>
                                             <span class="tag" th:each="role : ${user.roles}" th:text="${role.name}"></span>
                                         </td>
-                                        <td>
+                                        <td class="has-text-centered">
                                             <span th:if="${user.active}" class="icon"><i class="fas fa-check"></i></span>
                                             <span th:unless="${user.active}" class="icon"><i class="fa fa-times"></i></span>
                                         </td>
-                                        <td>
+                                        <td class="has-text-centered">
                                             <a class="button is-link is-light" th:href="@{/users/{userId}/password(userId=${user.id})}">
                                                 <span class="icon"><i class="fas fa-lock"></i></span>
                                             </a>
