@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="#{ui.login.window.title}">Login</title>
     <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <link rel="stylesheet" th:href="@{/icons/css/all.min.css}" />
 </head>
 <body>
 
@@ -12,9 +13,9 @@
 
     <section class="section">
         <div class="container">
-            <div class="notification is-danger" th:if="${param.error}" th:text="#{errors.login.error}"></div>
-            <div class="notification is-warning" th:if="${param.disabled}" th:text="#{errors.login.disabled}"></div>
-            <div class="notification is-success" th:if="${param.logout}" th:text="#{messages.logout}"></div>
+            <div class="notification is-danger is-light" th:if="${param.error}" th:text="#{errors.login.error}"></div>
+            <div class="notification is-warning is-light" th:if="${param.disabled}" th:text="#{errors.login.disabled}"></div>
+            <div class="notification is-success is-light" th:if="${param.logout}" th:text="#{messages.logout}"></div>
             <div class="panel is-light">
                 <h1 class="panel-heading" th:text="#{ui.login.panel.heading}"></h1>
                 <div class="panel-block has-background-white">
@@ -60,6 +61,10 @@
             </div>
         </div>
     </section>
-    
+
+    <footer th:replace="fragments/footer :: footer"></footer>
+
+    <script th:src="@{/icons/js/all.min.js}"></script>
+
 </body>
 </html>
