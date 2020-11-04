@@ -18,6 +18,7 @@
                     <div class="container">
                         <form th:method="POST" th:action="@{/courses/{courseId}/edit(courseId=${course.id})}"
                             th:object="${course}" autocomplete="off">
+                            <input type="hidden" th:field="*{id}">
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
                                     <label class="label" th:for="*{cycle}"

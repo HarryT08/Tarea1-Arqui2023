@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/subjects")
@@ -66,7 +67,7 @@ public class SubjectController {
     @PostMapping("/create")
     public ModelAndView store(@RequestParam(name = "cid") long courseId, @Valid Subject subject, BindingResult result,
             @ModelAttribute(name = "classrooms") List<Classroom> classrooms,
-            @ModelAttribute(name = "teachers") List<User> teachers, ModelAndView mv) {
+            @ModelAttribute(name = "teachers") List<User> teachers, ModelAndView mv, RedirectAttributes attr) {
 
         Course course = courseService.getCourseById(courseId);
         subject.setCourse(course);
@@ -78,7 +79,8 @@ public class SubjectController {
 
         subjectService.addSubject(subject);
 
-        mv.setViewName("redirect:/subjects/".concat(String.valueOf(subject.getId())));
+        attr.addAttribute("created", "1");
+        mv.setViewName("redirect:/courses/".concat(String.valueOf(subject.getCourse().getId())));
 
         return mv;
     }
@@ -96,7 +98,7 @@ public class SubjectController {
     @PostMapping("/{subjectId}/edit")
     public ModelAndView update(@PathVariable(name = "subjectId") long subjectId, @Valid Subject subject,
             BindingResult result, @ModelAttribute(name = "classrooms") List<Classroom> classrooms,
-            @ModelAttribute(name = "teachers") List<User> teachers, ModelAndView mv) {
+            @ModelAttribute(name = "teachers") List<User> teachers, ModelAndView mv, RedirectAttributes attr) {
 
         if (result.hasErrors()) {
             mv.setViewName("subjects/edit");
@@ -105,6 +107,7 @@ public class SubjectController {
 
         subjectService.updateSubject(subject);
 
+        attr.addAttribute("updated", "1");
         mv.setViewName("redirect:/courses/".concat(String.valueOf(subject.getCourse().getId())));
 
         return mv;
@@ -119,7 +122,7 @@ public class SubjectController {
     }
 
     @PostMapping("/{subjectId}/delete")
-    public ModelAndView delete(@PathVariable(name = "subjectId") long subjectId, Subject subject, ModelAndView mv) {
+    public ModelAndView delete(@PathVariable(name = "subjectId") long subjectId, Subject subject, ModelAndView mv, RedirectAttributes attr) {
         
         String courseId = String.valueOf(subject.getCourse().getId());
 
@@ -127,6 +130,7 @@ public class SubjectController {
             subjectService.deleteSubjectById(subjectId);
         }
 
+        attr.addAttribute("deleted", "1");
         mv.setViewName("redirect:/courses/".concat(courseId));
 
         return mv;

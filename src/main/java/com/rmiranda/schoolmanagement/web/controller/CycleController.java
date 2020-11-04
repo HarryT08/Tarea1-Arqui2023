@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/cycles")
@@ -33,7 +34,7 @@ public class CycleController {
     }
 
     @PostMapping("/create")
-    public ModelAndView store(@Valid Cycle cycle, BindingResult result, ModelAndView mv) {
+    public ModelAndView store(@Valid Cycle cycle, BindingResult result, ModelAndView mv, RedirectAttributes attr) {
 
         if (result.hasErrors()) {
             mv.setViewName("cycles/create");
@@ -42,6 +43,7 @@ public class CycleController {
 
         cycleService.addCycle(cycle);
 
+        attr.addAttribute("created", "");
         mv.setViewName("redirect:/cycles");
 
         return mv;
@@ -71,7 +73,7 @@ public class CycleController {
 
     @PostMapping("/{cycleId}/edit")
     public ModelAndView update(@PathVariable(name = "cycleId") long cycleId, @Valid Cycle cycle, BindingResult result,
-            ModelAndView mv) {
+            ModelAndView mv, RedirectAttributes attr) {
 
         if (result.hasErrors()) {
             mv.setViewName("cycles/edit");
@@ -80,6 +82,7 @@ public class CycleController {
 
         cycleService.updateCycle(cycle);
 
+        attr.addAttribute("updated", "");
         mv.setViewName("redirect:/cycles");
 
         return mv;

@@ -52,61 +52,12 @@
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
                                     <label class="label" th:for="*{teacher.fullname}"
-                                        th:text="#{ui.subjects.create.form.teacher}" />
+                                        th:text="#{ui.subjects.create.form.teacher}"></label>
                                 </div>
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
                                             <input type="text" th:field="*{teacher.fullname}" readonly disabled
-                                                class="input" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label" th:text="#{ui.subjects.create.form.days}"></label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <span class="tag" th:if="*{schedule.monday}"
-                                                th:text="#{ui.common.days.monday}"></span>
-                                            <span class="tag" th:if="*{schedule.tuesday}"
-                                                th:text="#{ui.common.days.tuesday}"></span>
-                                            <span class="tag" th:if="*{schedule.wednesday}"
-                                                th:text="#{ui.common.days.wednesday}"></span>
-                                            <span class="tag" th:if="*{schedule.thursday}"
-                                                th:text="#{ui.common.days.thursday}"></span>
-                                            <span class="tag" th:if="*{schedule.friday}"
-                                                th:text="#{ui.common.days.friday}"></span>
-                                            <span class="tag" th:if="*{schedule.saturday}"
-                                                th:text="#{ui.common.days.saturday}"></span>
-                                            <span class="tag" th:if="*{schedule.sunday}"
-                                                th:text="#{ui.common.days.sunday}"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label" th:for="*{schedule.startTime}"
-                                        th:text="#{ui.subjects.create.form.startTime}"></label>
-                                </div>
-                                <div class="field-body">
-                                    <input type="text" th:field="*{schedule.startTime}" readonly disabled
-                                        class="input" />
-                                </div>
-                            </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label" th:for="*{schedule.endTime}"
-                                        th:text="#{ui.subjects.create.form.endTime}"></label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <input type="text" th:field="*{schedule.endTime}" readonly disabled
                                                 class="input" />
                                         </div>
                                     </div>

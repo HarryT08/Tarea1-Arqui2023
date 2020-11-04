@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/grades")
@@ -61,7 +62,7 @@ public class GradeController {
 
     @PostMapping("/create")
     public ModelAndView store(@RequestParam(name = "sid") long subjectId, @Valid Grade grade, BindingResult result,
-            ModelAndView mv) {
+            ModelAndView mv, RedirectAttributes attr) {
 
         if (result.hasErrors()) {
             mv.setViewName("grades/create");
@@ -70,7 +71,8 @@ public class GradeController {
 
         gradeService.addGrade(grade);
 
-        mv.setViewName("redirect:/grades/".concat(String.valueOf(grade.getId())));
+        attr.addAttribute("created", "1");
+        mv.setViewName("redirect:/grades?sid=".concat(String.valueOf(grade.getSubject().getId())));
 
         return mv;
     }
@@ -104,7 +106,7 @@ public class GradeController {
     @PostMapping("/{gradeId}/register")
     public ModelAndView registerGradeToStudent(@PathVariable(name = "gradeId") long gradeId,
             @RequestParam(name = "sid") long studentId, @Valid GradeDetail score, BindingResult result,
-            ModelAndView mv) {
+            ModelAndView mv, RedirectAttributes attr) {
 
         if (result.hasErrors()) {
             mv.setViewName("grades/registerGradeToStudent");
@@ -117,6 +119,7 @@ public class GradeController {
 
         gradeService.updateGrade(grade);
 
+        attr.addAttribute("registered", "1");
         mv.setViewName("redirect:/grades/".concat(String.valueOf(gradeId)));
 
         return mv;
@@ -132,7 +135,7 @@ public class GradeController {
 
     @PostMapping("/{gradeId}/edit")
     public ModelAndView update(@PathVariable(name = "gradeId") long gradeId, @Valid Grade grade, BindingResult result,
-            ModelAndView mv) {
+            ModelAndView mv, RedirectAttributes attr) {
 
         if (result.hasErrors()) {
             mv.setViewName("grades/edit");
@@ -141,6 +144,7 @@ public class GradeController {
 
         Grade modified = gradeService.updateGrade(grade);
 
+        attr.addAttribute("updated", "1");
         mv.setViewName("redirect:/grades?sid=".concat(String.valueOf(modified.getSubject().getId())));
 
         return mv;
@@ -187,7 +191,7 @@ public class GradeController {
     @PostMapping("/{gradeId}/score/{scoreId}/edit")
     public ModelAndView updateStudentScore(@PathVariable(name = "gradeId") long gradeId,
             @PathVariable(name = "scoreId") long scoreId, @Valid GradeDetail score, BindingResult result,
-            ModelAndView mv) {
+            ModelAndView mv, RedirectAttributes attr) {
 
         if (result.hasErrors()) {
             mv.setViewName("grades/editScore");
@@ -196,6 +200,7 @@ public class GradeController {
 
         GradeDetail updatedScore = scoreService.updateScore(score);
 
+        attr.addAttribute("updated", "1");
         mv.setViewName("redirect:/grades/".concat(String.valueOf(updatedScore.getGrade().getId())));
 
         return mv;

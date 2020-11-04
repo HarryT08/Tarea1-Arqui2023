@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/courses")
@@ -93,7 +94,7 @@ public class CourseController {
 
     @PostMapping("/create")
     public ModelAndView store(@RequestParam(name = "cid") String cycleId, @Valid Course course, BindingResult result,
-            ModelAndView mv) {
+            ModelAndView mv, RedirectAttributes attr) {
 
         if (course.getManager().getId() == 0) {
             course.setManager(null);
@@ -109,6 +110,7 @@ public class CourseController {
             return mv;
         }
 
+        attr.addAttribute("created", "1");
         courseService.addCourse(course);
 
         mv.setViewName("redirect:/courses?id=".concat(cycleId));
@@ -132,7 +134,7 @@ public class CourseController {
     @PostMapping("/{courseId}/edit")
     public ModelAndView update(@PathVariable(name = "courseId") long courseId, @Valid Course course,
             BindingResult result, @ModelAttribute(name = "managers") List<User> managers,
-            @ModelAttribute(name = "classrooms") List<Classroom> classrooms, ModelAndView mv) {
+            @ModelAttribute(name = "classrooms") List<Classroom> classrooms, ModelAndView mv, RedirectAttributes attr) {
 
         if (course.getManager().getId() == 0) {
             course.setManager(null);
@@ -149,6 +151,7 @@ public class CourseController {
 
         courseService.updateCourse(course);
 
+        attr.addAttribute("updated", "1");
         mv.setViewName("redirect:/courses?id=".concat(String.valueOf(course.getCycle().getId())));
 
         return mv;
@@ -163,12 +166,13 @@ public class CourseController {
     }
 
     @PostMapping("/{courseId}/delete")
-    public ModelAndView delete(@PathVariable(name = "courseId") long courseId, ModelAndView mv) {
+    public ModelAndView delete(@PathVariable(name = "courseId") long courseId, ModelAndView mv, RedirectAttributes attr) {
         Course course = courseService.getCourseById(courseId);
         long cycleId = course.getCycle().getId();
 
         courseService.deleteCourse(course);
 
+        attr.addAttribute("deleted", "1");
         mv.setViewName("redirect:/courses?id=".concat(String.valueOf(cycleId)));
 
         return mv;

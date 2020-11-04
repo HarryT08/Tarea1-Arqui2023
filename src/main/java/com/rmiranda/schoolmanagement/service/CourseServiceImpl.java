@@ -26,7 +26,11 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public void updateCourse(Course course) {
+	public void updateCourse(Course courseForm) {
+		Course course = courseRepository.getOne(courseForm.getId());
+		course.setName(courseForm.getName());
+		course.setManager(courseForm.getManager());
+		course.setClassroom(courseForm.getClassroom());
 		courseRepository.save(course);
 	}
 

@@ -12,7 +12,15 @@
     </ul>
 
     <section class="section">
-        <div class="container">
+        <div class="container is-fluid">
+            <div class="notification is-success" th:if="${param.screated}">
+                <a class="delete" th:href="@{/subjects/{subjectId}(subjectId=${subject.id})}"></a>
+                <span th:text="#{messages.subjects.screated}"></span>
+            </div>
+            <div class="notification is-success" th:if="${param.sdeleted}">
+                <a class="delete" th:href="@{/subjects/{subjectId}(subjectId=${subject.id})}"></a>
+                <span th:text="#{messages.subjects.sdeleted}"></span>
+            </div>
             <div class="panel is-light">
                 <h1 class="panel-heading" th:text="#{ui.subjects.show.panel.heading(${subject.name})}"></h1>
                 <div class="panel-block has-background-white">

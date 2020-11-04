@@ -16,7 +16,16 @@
     </ul>
 
     <section class="section">
-        <div class="container">
+        
+        <div class="container is-fluid">
+            <div class="notification is-success" th:if="${param.registered}">
+                <a class="delete" th:href="@{/grades/{gradeId}(gradeId=${grade.id})}"></a>
+                <span th:text="#{messages-scores.registered}"></span>
+            </div>
+            <div class="notification is-success" th:if="${param.updated}">
+                <a class="delete" th:href="@{/grades/{gradeId}(gradeId=${grade.id})}"></a>
+                <span th:text="#{messages-scores.updated}"></span>
+            </div>
             <div class="panel is-light">
                 <h1 class="panel-heading"
                     th:text="#{ui.grades.register.panel.heading(${grade.description}, ${grade.subject.name}, ${grade.subject.course.name}, ${grade.subject.course.cycle.name})}">

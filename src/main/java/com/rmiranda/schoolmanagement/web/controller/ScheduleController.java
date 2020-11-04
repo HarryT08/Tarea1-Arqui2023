@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/schedules")
@@ -57,7 +58,8 @@ public class ScheduleController {
     }
 
     @PostMapping("/create")
-    public ModelAndView store(@RequestParam(name = "sid") long subjectId, @Valid SubjectSchedule schedule, BindingResult result, ModelAndView mv) {
+    public ModelAndView store(@RequestParam(name = "sid") long subjectId, @Valid SubjectSchedule schedule,
+            BindingResult result, ModelAndView mv, RedirectAttributes attr) {
 
         if (result.hasErrors()) {
             mv.setViewName("schedules/create");
@@ -66,6 +68,7 @@ public class ScheduleController {
 
         scheduleService.save(schedule);
 
+        attr.addAttribute("screated", "1");
         mv.setViewName("redirect:/subjects/".concat(String.valueOf(subjectId)));
 
         return mv;
@@ -80,10 +83,12 @@ public class ScheduleController {
     }
 
     @PostMapping("/{scheduleId}/delete")
-    public ModelAndView delete(@PathVariable(name = "scheduleId") long scheduleId, SubjectSchedule schedule, ModelAndView mv) {
+    public ModelAndView delete(@PathVariable(name = "scheduleId") long scheduleId, SubjectSchedule schedule,
+            ModelAndView mv, RedirectAttributes attr) {
         schedule = scheduleService.getScheduleById(scheduleId).orElse(null);
         String subjectId = String.valueOf(schedule.getSubject().getId());
         scheduleService.deleteSchedule(schedule);
+        attr.addAttribute("sdeleted", "1");
         mv.setViewName("redirect:/subjects/".concat(subjectId));
         return mv;
     }

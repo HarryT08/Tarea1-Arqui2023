@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/students")
@@ -46,7 +47,7 @@ public class StudentController {
 
     @PostMapping("subscribe")
     public ModelAndView subscribe(@RequestParam(name = "cid") long courseId,
-            @RequestParam(name = "student") long studentId, ModelAndView mv) {
+            @RequestParam(name = "student") long studentId, ModelAndView mv, RedirectAttributes attr) {
 
         Course course = courseService.getCourseById(courseId);
 
@@ -62,6 +63,7 @@ public class StudentController {
 
         }
 
+        attr.addAttribute("subscribed", "1");
         mv.setViewName("redirect:/courses/".concat(String.valueOf(courseId)));
 
         return mv;
@@ -69,7 +71,7 @@ public class StudentController {
 
     @PostMapping("/unsubscribe")
     public ModelAndView unsubscribe(@RequestParam(name = "cid") long courseId,
-            @RequestParam(name = "sid") long studentId, ModelAndView mv) {
+            @RequestParam(name = "sid") long studentId, ModelAndView mv, RedirectAttributes attr) {
         Course course = courseService.getCourseById(courseId);
         User student = userService.getUserById(studentId).orElse(null);
 
@@ -79,6 +81,7 @@ public class StudentController {
 
         courseService.updateCourse(course);
 
+        attr.addAttribute("unsubscribed", "1");
         mv.setViewName("redirect:/courses/".concat(String.valueOf(courseId)));
 
         return mv;

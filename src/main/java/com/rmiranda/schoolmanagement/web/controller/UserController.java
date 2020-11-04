@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/users")
@@ -57,7 +58,7 @@ public class UserController {
 
     @PostMapping("/create")
     public ModelAndView store(@Valid User user, BindingResult result, ModelAndView mv,
-            @ModelAttribute(name = "roles") List<Role> roles) {
+            @ModelAttribute(name = "roles") List<Role> roles, RedirectAttributes attr) {
 
         List<Role> userRoles = new ArrayList<Role>();
 
@@ -74,6 +75,8 @@ public class UserController {
         }
 
         userService.addUSer(user);
+
+        attr.addAttribute("created", "1");
 
         mv.setViewName("redirect:/users");
 
@@ -109,7 +112,7 @@ public class UserController {
 
     @PostMapping("/{userId}/edit")
     public ModelAndView update(@PathVariable(name = "userId") long userId, @Valid User user, BindingResult result,
-            @ModelAttribute(name = "roles") List<Role> roles, ModelAndView mv) {
+            @ModelAttribute(name = "roles") List<Role> roles, ModelAndView mv, RedirectAttributes attr) {
 
         List<Role> userRoles = new ArrayList<Role>();
 
@@ -127,6 +130,7 @@ public class UserController {
 
         userService.updateUser(user);
 
+        attr.addAttribute("updated", "1");
         mv.setViewName("redirect:/users");
 
         return mv;
@@ -147,12 +151,13 @@ public class UserController {
     }
 
     @PostMapping("/{userId}/delete")
-    public ModelAndView delete(@PathVariable(name = "userId") long userId, User user, ModelAndView mv) {
+    public ModelAndView delete(@PathVariable(name = "userId") long userId, User user, ModelAndView mv, RedirectAttributes attr) {
 
         if (userId > 0) {
             userService.deleteUserById(userId);
         }
 
+        attr.addAttribute("deleted", "1");
         mv.setViewName("redirect:/users");
 
         return mv;

@@ -10,7 +10,27 @@
     </ul>
 
     <section class="section">
-        <div class="container">
+        <div class="container is-fluid">
+            <div class="notification is-success" th:if="${param.created}">
+                <a class="delete" th:href="@{/courses/{courseId}(courseId=${course.id})}"></a>
+                <span th:text="#{messages.subjects.created}"></span>
+            </div>
+            <div class="notification is-success" th:if="${param.updated}">
+                <a class="delete" th:href="@{/courses/{courseId}(courseId=${course.id})}"></a>
+                <span th:text="#{messages.subjects.updated}"></span>
+            </div>
+            <div class="notification is-success" th:if="${param.deleted}">
+                <a class="delete" th:href="@{/courses/{courseId}(courseId=${course.id})}"></a>
+                <span th:text="#{messages.subjects.deleted}"></span>
+            </div>
+            <div class="notification is-success" th:if="${param.subscribed}">
+                <a class="delete" th:href="@{/courses/{courseId}(courseId=${course.id})}"></a>
+                <span th:text="#{messages.courses.subscribed}"></span>
+            </div>
+            <div class="notification is-success" th:if="${param.unsubscribed}">
+                <a class="delete" th:href="@{/courses/{courseId}(courseId=${course.id})}"></a>
+                <span th:text="#{messages.courses.unsubscribed}"></span>
+            </div>
             <div class="panel is-light">
                 <h1 class="panel-heading" th:text="${course.name} + ' [' + ${course.cycle.name} + ']'"></h1>
                 <div class="panel-block has-background-white">

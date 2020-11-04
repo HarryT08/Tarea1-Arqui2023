@@ -21,7 +21,7 @@
                         <form th:method="POST" th:action="@{/subjects/{subjectId}/edit(subjectId=${subject.id})}" th:object="${subject}"
                             autocomplete="off">
                             <input type="hidden" th:field="*{id}" />
-                            <input type="hidden" th:field="*{schedule.id}" />
+                            <input type="hidden" th:field="*{schedules}" />
                             <input type="hidden" th:field="*{course.id}" />
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
@@ -72,71 +72,6 @@
                                                         th:text="${teacher.fullname}"></option>
                                                 </select>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label" th:text="#{ui.subjects.create.form.days}"></label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <label class="checkbox">
-                                                <input type="checkbox" th:field="*{schedule.monday}"
-                                                    th:text="#{ui.common.days.monday}" />
-                                            </label>
-                                            <label class="checkbox">
-                                                <input type="checkbox" th:field="*{schedule.tuesday}"
-                                                    th:text="#{ui.common.days.tuesday}" />
-                                            </label>
-                                            <label class="checkbox">
-                                                <input type="checkbox" th:field="*{schedule.wednesday}"
-                                                    th:text="#{ui.common.days.wednesday}" />
-                                            </label>
-                                            <label class="checkbox">
-                                                <input type="checkbox" th:field="*{schedule.thursday}"
-                                                    th:text="#{ui.common.days.thursday}" />
-                                            </label>
-                                            <label class="checkbox">
-                                                <input type="checkbox" th:field="*{schedule.friday}"
-                                                    th:text="#{ui.common.days.friday}" />
-                                            </label>
-                                            <label class="checkbox">
-                                                <input type="checkbox" th:field="*{schedule.saturday}"
-                                                    th:text="#{ui.common.days.saturday}" />
-                                            </label>
-                                            <label class="checkbox">
-                                                <input type="checkbox" th:field="*{schedule.sunday}"
-                                                    th:text="#{ui.common.days.sunday}" />
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label" th:for="*{schedule.startTime}"
-                                        th:text="#{ui.subjects.create.form.startTime}"></label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <input type="time" th:field="*{schedule.startTime}" class="input" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label" th:for="*{schedule.endTime}"
-                                        th:text="#{ui.subjects.create.form.endTime}"></label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <input type="time" th:field="*{schedule.endTime}" class="input" />
                                         </div>
                                     </div>
                                 </div>

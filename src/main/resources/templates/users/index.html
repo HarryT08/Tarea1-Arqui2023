@@ -9,6 +9,18 @@
 
     <section class="section">
         <div class="container is-fluid">
+            <div class="notification is-success" th:if="${param.created}">
+                <a class="delete" th:href="@{/users}"></a>
+                <span th:text="#{messages.users.created}"></span>
+            </div>
+            <div class="notification is-success" th:if="${param.updated}">
+                <a class="delete" th:href="@{/users}"></a>
+                <span th:text="#{messages.users.updated}"></span>
+            </div>
+            <div class="notification is-success" th:if="${param.deleted}">
+                <a class="delete" th:href="@{/users}"></a>
+                <span th:text="#{messages.users.deleted}"></span>
+            </div>
             <div class="panel is-light">
                 <h1 class="panel-heading" th:text="#{ui.users.index.panel.heading}"></h1>
                 <div class="panel-block has-background-white">

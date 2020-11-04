@@ -16,7 +16,7 @@
     </ul>
 
     <section class="section">
-        <div class="container">
+        <div class="container is-fluid">
             <div class="panel is-light">
                 <h1 class="panel-heading"
                     th:text="#{ui.grades.create.panel.heading(${grade.subject.name}, ${grade.subject.course.name}, ${grade.subject.course.cycle.name})}">
@@ -24,7 +24,7 @@
                 <div class="panel-block has-background-white">
                     <div class="container">
                         <form th:method="POST" th:action="@{/grades/create(sid=${grade.subject.id})}"
-                            th:object="${grade}">
+                            th:object="${grade}" autocomplete="off">
                             <input type="hidden" th:field="*{subject.id}" />
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">

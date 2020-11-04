@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/classrooms")
@@ -44,7 +45,7 @@ public class ClassroomController {
     }
 
     @PostMapping("/create")
-    public ModelAndView store(@Valid Classroom classroom, BindingResult result, ModelAndView mv) {
+    public ModelAndView store(@Valid Classroom classroom, BindingResult result, ModelAndView mv, RedirectAttributes attr) {
 
         if (result.hasErrors()) {
             mv.setViewName("classrooms/create");
@@ -53,6 +54,7 @@ public class ClassroomController {
 
         classroomService.addClassroom(classroom);
 
+        attr.addAttribute("created", "1");
         mv.setViewName("redirect:/classrooms");
 
         return mv;
@@ -78,7 +80,7 @@ public class ClassroomController {
 
     @PostMapping("/{classroomId}/edit")
     public ModelAndView update(@PathVariable(name = "classroomId") long classroomId, @Valid Classroom classroom,
-            BindingResult result, ModelAndView mv) {
+            BindingResult result, ModelAndView mv, RedirectAttributes attr) {
 
         if (result.hasErrors()) {
             mv.setViewName("classrooms/edit");
@@ -87,6 +89,7 @@ public class ClassroomController {
 
         classroomService.updateClassroom(classroom);
 
+        attr.addAttribute("updated", "1");
         mv.setViewName("redirect:/classrooms");
 
         return mv;

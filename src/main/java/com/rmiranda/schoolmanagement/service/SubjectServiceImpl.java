@@ -25,7 +25,13 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public void updateSubject(Subject subject) {
+    public void updateSubject(Subject sform) {
+        Subject subject = subjectRepository.getOne(sform.getId());
+
+        subject.setName(sform.getName());
+        subject.setClassroom(sform.getClassroom());
+        subject.setTeacher(sform.getTeacher());
+
         subjectRepository.save(subject);
     }
 
@@ -43,11 +49,9 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Override
     public void deleteSubjectById(long id) {
-        Subject subject = subjectRepository.findById(id).orElse(null);
+        Subject subject = subjectRepository.getOne(id);
 
-        if (subject != null) {
-            subjectRepository.delete(subject);;
-        }
+        subjectRepository.delete(subject);
     }
     
 }

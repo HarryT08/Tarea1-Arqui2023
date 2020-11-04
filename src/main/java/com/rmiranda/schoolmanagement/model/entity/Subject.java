@@ -49,6 +49,7 @@ public class Subject implements Serializable {
     private List<SubjectSchedule> schedules;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "subject_id")
     private List<Grade> grades;
 
     public long getId() {

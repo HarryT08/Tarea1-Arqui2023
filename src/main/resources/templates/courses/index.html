@@ -11,7 +11,19 @@
     </ul>
 
     <section class="section">
-        <div class="container">
+        <div class="container is-fluid">
+            <div class="notification is-success" th:if="${param.created}">
+                <a class="delete" th:href="@{/courses(cid=${selectedCycle.id})}"></a>
+                <span th:text="#{messages.courses.created}"></span>
+            </div>
+            <div class="notification is-success" th:if="${param.updated}">
+                <a class="delete" th:href="@{/courses(cid=${selectedCycle.id})}"></a>
+                <span th:text="#{messages.courses.updated}"></span>
+            </div>
+            <div class="notification is-success" th:if="${param.deleted}">
+                <a class="delete" th:href="@{/courses(cid=${selectedCycle.id})}"></a>
+                <span th:text="#{messages.courses.deleted}"></span>
+            </div>
             <div class="panel is-light">
                 <h1 class="panel-heading"
                     th:text="${selectedCycle} ? #{ui.courses.index.panel.heading} + ' [' + ${selectedCycle.name} + ']' : #{ui.courses.index.panel.heading}">
@@ -37,62 +49,60 @@
                                 </div>
                             </div>
                         </form>
-                        <div class="section" th:if="${courses}">
-                            <div class="container">
-                                <a class="button is-link is-outlined mb-2" th:href="@{/courses/create(cid=${param.id})}"
-                                    th:text="#{ui.courses.index.button.createCourse}"></a>
-                                <table class="table is-bordered is-hoverable is-fullwidth">
-                                    <thead class="has-background-grey-lighter">
-                                        <tr>
-                                            <th th:text="#{ui.courses.index.table.name}"></th>
-                                            <th th:text="#{ui.courses.index.table.manager}"></th>
-                                            <th th:text="#{ui.courses.index.table.cycle}"></th>
-                                            <th th:text="#{ui.courses.index.table.classroom}"></th>
-                                            <th th:text="#{ui.common.table.edit}"></th>
-                                            <th th:text="#{ui.common.table.delete}"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:unless="${courses.size()} > 0">
-                                            <td colspan="5">
-                                                <span class="has-text-grey has-text-centered px-2"
-                                                    th:text="#{ui.courses.index.table.empty}"></span>
-                                                <a th:href="@{/courses/create(cid=${selectedCycle.id})}"
-                                                    th:text="#{ui.courses.actions.addCourse}"></a>
-                                            </td>
-                                        </tr>
-                                        <tr th:each="course : ${courses}">
-                                            <td>
-                                                <a class="has-text-weight-bold"
-                                                    th:href="@{/courses/{courseId}(courseId=${course.id})}"
-                                                    th:text="${course.name}"></a>
-                                            </td>
-                                            <td th:text="${course.manager} ? ${course.manager.fullname} : ''"></td>
-                                            <td th:text="${course.cycle.name}"></td>
-                                            <td>
-                                                <span th:remove="tag" th:if="${course.classroom}"
-                                                    th:text="${course.classroom.name}"></span>
-                                            </td>
-                                            <td>
-                                                <a class="button is-primary is-light"
-                                                    th:href="@{/courses/{courseId}/edit(courseId=${course.id})}">
-                                                    <span class="icon">
-                                                        <i class="fas fa-edit"></i>
-                                                    </span>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a class="button is-danger is-light"
-                                                    th:href="@{/courses/{courseId}/delete(courseId=${course.id})}">
-                                                    <span class="icon">
-                                                        <i class="fas fa-trash"></i>
-                                                    </span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div th:if="${courses}">
+                            <a class="button is-link is-outlined mb-2" th:href="@{/courses/create(cid=${param.id})}"
+                                th:text="#{ui.courses.index.button.createCourse}"></a>
+                            <table class="table is-bordered is-hoverable is-fullwidth">
+                                <thead class="has-background-grey-lighter">
+                                    <tr>
+                                        <th th:text="#{ui.courses.index.table.name}"></th>
+                                        <th th:text="#{ui.courses.index.table.manager}"></th>
+                                        <th th:text="#{ui.courses.index.table.cycle}"></th>
+                                        <th th:text="#{ui.courses.index.table.classroom}"></th>
+                                        <th th:text="#{ui.common.table.edit}"></th>
+                                        <th th:text="#{ui.common.table.delete}"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:unless="${courses.size()} > 0">
+                                        <td colspan="5">
+                                            <span class="has-text-grey has-text-centered px-2"
+                                                th:text="#{ui.courses.index.table.empty}"></span>
+                                            <a th:href="@{/courses/create(cid=${selectedCycle.id})}"
+                                                th:text="#{ui.courses.actions.addCourse}"></a>
+                                        </td>
+                                    </tr>
+                                    <tr th:each="course : ${courses}">
+                                        <td>
+                                            <a class="has-text-weight-bold"
+                                                th:href="@{/courses/{courseId}(courseId=${course.id})}"
+                                                th:text="${course.name}"></a>
+                                        </td>
+                                        <td th:text="${course.manager} ? ${course.manager.fullname} : ''"></td>
+                                        <td th:text="${course.cycle.name}"></td>
+                                        <td>
+                                            <span th:remove="tag" th:if="${course.classroom}"
+                                                th:text="${course.classroom.name}"></span>
+                                        </td>
+                                        <td>
+                                            <a class="button is-primary is-light"
+                                                th:href="@{/courses/{courseId}/edit(courseId=${course.id})}">
+                                                <span class="icon">
+                                                    <i class="fas fa-edit"></i>
+                                                </span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="button is-danger is-light"
+                                                th:href="@{/courses/{courseId}/delete(courseId=${course.id})}">
+                                                <span class="icon">
+                                                    <i class="fas fa-trash"></i>
+                                                </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

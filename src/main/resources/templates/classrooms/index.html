@@ -8,7 +8,15 @@
     </ul>
 
     <section class="section">
-        <div class="container">
+        <div class="container is-fluid">
+            <div class="notification is-success" th:if="${param.created}">
+                <a class="delete" th:href="@{/classrooms}"></a>
+                <span th:text="#{messages.classrooms.created}"></span>
+            </div>
+            <div class="notification is-success" th:if="${param.updated}">
+                <a class="delete" th:href="@{/classrooms}"></a>
+                <span th:text="#{messages.classrooms.updated}"></span>
+            </div>
             <div class="panel is-light">
                 <h1 class="panel-heading" th:text="#{ui.classrooms.index.panel.heading}"></h1>
                 <div class="panel-block has-background-white">
