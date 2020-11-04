@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/icons/css/all.min.css}" />
+    <style>
+        section {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            align-content: center;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <section>
+        <div class="container has-background-danger py-2">
+            <h1 class="title" th:text="#{errors.500}"></h1>
+            <a class="button is-danger is-light is-large" th:href="@{/}">
+                <span class="icon mr-1"><i class="fa fa-home"></i></span>
+                Volver
+            </a>
+        </div>
+    </section>
+
+</body>
+</html>
