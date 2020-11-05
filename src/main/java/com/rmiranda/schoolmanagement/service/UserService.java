@@ -21,4 +21,12 @@ public interface UserService {
 
     public void resetPassword(long id, String password);
 
+    public void addFailedAttempt(String username);
+
+    public void unlockUser(User user);
+
+    public void unlockUser(long id);
+
+    public void resetFailedAttempts(String username);
+
 }

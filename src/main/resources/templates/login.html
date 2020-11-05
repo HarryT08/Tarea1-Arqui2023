@@ -14,6 +14,7 @@
     <section class="section">
         <div class="container">
             <div class="notification is-danger is-light" th:if="${param.error}" th:text="#{errors.login.error}"></div>
+            <div class="notification is-warning" th:if="${param.locked}" th:text="#{errors.login.locked}"></div>
             <div class="notification is-warning is-light" th:if="${param.disabled}" th:text="#{errors.login.disabled}"></div>
             <div class="notification is-success is-light" th:if="${param.logout}" th:text="#{messages.logout}"></div>
             <div class="panel is-light">

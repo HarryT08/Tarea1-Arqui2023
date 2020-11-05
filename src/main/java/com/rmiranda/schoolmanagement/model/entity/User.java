@@ -61,6 +61,11 @@ public class User implements Serializable {
 
     private boolean active = true;
 
+    @Column(name = "login_attempt")
+    private int loginAttempt = 0;
+
+    private boolean locked = false;
+
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
@@ -202,6 +207,22 @@ public class User implements Serializable {
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;
+    }
+
+    public int getLoginAttempt() {
+        return loginAttempt;
+    }
+
+    public void setLoginAttempt(int loginAttempt) {
+        this.loginAttempt = loginAttempt;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
     }
 
     private static final long serialVersionUID = 1L;

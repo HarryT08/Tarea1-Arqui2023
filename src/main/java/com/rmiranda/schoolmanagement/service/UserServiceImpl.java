@@ -71,4 +71,42 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Override
+    public void addFailedAttempt(String username) {
+        User user = userRepository.findUSerByUsername(username);
+
+        if (user == null) {
+            return;
+        }
+
+        if (user.getLoginAttempt() >= 4) {
+            user.setLocked(true);
+        }  else {
+            user.setLoginAttempt(user.getLoginAttempt() + 1);
+        }
+
+        userRepository.save(user);
+    }
+
+    @Override
+    public void unlockUser(User user) {
+        user.setLocked(false);
+        user.setLoginAttempt(0);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void unlockUser(long id) {
+        User user = userRepository.getOne(id);
+        unlockUser(user);
+    }
+
+    @Override
+    public void resetFailedAttempts(String username) {
+        User user = userRepository.findUSerByUsername(username);
+
+        user.setLoginAttempt(0);
+        userRepository.save(user);
+    }
+
 }

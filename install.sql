@@ -27,6 +27,8 @@ CREATE TABLE users (
 	`password` VARCHAR(255) NOT NULL,
 	email VARCHAR(255),
 	active BOOLEAN NOT NULL DEFAULT TRUE,
+	login_attempt INT NOT NULL DEFAULT 0,
+	locked BOOLEAN NOT NULL DEFAULT FALSE,
 	created_at DATETIME NOT NULL,
 	updated_at DATETIME NOT NULL,
 	deleted_at DATETIME,
@@ -138,7 +140,7 @@ insert into roles (name) values ("ROLE_STUDENT_DATA_EDITOR");
 insert into users 
 (name, last_name, birthday, username, `password`, email, active, created_at, updated_at) 
 values 
-("Admin", "System", now(), "system", "$2a$10$5dYDQRJaGLMIiXv49goz0uGdZCmrZQ1shakWGy0446SE09dSwqbA2",
+("School", "Manager", now(), "manager", "$2a$10$5dYDQRJaGLMIiXv49goz0uGdZCmrZQ1shakWGy0446SE09dSwqbA2",
 "admin@sms.com", true, now(), now());
 
 insert into user_roles (user_id, role_id) values (1, 1);

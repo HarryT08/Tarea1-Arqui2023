@@ -181,4 +181,12 @@ public class UserController {
         return mv;
     }
 
+    @PostMapping("/{userId}/unlock")
+    public ModelAndView unlockUser(@PathVariable(name = "userId") long userId, RedirectAttributes attr, ModelAndView mv) {
+        userService.unlockUser(userId);
+        attr.addAttribute("unlocked", "1");
+        mv.setViewName("redirect:/users");
+        return mv;
+    }
+
 }

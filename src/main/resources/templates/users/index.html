@@ -21,6 +21,10 @@
                 <a class="delete" th:href="@{/users}"></a>
                 <span th:text="#{messages.users.deleted}"></span>
             </div>
+            <div class="notification is-success" th:if="${param.unlocked}">
+                <a class="delete" th:href="@{/users}"></a>
+                <span th:text="#{messages.users.unlocked}"></span>
+            </div>
             <div class="panel is-light">
                 <h1 class="panel-heading" th:text="#{ui.users.index.panel.heading}"></h1>
                 <div class="panel-block has-background-white">
@@ -40,6 +44,7 @@
                                         <th th:text="#{ui.users.index.table.username}"></th>
                                         <th th:text="#{ui.users.index.table.role}"></th>
                                         <th th:text="#{ui.users.index.table.active}"></th>
+                                        <th th:text="#{ui.users.index.table.locked}"></th>
                                         <th th:text="#{ui.users.index.table.password}"></th>
                                         <th th:text="#{ui.common.table.edit}"></th>
                                         <th th:text="#{ui.common.actions.delete}"></th>
@@ -48,9 +53,10 @@
                                 <tbody>
                                     <tr th:unless="${users.totalElements} > 0">
                                         <td colspan="8">
-                                            <span th:text="#{ui.users.index.table.empty}" class="has-text-grey px-2 has-text-centered"></span>
+                                            <span th:text="#{ui.users.index.table.empty}"
+                                                class="has-text-grey px-2 has-text-centered"></span>
                                             <a th:href="@{/users/create}" th:text="#{ui.users.actions.createAUser}"></a>
-                                        </td> 
+                                        </td>
                                     </tr>
                                     <tr th:each="user : ${users.content}">
                                         <td th:text="${user.name}"></td>
@@ -64,6 +70,16 @@
                                         <td class="has-text-centered">
                                             <span th:if="${user.active}" class="icon"><i class="fas fa-check"></i></span>
                                             <span th:unless="${user.active}" class="icon"><i class="fa fa-times"></i></span>
+                                        </td>
+                                        <td class="has-text-centered">
+                                            <a th:unless="${user.locked}" class="button is-light">
+                                                <span class="icon"><i class="fas fa-toggle-off"></i></span>
+                                            </a>
+                                            <form th:if="${user.locked}" th:method="POST" th:action="@{/users/{userId}/unlock(userId=${user.id})}">
+                                                <button class="button is-link is-light" type="submit">
+                                                    <span class="icon"><i class="fas fa-toggle-on"></i></span>
+                                                </button>
+                                            </form>
                                         </td>
                                         <td class="has-text-centered">
                                             <a class="button is-link is-light" th:href="@{/users/{userId}/password(userId=${user.id})}">
