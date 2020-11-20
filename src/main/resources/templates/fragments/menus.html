@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<body xmlns:th="http://www.thymeleaf.org">
+<body xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/secutiry/tags">
 
     <nav th:fragment="userNavbar" class="navbar is-light" role="navigation">
         <div class="container">
@@ -14,14 +14,14 @@
             </div>
             <div id="navbarToggle" class="navbar-menu">
                 <a th:href="@{/}" class="navbar-item" th:text="#{ui.menu.navbar.home}"></a>
-                <div class="navbar-item has-dropdown is-hoverable">
+                <div class="navbar-item has-dropdown is-hoverable" sec:authorize="hasAnyRole('ADMIN', 'STUDENT_DATA_EDITOR')">
                     <a class="navbar-link" th:text="#{ui.menu.navbar.users}"></a>
                     <div class="navbar-dropdown">
                         <a class="navbar-item" th:text="#{ui.menu.navbar.users.index}" th:href="@{/users}"></a>
                         <a class="navbar-item" th:text="#{ui.menu.navbar.users.create}" th:href="@{/users/create}"></a>
                     </div>
                 </div>
-                <div class="navbar-item has-dropdown is-hoverable">
+                <div class="navbar-item has-dropdown is-hoverable" sec:authorize="hasAnyRole('ADMIN')">
                     <a class="navbar-link" th:text="#{ui.menu.navbar.cycles}"></a>
                     <div class="navbar-dropdown">
                         <a class="navbar-item" th:text="#{ui.menu.navbar.cycles.index}" th:href="@{/cycles}"></a>
@@ -29,7 +29,7 @@
                             th:href="@{/cycles/create}"></a>
                     </div>
                 </div>
-                <div class="navbar-item has-dropdown is-hoverable">
+                <div class="navbar-item has-dropdown is-hoverable" sec:authorize="hasAnyRole('ADMIN')">
                     <a class="navbar-link" th:text="#{ui.menu.navbar.classrooms}"></a>
                     <div class="navbar-dropdown">
                         <a class="navbar-item" th:text="#{ui.menu.navbar.classrooms.index}"
