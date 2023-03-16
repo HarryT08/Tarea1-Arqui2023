@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org"
-    th:replace="layouts/template :: userTemplate(#{ui.cycles.edit.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+    th:replace="layouts/template :: userTemplate(#{ui.cycles.edit.window.title}, _, _, ~{::section}, _)">
 
 <body>
-
-    <ul id="crumbs">
-        <li><a th:href="@{/cycles}" th:text="#{ui.breadcrumb.cycles}"></a></li>
-        <li class="is-active"><a th:href="@{/cycles}" th:text="#{ui.breadcrumb.cycles.edit}"></a></li>
-    </ul>
-
     <section class="section">
         <div class="container">
             <div class="panel is-light">

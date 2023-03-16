@@ -1,21 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    th:replace="layouts/template :: userTemplate(#{ui.grades.registerGradeToStudent.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+    th:replace="layouts/template :: userTemplate(#{ui.grades.registerGradeToStudent.window.title}, _, _, ~{::section}, _)">
 
 <body>
-    <ul id="crumbs">
-        <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
-        <li><a th:href="@{/courses(id=${score.grade.subject.course.cycle.id})}"
-                th:text="${score.grade.subject.course.cycle.name}"></a></li>
-        <li><a th:href="@{/courses/{courseId}(courseId=${score.grade.subject.course.id})}"
-                th:text="${score.grade.subject.course.name}"></a></li>
-        <li><a th:href="@{/subjects/{subjectId}(subjectId=${score.grade.subject.id})}"
-                th:text="${score.grade.subject.name}"></a></li>
-        <li><a th:href="@{/grades/{gradeId}(gradeId=${score.grade.id})}"
-                th:text="${score.grade.description}"></a></li>
-        <li class="is-active"><a th:text="#{ui.breadcrumb.registerGradeToStudent.register(${score.student.fullname})}"></a></li>
-    </ul>
-
     <section class="section">
         <div class="container">
             <div class="panel is-light">

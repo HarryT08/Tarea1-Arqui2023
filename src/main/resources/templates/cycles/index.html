@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    th:replace="layouts/template :: userTemplate(#{ui.cycles.index.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+    th:replace="layouts/template :: userTemplate(#{ui.cycles.index.window.title}, _, _, ~{::section}, _)">
 </head>
 
 <body>
-    <ul id="crumbs">
-        <li class="is-active"><a href="#" th:text="#{ui.breadcrumb.cycles}"></a></li>
-    </ul>
-
     <section class="section">
         <div class="container is-fluid">
             <div class="notification is-success" th:if="${param.created}">

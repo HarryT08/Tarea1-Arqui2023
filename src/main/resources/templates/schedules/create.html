@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    th:replace="layouts/template :: userTemplate(#{ui.schedules.create.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+    th:replace="layouts/template :: userTemplate(#{ui.schedules.create.window.title}, _, _, ~{::section}, _)">
 <body>
-    <ul id="crumbs">
-        <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
-        <li><a th:href="@{/courses(id=${schedule.subject.course.cycle.id})}" th:text="${schedule.subject.course.cycle.name}"></a></li>
-        <li><a th:href="@{/courses/{courseId}(courseId=${schedule.subject.course.id})}" th:text="${schedule.subject.course.name}"></a></li>
-        <li><a th:href="@{/subjects/{subjectId}(subjectId=${schedule.subject.id})}" th:text="${schedule.subject.name}"></a></li>
-        <li class="is-active"><a th:text="#{ui.breadcrumb.schedules.create}"></a></li>
-    </ul>
-
     <section class="section">
         <div class="container">
             <div class="panel is-light">

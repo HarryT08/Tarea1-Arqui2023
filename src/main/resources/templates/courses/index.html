@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    th:replace="layouts/template :: userTemplate(#{ui.courses.index.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+    th:replace="layouts/template :: userTemplate(#{ui.courses.index.window.title}, _, _, ~{::section}, _)">
 
 <body>
-
-    <ul id="crumbs">
-        <li th:class="${selectedCycle} ? '' : 'is-active'"><a th:href="${selectedCycle} ? '#' : @{/courses}"
-                th:text="#{ui.breadcrumb.courses}"></a></li>
-        <li th:if="${selectedCycle}" class="is-active"><a href="#" th:text="${selectedCycle.name}"></a></li>
-    </ul>
-
     <section class="section">
         <div class="container is-fluid">
             <div class="notification is-success" th:if="${param.created}">

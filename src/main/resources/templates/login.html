@@ -13,10 +13,6 @@
 
     <section class="section">
         <div class="container">
-            <div class="notification is-danger is-light" th:if="${param.error}" th:text="#{errors.login.error}"></div>
-            <div class="notification is-warning" th:if="${param.locked}" th:text="#{errors.login.locked}"></div>
-            <div class="notification is-warning is-light" th:if="${param.disabled}" th:text="#{errors.login.disabled}"></div>
-            <div class="notification is-success is-light" th:if="${param.logout}" th:text="#{messages.logout}"></div>
             <div class="panel is-light">
                 <h1 class="panel-heading" th:text="#{ui.login.panel.heading}"></h1>
                 <div class="panel-block has-background-white">
@@ -66,6 +62,41 @@
     <footer th:replace="fragments/footer :: footer"></footer>
 
     <script th:src="@{/icons/js/all.min.js}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        if(/*[[${param.error}]]*/ "Test"){
+            swal({
+                title: 'Error!',
+                text: [[#{errors.login.error}]],
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+        }else if(/*[[${param.locked}]]*/ "Test"){
+            swal({
+                title: [[#{errors.title.disabled}]],
+                text: [[#{errors.login.locked}]],
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+        }else if(/*[[${param.disabled}]]*/ "Test"){
+            swal({
+                title: [[#{errors.title.locked}]],
+                text: [[#{errors.login.disabled}]],
+                icon: 'warning',
+                confirmButtonText: 'Cool'
+            })
+        }else if(/*[[${param.logout}]]*/ "Test"){
+            swal({
+                title: [[#{messages.title.logout}]],
+                text: [[#{messages.logout}]],
+                icon: 'success',
+                confirmButtonText: 'Cool'
+            })
+        }
+
+        /*]]>*/
+    </script>
 
 </body>
 </html>

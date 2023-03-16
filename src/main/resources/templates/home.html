@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags"
-    th:replace="layouts/template :: userTemplate(#{ui.home.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+    th:replace="layouts/template :: userTemplate(#{ui.home.window.title}, _, _, ~{::section}, _)">
 
 <body>
-    <ul id="crumbs">
-        <li class="is-active">Inicio</li>
-    </ul>
-
     <section class="section">
         <div class="container" sec:authorize="hasRole('ADMIN')">
             <div class="tile is-ancestor">

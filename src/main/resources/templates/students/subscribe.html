@@ -1,16 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    th:replace="layouts/template :: userTemplate(#{ui.students.subscribe.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+    th:replace="layouts/template :: userTemplate(#{ui.students.subscribe.window.title}, _, _, ~{::section}, _)">
 
 <body>
-
-    <ul id="crumbs">
-        <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
-        <li><a th:href="@{/courses(id=${course.cycle.id})}" th:text="${course.cycle.name}"></a></li>
-        <li><a th:href="@{/courses/{courseId}(courseId=${course.id})}" th:text="${course.name}"></a></li>
-        <li class="is-active"><a th:text="#{ui.breadcrumb.students.subscribe}"></a></li>
-    </ul>
-
     <section class="section">
         <div class="container">
             <div class="panel is-light">

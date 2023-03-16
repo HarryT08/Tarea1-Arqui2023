@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://wwww.thymeleaf.org"
-    th:replace="layouts/template :: userTemplate(#{ui.cycles.create.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+    th:replace="layouts/template :: userTemplate(#{ui.cycles.create.window.title}, _, _, ~{::section}, _)">
 </head>
 
 <body>
-    <ul id="crumbs">
-        <li><a th:href="@{/cycles}" th:text="#{ui.breadcrumb.cycles}"></a></li>
-        <li class="is-active"><a href="#" th:text="#{ui.breadcrumb.cycles.create}"></a></li>
-    </ul>
-
     <section class="section">
         <div class="container">
             <div class="panel is-light">

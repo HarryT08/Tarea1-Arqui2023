@@ -1,20 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    th:replace="layouts/template :: userTemplate(#{ui.grades.register.window.title}, _, ~{::#crumbs}, ~{::section}, _)">
+    th:replace="layouts/template :: userTemplate(#{ui.grades.register.window.title}, _, _, ~{::section}, _)">
 
 <body>
-    <ul id="crumbs">
-        <li><a th:href="@{/courses}" th:text="#{ui.breadcrumb.courses}"></a></li>
-        <li><a th:href="@{/courses(id=${grade.subject.course.cycle.id})}"
-                th:text="${grade.subject.course.cycle.name}"></a></li>
-        <li><a th:href="@{/courses/{courseId}(courseId=${grade.subject.course.id})}"
-                th:text="${grade.subject.course.name}"></a></li>
-        <li><a th:href="@{/subjects/{subjectId}(subjectId=${grade.subject.id})}" th:text="${grade.subject.name}"></a>
-        </li>
-        <li><a th:href="@{/grades(sid=${grade.subject.id})}" th:text="#{ui.breadcrumb.grades}"></a></li>
-        <li class="is-active"><a th:text="#{ui.breadcrumb.grades.scorebook(${grade.description})}"></a></li>
-    </ul>
-
     <section class="section">
         
         <div class="container is-fluid">
