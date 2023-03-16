@@ -1,34 +1,115 @@
-# School Management (Administración escolar)
+<h1 align="center">School Management<a href="https://www.producthunt.com/posts/awesome-github-profiles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-awesome-github-profiles" target="_blank"><img src="https://i.ibb.co/H4WWWZN/logo.png" alt="Awesome GitHub Profiles - Best curated list of developers readme, updated every 15 min | Product Hunt" style="width: 200px; height: 144px;" width="200" height="184" /></a></h1>
+<div align="center">
+<img src="https://img.shields.io/badge/Autor-Rmirandasv-2ea44f?logo=Visual+Studio+Code&logoColor=007ACC" alt="Awesome Badge"/>
+<img src="https://img.shields.io/badge/Backend-Spring_Boot-2ea44f?logo=Spring+Boot&logoColor=6DB33F" alt="Autores"/>
+<img src="https://img.shields.io/badge/Front_End-HTML5-E34F26?logo=HTML5&logoColor=E34F26" alt="Google Chrome Extension" /> 
+<br>
+</div>
+<br>
+School Management  es una aplicación web que te permite gestionar los alumnos de un centro educativo. Esta aplicacion se caracteriza por crear ciclos escolares, Inscribir materias, planificar horarios de clase, asignar maestros a las clases, generar control y seguimiento a las calificaciones, entre otras ventajas
 
-School Management es una aplicación web que permite gestionar estudiantes dentro de un centro educativo. La aplicación permite crear ciclos escolares, registrar cursos dentro de los ciclos escolares, registrar materias a cursos, registrar horarios de clase, registrar y asignar maestros para las clases, registrar estudiantes dentro de cursos y llevar el control de notas. 
+![alusion](https://cdn.discordapp.com/attachments/745748087880024127/1085738105660788786/image.png)
+>Pagina principal de School Management
 
-La aplicación cuenta valores que pueden cambiarse a nivel de configuración, como en la siguiente imagen **"Colegio Central"** y "**Para un mejor futuro"** son valores configurables que corresponden al nombre de la institución y al eslogan que utilicen. Además la aplicación cuenta con archivo de traducción en español, lo cual permite crear tus propios archivos de traducciones y tener la aplicación en varios idiomas de mantera automática. 
+Ademas de gestionar un sistema de informacion de gestion y administracion academica, se caracteriza por tener 2 lenguajes disponibles:  Ingles & Español, a continuacion algunas capturas de las interfaces graficas del proyecto:
+|                                                                                    Pagina Principal                                                                                    |                                                                                   Lista de usuarios del Sistema                                                                                   |                                                                                Listado de Cursos                                                                                |                                                                             Matriz de Ciclo Escolares                                                                              |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://cdn.discordapp.com/attachments/745748087880024127/1085738105660788786/image.png" title="Pagina Principal" width="100%" crossorigin> | <img src="https://cdn.discordapp.com/attachments/745748087880024127/1085738202368847922/image.png" title="Lista de usuarios del Sistema" width="100%" crossorigin> | <img src="https://cdn.discordapp.com/attachments/745748087880024127/1085738272220790844/image.png" title="Listado de Cursos" width="100%" crossorigin> | <img src="https://cdn.discordapp.com/attachments/745748087880024127/1085738334090969088/image.png" title="Matriz de Ciclo Escolares" width="100%" crossorigin> |
 
-![School Management](http://rs.ronaldmirandaweb.com/img.png)
 
-## Instalación
-### Instalación de paquete de aplicación.
-1. Descargar la [https://github.com/rmirandasv/school-management/releases/tag/0.0.9](última versión) del binario de School Management.
-2. Descargar y ejecutar en tu base de datos MySQL el script install.sql
-3. Modificar application.properties para agregar los datos de conexión a MySQL y configurar el nombde de la institución y su eslogan.
-4. Iniciar la aplicación java -jar school-management*.jar
-5. Ingresar a http://localhost:8080 (o el puerto que hayas configurado en application.properties) con usuario **manager** y contraseña **secret**. Al ingresar correctamente deberías ver una imagen como la siguiente
+## Contenido del repositorio
+- [Instalacion](#instalacion)
+    + [Usuario Comun](#usuario_comun)
+    + [Usuario Desarrollador](#usuario_dev)
+ - [Uso](#ussage)
+ - [Creditos](#creditos)
 
-![School Management](http://rs.ronaldmirandaweb.com/img.png)
+<img src="https://cdn-icons-png.flaticon.com/512/4961/4961639.png" align="right" width="44px" />
 
-## Instalación para desarrolladores.
-### Clonar el proyecto
-`git clone git@github.com:rmirandasv/school-management.git`
-### Instalar las dependencias Java
-`cd school-management
-./mvwn install`
-### Instalar dependencias para modificar estilos de Bulmacss utilizando sass
-Dentro del directorio school-management<br>
-`cd src/main/resources && npm install`
-### Iniciando aplicación
-`./mvwn spring-boot:run`
-### Compilando sass a css
-En school-management/src/main/resources <br>
-`npm run css-build`
-### Compilar sass continuamente
-`npm run css-watch`
+
+## Instalacion
+### usuario_comun
+Es un gusto que te interese ejecutar el proyecto :smiley:, a continuación se describe una serie de pasos a tener en cuenta para la instalación local del proyecto:
+- :green_heart: Descarga el proyecto desde la sección de Code presionando en Download Zip y/o si tienes instalado [Git](https://git-scm.com/download/win), abre una nueva instancia de la consola de comando y pega la siguiente línea de código: <code>git clone https://github.com/rmirandasv/school-management.git</code>
+
+![alusion](https://sites.northwestern.edu/researchcomputing/files/2021/05/github.png)
+>Descarga directa del proyecto
+
+- :green_heart: Descarga [MySQL](https://www.mysql.com/), configure y a través de MysqlWorkbrench importe el script de la base de datos denominada: <code>install.sql</code>
+
+- :green_heart: Modificamos el fichero *application.properties* con la configuración de conexión a servidor de la base de datos de MySql, opcionalmente puedes modificar personalizadamente las variables de nombre de institución y logo oficial del instituto educativo
+
+- :green_heart: Ejecuta la aplicacion en [Java](https://www.java.com/es/) con la siguiente linea: <code>java -jar school-management*.jar</code>
+
+- :green_heart: Finalmente,  nuestro proyecto correra en la direccion <code>http://localhost:8080</code> (Siempre y cuando el puerto no este ocupado por otro programa), donde encontraremos la interfaz inicial del programa 
+
+![Interfaz Inicial](https://cdn.discordapp.com/attachments/745748087880024127/1085738105660788786/image.png)
+> Pagina inicial del proyecto
+
+### usuario_dev
+Felicidades gran programador, es un gusto que hayas aceptado este reto :neckbeard:, a continuación una guia con pasos similares para elaboracion, desarrollo y ejecucion del proyecto
+- :blue_heart: Descarga el proyecto desde la sección de Code presionando en Download Zip y/o si tienes instalado [Git](https://git-scm.com/download/win), abre una nueva instancia de la consola de comando y pega la siguiente línea de código: <code>git clone https://github.com/rmirandasv/school-management.git</code>
+
+![alusion](https://sites.northwestern.edu/researchcomputing/files/2021/05/github.png)
+>Descarga directa del proyecto
+
+- :blue_heart: Descarga [MySQL](https://www.mysql.com/), configure y a través de MysqlWorkbrench importe el script de la base de datos denominada: <code>install.sql</code>
+
+- :blue_heart: Modificamos el fichero *application.properties* con la configuración de conexión a servidor de la base de datos de MySql, opcionalmente puedes modificar personalizadamente las variables de nombre de institución y logo oficial del instituto educativo
+
+- :blue_heart: Instalamos las dependencias necesarias de Java y Bulmas a traves de los siguientes comandos
+   <code>cd school-management ./mvwn install</code>
+   <code>cd src/main/resources && npm install</code>
+   > psdatta: La segunda linea de codigo debe ejecutar dentro del directorio del proyecto
+
+
+![Interfaz Inicial](https://repository-images.githubusercontent.com/24268127/6b76a23f-40d7-4c68-ad10-fe2abc404f66)
+> Es necesario disponer de Node Package Manager [NPM](https://www.npmjs.com/) puedes descargarlo tocando el enlace anterior la version 14.0.0
+
+
+<img src="https://www.cursor.cl/wp-content/uploads/2022/05/03home-if.png" align="right" width="44px" />
+
+
+
+## ussage
+
+Una vez ejecutado el proyecto nos llevara a la zona de inicio de sesion del proyecto, esta interfaz la vemos a continuacion:
+![Interfaz Inicial](https://cdn.discordapp.com/attachments/745748087880024127/1085769828008218735/image.png)
+> Login del Proyecto
+
+Las credenciales de administrador del Sistema son las siguientes:
+| **Usuario** | **Clave**  |
+|---------|--------|
+| Manager | Secret |
+
+
+<img src="https://cdn-icons-png.flaticon.com/512/2905/2905138.png" align="right" width="44px" />
+
+## Arquitectura
+
+
+### Actores 
+Este Sistema web se caracteriza por la colaboracion entre diversos agentes dentro de su ambito de desarrollo, estas personas juegan un rol importante del sistema, los roles del presente proyecto son:
+![Actores](https://i.ibb.co/LJ4tKF0/actores.png)
+> Actores del Sistema
+
+### Funcionalidades del Sistema
+#### Requerimientos Funcionales
+| #RF | Descripcion                                                                                                                                                                     |
+|-----|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Un usuario puede registrarse en la plataforma con rol de Estudiante y/o Docente                                                                                                 |
+| 2   | Un usuario con rol de Estudiante/Docente inicia sesion en la plataforma a traves de sus credenciales validas                                                                    |
+| 3   | Un usuario con rol estudiante puede matricular materias en un curso academico                                                                                                   |
+| 4   | Un usuario con rol estudiante participa sus clases dentro de un ciclo academico                                                                                                 |
+| 5   | Un usuario con rol estudiante planifica sus materias a traves de un horario de clases                                                                                           |
+| 6   | Un usuario con rol docente dicta un grupo de materias                                                                                                                           |
+| 7   | Un usuario con rol docente puede ser responsable de elaborar su docencia entre 1 a muchos cursos en la academia escolar                                                         |
+| 8   | Un usuario con rol docente evalua a sus estudiante generandole una calificacion en la materia cursada y dictada                                                                 |
+| 9   | Un usuario con rol administrador tiene control, gestion y accesos a todos los usuario del sistema con la capacidad de agregar, actualizar, modificar o eliminar dichos usuarios |
+
+#### Requerimientos no funcionales
+| #RNF | Descripcion                                                                        |
+|------|------------------------------------------------------------------------------------|
+| 1    | El aplicativo debe permitir la integridad y seguridad de los datos de los usuarios |
+| 2    | El aplicativo debe ser adaptables a las diferentes resoluciones de Pantalla        |
+| 3    | El aplicativo debe ejecutarse con tiempo de respuesta no mayores a 3 segundos      |
