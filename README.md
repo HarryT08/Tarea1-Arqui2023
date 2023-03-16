@@ -114,6 +114,30 @@ Este Sistema web se caracteriza por la colaboracion entre diversos agentes dentr
 | 2    | El aplicativo debe ser adaptables a las diferentes resoluciones de Pantalla        |
 | 3    | El aplicativo debe ejecutarse con tiempo de respuesta no mayores a 3 segundos      |
 
+## Mejoras, Cambio y actualizaciones del Proyecto
+### Problema
+
+El proyecto muestra una dificultad con los mensajes de confirmacion, advertencia o error, debido a que muestran mensaje por alertas en Javascript, un ejemplo se evidencia a continuacion:
+![Actores](https://i.ibb.co/G221qbQ/Ejemplo-de-alert-del-Sistema.png)
+> Una alegoria respecto a los mensaje de alerta del proyecto
+
+Crudos, ambiguos hasta considerarse basicos, puesto que actualmente existen tecnologias que aportan en la construccion y mejora de estas ventanas emergentes, una de las librerias mas destacadas es Sweet Alert, genera interfaces profesionales y amigables para la comunicacion con los usuarios
+![Actores](http://sweetalert2.github.io/images/sweetalert2-social.png)
+> Sweet Alert
+
+Convertimos esos aburridos mensajes basico y planos en algo mas agradable al usuario final, aqui algunos ejemplos:
+![Actores](https://cdn.discordapp.com/attachments/745748087880024127/1085782504100859944/image.png)
+> Errores en las credenciales de usuario renovado
+
+![Actores](https://cdn.discordapp.com/attachments/745748087880024127/1085782597025665085/image.png)
+> Sesion iniciada correctamente
+
+
+
+
+## Evidencia de video de modificacion y despliegue del codigo
+![Actores](https://youtu.be/8qgFcPjb7gI)
+> Video de modificacion de Sweet Alert
 ## Institución Académica 🏫
 Aplicativo base de un proyecto exitente con pequeñas modificaciones para la materia de arquitectura de software [Programa de Ingeniería de Sistemas](<https://ingsistemas.cloud.ufps.edu.co/>) de la [Universidad Francisco de Paula Santander](<https://ww2.ufps.edu.co/>).
 
