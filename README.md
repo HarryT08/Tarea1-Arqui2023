@@ -137,7 +137,7 @@ Convertimos esos aburridos mensajes básicos y planos en algo más agradable al 
 
 ## Evidencia de video de modificación y despliegue del código
 [Comprehensive Markdown Crash Course](https://youtu.be/8qgFcPjb7gI)
-> Video de modificacion de Sweet Alert
+> [Video de modificacion de Sweet Alert](https://www.youtube.com/watch?v=8qgFcPjb7gI)
 ## Institución Académica 🏫
 Aplicativo base de un proyecto existente con pequeñas modificaciones para la materia de arquitectura de software [Programa de Ingeniería de Sistemas](<https://ingsistemas.cloud.ufps.edu.co/>) de la [Universidad Francisco de Paula Santander](<https://ww2.ufps.edu.co/>).
 
