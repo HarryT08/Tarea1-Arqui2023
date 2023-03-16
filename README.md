@@ -113,3 +113,14 @@ Este Sistema web se caracteriza por la colaboracion entre diversos agentes dentr
 | 1    | El aplicativo debe permitir la integridad y seguridad de los datos de los usuarios |
 | 2    | El aplicativo debe ser adaptables a las diferentes resoluciones de Pantalla        |
 | 3    | El aplicativo debe ejecutarse con tiempo de respuesta no mayores a 3 segundos      |
+
+## Institución Académica 🏫
+Aplicativo base de un proyecto exitente con pequeñas modificaciones para la materia de arquitectura de software [Programa de Ingeniería de Sistemas](<https://ingsistemas.cloud.ufps.edu.co/>) de la [Universidad Francisco de Paula Santander](<https://ww2.ufps.edu.co/>).
+
+## Autores ✒️
+Proyecto desarrollado por:
+- Santiago Felipe Alferez Villamizar (**santiagofelipeavil@ufps.edu.co**)
+- Carlos Eduardo Contreras Mendoza (**carloseduardocmen@ufps.efu.co**)
+- Harold Rueda Antolinez (**haroldrant@ufps.edu.co**)
+- Oscar Ivan Bayona Diaz (**oscarivanbdia@ufps.edu.co**)
+- Marlon Stiven Prado (**marlonstivenprod@ufps.edu.co**)
